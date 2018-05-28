@@ -6,10 +6,15 @@ import org.junit.Test;
 import models.deporte.Deporte.*;
 
 public class DeporteTestCase {
+	private Deporte deporte = new Deporte("Futbol", True);
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testdeporteRespondeNombre() {
+		assertEquals(deporte.getNombre, "Futbol");
 	}
 
+	@Test
+	public void testdeporteRespondeNombre() {
+		assertEquals(deporte.permiteEmpate, True); 	// Verificar Muerto
+	}
 }
