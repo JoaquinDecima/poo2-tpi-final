@@ -1,15 +1,17 @@
 package models.juego;
 
 import static org.junit.Assert.*;
-import org.junit.Test;
 
+import java.util.Date;
 import models.juego.Patrida.*;
+import org.junit.Test;
 
 public class PartidaTestCase {
 	private Competidor local = new Deportista(); // Mokear
 	private Competidor visitante = new Deportista(); // Mokear
 	private Deporte deporte = new Deporte(); // Mokear
-	private Partido partido = new Partido(local, visitante, deporte, "fecha" /*cambiar a formato fecha*/, "Quilmes");
+	private Date fecha = new Date(2018, 06, 23);
+	private Partido partido = new Partido(local, visitante, deporte, fecha, "Quilmes");
 
 	@Test
 	public void testPartidoDevuelveLocal() {
@@ -24,5 +26,10 @@ public class PartidaTestCase {
 	@Test
 	public void testPartidoDevuelveEstado() {
 		assertEquals(partido.getEstado, this.local); // Refactorizar
+	}
+
+	@Test
+	public void testPartidoDevuelveFechaDeJuego() {
+		assertEquals(partido.getFechaDeJuego, this.fecha.getDate()); // Refactorizar
 	}
 }

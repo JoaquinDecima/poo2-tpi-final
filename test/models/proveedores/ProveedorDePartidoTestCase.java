@@ -1,11 +1,11 @@
-package models.provedores;
+package models.proveedores;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
 
 import models.apuesta.Apuesta.*;
 
-public class casaApuestaTestCase {
+public class proveedorDePartidoTestCase {
 
 	@Test
 	public void test() {

@@ -1,9 +1,10 @@
 package models.competidor;
 
 import static org.junit.Assert.*;
-import org.junit.Test;
 
+import java.util.Date;
 import models.competidor.Deportista.*;
+import org.junit.Test;
 
 public class DeportistaTest {
 	private Deportista deportistaPato;
@@ -18,8 +19,8 @@ public class DeportistaTest {
 	public void setUp() throws Exception {
 
         //Se crea el contador
-        deportistaPato = new Deportista("Pato","Quilmes"); //Falta agregar fecha
-        deportistaSinNombre = new Deportista("", "La Plata") //Falta agregar fecha
+        deportistaPato = new Deportista("Pato","Quilmes", new Date(1996, 3, 29));
+        deportistaSinNombre = new Deportista("", "La Plata", new Date(1995, 8, 9));
 
     }
 
