@@ -43,4 +43,9 @@ public class Partida{
   public Date getFechaDeJuego(){
     return(this.fecha.getDate())
   }
+
+  // Retorna True si el competidor participa
+  public Boolean juega(Competidor competidor){
+    return(this.getLocal == competidor || this.getVisitante == competidor);
+  }
 }

@@ -41,4 +41,14 @@ public class PartidaTestCase {
 	public void testPartidoDevuelveFechaDeJuego() {
 		assertEquals(partido.getFechaDeJuego(), this.fecha.getDate());
 	}
+
+	@Test
+	public void testPartidoPreguntaSiJuegaLocal() {
+		assertTrue(partido.juega(this.local));
+	}
+
+	@Test
+	public void testPartidoPreguntaSiJuegaOtro() {
+		assertFalse(partido.juega(mock(Deportista.class)));
+	}
 }
