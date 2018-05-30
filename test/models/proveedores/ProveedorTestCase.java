@@ -1,14 +1,18 @@
-package models.provedores;
+package models.proveedores;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
+// Importa desde org
 import org.junit.Test;
 
-import models.apuesta.Apuesta.*;
+// Importa del Modelo
+import models.proveedores.Proveedor.*;
 
-public class proveedorTestCase {
-  private ProVeedorDePartido partidos = new ProVeedorDePartido(); // Mokear
-  private ProVeedorDeEstadistica estadistica = new ProVeedorDeEstadistica(); // Mokear
-  private Proveerdor proveedor = new Proveerdor(partidos, estadistica); 
+public class ProveedorTestCase {
+  private ProveedorDePartido partidos = mock(ProveedorDePartido.class);
+  private ProveedorDeEstadistica estadistica = mock(ProVeedorDeEstadistica.class);
+  private Proveedor proveedor = new Proveerdor(partidos, estadistica);
 
 	@Test
 	public void test() {

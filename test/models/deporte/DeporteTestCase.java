@@ -1,8 +1,11 @@
 package models.deporte;
 
 import static org.junit.Assert.*;
+
+// Importa desde org
 import org.junit.Test;
 
+// Importa del Modelo
 import models.deporte.Deporte.*;
 
 public class DeporteTestCase {
@@ -15,6 +18,6 @@ public class DeporteTestCase {
 
 	@Test
 	public void testdeporteRespondeNombre() {
-		assertEquals(deporte.permiteEmpate, True); 	// Verificar Muerto
+		assertTrue(deporte.permiteEmpate);
 	}
 }

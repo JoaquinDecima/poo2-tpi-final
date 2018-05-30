@@ -1,11 +1,14 @@
-package models.provedores;
+package models.proveedores;
 
 import static org.junit.Assert.*;
+
+// Importa desde org
 import org.junit.Test;
 
-import models.apuesta.Apuesta.*;
+// Importa del Modelo
+import models.proveedores.ProveedorDeEstadistica.*;
 
-public class proveedorDeEstadisticaTestCase {
+public class ProveedorDeEstadisticaTestCase {
 
 	@Test
 	public void test() {

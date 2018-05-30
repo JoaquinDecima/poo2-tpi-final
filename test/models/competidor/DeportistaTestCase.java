@@ -2,9 +2,14 @@ package models.competidor;
 
 import static org.junit.Assert.*;
 
+// Importa Utilidades Java
 import java.util.Date;
-import models.competidor.Deportista.*;
+
+// Importa desde org
 import org.junit.Test;
+
+// Importa del Modelo
+import models.competidor.Deportista.*;
 
 public class DeportistaTest {
 	private Deportista deportistaPato;
