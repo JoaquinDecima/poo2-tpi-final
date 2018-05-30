@@ -13,11 +13,11 @@ public class DeporteTestCase {
 
 	@Test
 	public void testdeporteRespondeNombre() {
-		assertEquals(deporte.getNombre, "Futbol");
+		assertEquals(deporte.getNombre(), "Futbol");
 	}
 
 	@Test
 	public void testdeporteRespondeNombre() {
-		assertTrue(deporte.permiteEmpate);
+		assertTrue(deporte.permiteEmpate());
 	}
 }

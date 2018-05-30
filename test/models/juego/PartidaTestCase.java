@@ -10,6 +10,7 @@ import java.util.Date;
 import models.competidor.Deportista.*;
 import models.deporte.Deporte.*;
 import models.juego.Patrida.*;
+import models.juego.estados.Estado.*;
 
 // Importa desde org
 import org.junit.Test;
@@ -33,7 +34,7 @@ public class PartidaTestCase {
 
 	@Test
 	public void testPartidoDevuelveEstado() {
-		assertEquals(partido.getEstado(), this.local);
+		assertEquals(partido.getEstado(), this.local); // Implementar estados
 	}
 
 	@Test
