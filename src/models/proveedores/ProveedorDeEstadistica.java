@@ -11,19 +11,14 @@
 
 package models.proveedores;
 
-import static org.junit.Assert.*;
-
-// Importa desde org
-import org.junit.Test;
+// Importa utilidades Java
+import java.util.ArrayList;
 
 // Importa del Modelo
-import models.proveedores.ProveedorDeEstadistica.*;
+import models.deporte.Deporte.*;
+import models.juego.Partida.*;
 
-public class ProveedorDeEstadisticaTestCase {
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
+public class ProveedorDeEstadistica {
 
 }

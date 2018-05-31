@@ -1,8 +1,23 @@
+/*
+ * Programacion Orientada a Objetos II 2018 s1
+ * Universidad Nacional de Quilmes
+ *
+ * Casa de Apuestas HITO 1
+ *
+ * Alumnos:
+ *        Decima, Joaquin A. (Pato)
+ *        Otarola, Florencia
+ */
+
 package models.proveedores;
 
+// Importa utilidades Java
+import java.util.ArrayList;
+import java.util.Date;
+
 // Importa del Modelo
+import models.deporte.Deporte.*;
 import models.juego.Partida.*;
-import models.proveedores.Proveedor.*;
 
 /*
  * La Siguiente clase Represnta una API que funciona como medio para obtener datos
@@ -24,6 +39,17 @@ public class Proveedor {
     return(this.partidos.getPatridosAll());
   }
 
+  // Retorna una lista de partidos del deporte "dDeporte"
+  public ArrayList<Partida> getPartidosDeDeporte(Deporte dDeporte){
+    return(this.partidos.getPartidosDeDeporte(dDeporte));
+  }
+
+  // Retorna todos los partidos que se juegen en dDate
+  public ArrayList<Partida> getPartidosDeFecha(Date dDate){
+    return(this.partidos.getPartidosDeFecha(dDate));
+  }
+}
+
   /*
    * Se toma la decicion de que la implementacion de la API de los proveedores
    * es quien tiene la obligacion de manipular los datos dado que que los
@@ -35,19 +61,33 @@ public class Proveedor {
    * lo anterior solo es el intermediario de la comunicacion.
    */
 
-  // Retorna una lista de De partidos en la que participio "comp"
-  public ArrayList<Partida> getPartidosDeDeportista(Competidor comp){     //Recordar ver interface de Competidor
-    private ArrayList<Partida> partidos = new ArrayList<Partida>();
+  // Retorna una lista de De partidos en la que participio "cCompetidor"
+  public ArrayList<Partida> getPartidosDeDeportista(Competidor cCompetidor){     //Recordar ver interface de Competidor
+    private ArrayList<Partida> listPartidos = new ArrayList<Partida>();
 
     // Recorro los partidos
     for (Partida p : this.getPatridosAll()){
       //Si el competidor Participa (juega)
-      if (p.juega(comp)){
+      if (p.juega(cCompetidor)){
         // Lo sumo a la lista
-        partidos.add(p);
+        listPartidos.add(p);
       }
     }
+    return(listPartidos);
+  }
 
-    return(this.partidos);
+  // Retorna una lista de De partidos en la que participio "cCompetidor"
+  public ArrayList<Partida> getPartidosDeDeportistas(Competidor cLocal, Competidor cVisitante){     //Recordar ver interface de Competidor
+    private ArrayList<Partida> listPartidos = new ArrayList<Partida>();
+
+    // Recorro los partidos
+    for (Partida p : this.getPatridosAll()){
+      //Si el competidor Participa (juega)
+      if (p.juegan(cLocal, cVisitante)){
+        // Lo sumo a la lista
+        listPartidos.add(p);
+      }
+    }
+    return(listPartidos);
   }
 }

@@ -1,3 +1,14 @@
+/*
+ * Programacion Orientada a Objetos II 2018 s1
+ * Universidad Nacional de Quilmes
+ *
+ * Casa de Apuestas HITO 1
+ *
+ * Alumnos:
+ *        Decima, Joaquin A. (Pato)
+ *        Otarola, Florencia
+ */
+
 package models.juego;
 
 // Importa utilidades Java
@@ -47,5 +58,10 @@ public class Partida{
   // Retorna True si el competidor participa
   public Boolean juega(Competidor competidor){
     return(this.getLocal == competidor || this.getVisitante == competidor);
+  }
+
+  // Retorna True si el partido es entre ambos competidores (cLocal y cVisitante en cualquier orden)
+  public Boolean juegan(Competidor cLocal, Competidor cVisitante){
+    return(this.getLocal == cLocal && this.getVisitante == cVisitante|| this.getVisitante == cLocal && this.getLocal == cVisitante);
   }
 }
