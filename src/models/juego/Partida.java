@@ -15,9 +15,9 @@ package models.juego;
 import java.util.Date;
 
 // Importa de Mi modelo
-import models.competidor.Deportista.*;
-import models.deporte.Deporte.*;
-import models.juego.estados.Estado.*;
+import models.competidor.Deportista;
+import models.deporte.Deporte;
+import models.juego.estados.Estado;
 
 public class Partida{
   protected Competidor local;
@@ -57,11 +57,11 @@ public class Partida{
 
   // Retorna True si el competidor participa
   public Boolean juega(Competidor competidor){
-    return(this.getLocal == competidor || this.getVisitante == competidor);
+    return(this.getLocal() == competidor || this.getVisitante() == competidor);
   }
 
   // Retorna True si el partido es entre ambos competidores (cLocal y cVisitante en cualquier orden)
   public Boolean juegan(Competidor cLocal, Competidor cVisitante){
-    return(this.getLocal == cLocal && this.getVisitante == cVisitante|| this.getVisitante == cLocal && this.getLocal == cVisitante);
+    return(this.getLocal() == cLocal && this.getVisitante() == cVisitante|| this.getVisitante() == cLocal && this.getLocal() == cVisitante);
   }
 }

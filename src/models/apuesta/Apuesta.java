@@ -11,9 +11,9 @@
 
 package models.apuesta;
 
-import models.juego.Patrida.*;
+import models.juego.Partida;
 
-public class Apuesta{
+public abstract class Apuesta{
   protected Partida partido;
   protected float monto;
 

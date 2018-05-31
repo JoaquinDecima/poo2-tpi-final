@@ -12,12 +12,12 @@
 package models.competidor;
 
 // Importa Utilidades Java
-import java.util.ArrayList.*;
+import java.util.ArrayList;
 
 // Importa del Modelo
-import models.competidor.Deportista.*;
+import models.competidor.Deportista;
 
-public class Equipo(){
+public class Equipo{
   protected ArrayList<Deportista> deportistas = new ArrayList<Deportista>();
   protected String nombreEquipo;
 
