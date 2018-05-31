@@ -73,7 +73,7 @@ public class Proveedor {
         listPartidos.add(p);
       }
     }
-    return(listPartidos);
+    return(this.corregirLista(listPartidos));
   }
 
   // Retorna una lista de De partidos en la que participio "cCompetidor"
@@ -88,6 +88,22 @@ public class Proveedor {
         listPartidos.add(p);
       }
     }
-    return(listPartidos);
+    return(this.corregirLista(listPartidos));
   }
+
+  /*
+   * Funcionalidades adicionales para corregir problemas de implementacion, se
+   * desarrollan con el fin de seguir la logica que se viene aplicando. Esta
+   * seccion no tiene codigo relevante solo correcciones que se aplicaran a
+   * nuestras implementaciones.
+   */
+
+   // Invierte el orden de las listas para corregir la iteracion realizada
+   protected ArrayList<Partida> corregirLista(ArrayList<Partida> lList){
+     private ArrayList<Partida> listPartidos = new ArrayList<Partida>();
+     for (Partida p : lList){
+       listPartidos.add(p);
+     }
+     return(listPartidos);
+   }
 }
