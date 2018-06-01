@@ -17,7 +17,7 @@ import java.util.Date;
 // Importa de Mi modelo
 import models.competidor.*;
 import models.deporte.Deporte;
-import models.juego.estados.*;
+import models.juego.estado.*;
 
 public class Partida{
   protected Competidor local;
@@ -51,8 +51,9 @@ public class Partida{
   }
 
   // Retrona la fecha de Juego
-  public Date getFechaDeJuego(){
-    return(this.fecha.getDate())
+  @SuppressWarnings("deprecation")
+public int getFechaDeJuego(){
+    return(this.fecha.getDate());
   }
 
   // Retorna True si el competidor participa
@@ -63,5 +64,10 @@ public class Partida{
   // Retorna True si el partido es entre ambos competidores (cLocal y cVisitante en cualquier orden)
   public Boolean juegan(Competidor cLocal, Competidor cVisitante){
     return(this.getLocal() == cLocal && this.getVisitante() == cVisitante|| this.getVisitante() == cLocal && this.getLocal() == cVisitante);
+  }
+  
+  // Retorna true si dDeporte es el deporte
+  public Boolean esDeporte(Deporte dDeporte) {
+	  return(this.deporte.esDeporte(dDeporte));
   }
 }

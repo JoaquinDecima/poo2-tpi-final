@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 // Importa del Modelo
-import models.deporte.Deporte.*;
-import models.juego.Partida.*;
+import models.deporte.*;
+import models.juego.*;
 
 /*
  * Se encuentra aqui el controlador y gestor de partido Oficial utilizado por
@@ -34,14 +34,14 @@ public class ProveedorDePartido {
 
   // Retorna una lista de partidos del deporte "dDeporte"
   public ArrayList<Partida> getPartidosDeDeporte(Deporte dDeporte){
-    private ArrayList<Partida> listPartidos = new ArrayList<Partida>();
+    ArrayList<Partida> listPartidos = new ArrayList<Partida>();
 
     // Recorro los partidos
     for (Partida p : this.getPatridosAll()){
       //Si el partido es de "dDeporte" deporte
       if (p.esDeporte(dDeporte)){
         // Lo sumo a la lista
-        lsitPartidos.add(p);
+        listPartidos.add(p);
       }
     }
     return(this.corregirLista(listPartidos));
@@ -49,14 +49,14 @@ public class ProveedorDePartido {
 
   // Retorna todos los partidos que se juegen en dDate
   public ArrayList<Partida> getPartidosDeFecha(Date dDate){
-    private ArrayList<Partida> listPartidos = new ArrayList<Partida>();
+    ArrayList<Partida> listPartidos = new ArrayList<Partida>();
 
     // Recorro los partidos
     for (Partida p : this.getPatridosAll()){
       //Si el partido es de "dDeporte" deporte
       if (p.getFechaDeJuego() == dDate.getDate()){
         // Lo sumo a la lista
-        lsitPartidos.add(p);
+        listPartidos.add(p);
       }
     }
     return(this.corregirLista(listPartidos));
@@ -71,7 +71,7 @@ public class ProveedorDePartido {
 
    // Invierte el orden de las listas para corregir la iteracion realizada
    protected ArrayList<Partida> corregirLista(ArrayList<Partida> lList){
-     private ArrayList<Partida> listPartidos = new ArrayList<Partida>();
+     ArrayList<Partida> listPartidos = new ArrayList<Partida>();
      for (Partida p : lList){
        listPartidos.add(p);
      }

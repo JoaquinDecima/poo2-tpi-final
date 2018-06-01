@@ -16,8 +16,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 // Importa del Modelo
-import models.deporte.Deporte.*;
-import models.juego.Partida.*;
+import models.competidor.*;
+import models.deporte.*;
+import models.juego.*;
 
 /*
  * La Siguiente clase Represnta una API que funciona como medio para obtener datos
@@ -48,7 +49,6 @@ public class Proveedor {
   public ArrayList<Partida> getPartidosDeFecha(Date dDate){
     return(this.partidos.getPartidosDeFecha(dDate));
   }
-}
 
   /*
    * Se toma la decicion de que la implementacion de la API de los proveedores
@@ -63,7 +63,7 @@ public class Proveedor {
 
   // Retorna una lista de De partidos en la que participio "cCompetidor"
   public ArrayList<Partida> getPartidosDeDeportista(Competidor cCompetidor){     //Recordar ver interface de Competidor
-    private ArrayList<Partida> listPartidos = new ArrayList<Partida>();
+    ArrayList<Partida> listPartidos = new ArrayList<Partida>();
 
     // Recorro los partidos
     for (Partida p : this.getPatridosAll()){
@@ -78,7 +78,7 @@ public class Proveedor {
 
   // Retorna una lista de De partidos en la que participio "cCompetidor"
   public ArrayList<Partida> getPartidosDeDeportistas(Competidor cLocal, Competidor cVisitante){     //Recordar ver interface de Competidor
-    private ArrayList<Partida> listPartidos = new ArrayList<Partida>();
+    ArrayList<Partida> listPartidos = new ArrayList<Partida>();
 
     // Recorro los partidos
     for (Partida p : this.getPatridosAll()){
@@ -100,7 +100,7 @@ public class Proveedor {
 
    // Invierte el orden de las listas para corregir la iteracion realizada
    protected ArrayList<Partida> corregirLista(ArrayList<Partida> lList){
-     private ArrayList<Partida> listPartidos = new ArrayList<Partida>();
+     ArrayList<Partida> listPartidos = new ArrayList<Partida>();
      for (Partida p : lList){
        listPartidos.add(p);
      }

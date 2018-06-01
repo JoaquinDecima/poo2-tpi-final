@@ -21,7 +21,7 @@ import java.util.Date;
 import models.competidor.*;
 import models.deporte.*;
 import models.juego.*;
-import models.juego.estados.*;
+import models.juego.estado.*;
 
 // Importa desde org
 import org.junit.Test;
@@ -48,6 +48,7 @@ public class PartidaTestCase {
 		assertEquals(partido.getEstado(), this.local); // Implementar estados
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testPartidoDevuelveFechaDeJuego() {
 		assertEquals(partido.getFechaDeJuego(), this.fecha.getDate());
