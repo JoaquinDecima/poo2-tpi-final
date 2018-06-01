@@ -1,9 +1,20 @@
+/*
+ * Programacion Orientada a Objetos II 2018 s1
+ * Universidad Nacional de Quilmes
+ *
+ * Casa de Apuestas HITO 1
+ *
+ * Alumnos:
+ *        Decima, Joaquin A. (Pato)
+ *        Otarola, Florencia
+ */
+
 package models.posibilidad;
 
 import models.juego.Partida;
 import models.proveedores.Proveedor;
 
-// Por error de implementaicon cuenta con margen de error
+// Por error de implementaicon cuenta con margen de error inversamente propocional a la cantidad de partidos jugados
 public class PosibilidadHistoricaDirecta implements Posibilidad {
 
 	@Override
