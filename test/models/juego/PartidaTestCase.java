@@ -18,20 +18,20 @@ import static org.mockito.Mockito.*;
 import java.util.Date;
 
 // Importa de Mi modelo
-import models.competidor.Deportista.*;
-import models.deporte.Deporte.*;
-import models.juego.Patrida.*;
-import models.juego.estados.Estado.*;
+import models.competidor.*;
+import models.deporte.*;
+import models.juego.*;
+import models.juego.estados.*;
 
 // Importa desde org
 import org.junit.Test;
 
 public class PartidaTestCase {
-	private Competidor local = mock(Deportista.class) ;
-	private Competidor visitante = mock(Deportista.class);
+	private Competidor local = mock(Competidor.class) ;
+	private Competidor visitante = mock(Competidor.class);
 	private Deporte deporte = mock(Deporte.class);
 	private Date fecha = new Date(2018, 06, 23); // Se crea para tener la fecha
-	private Partido partido = new Partido(local, visitante, deporte, fecha, "Quilmes");
+	private Partida partido = new Partida(local, visitante, deporte, fecha, "Quilmes");
 
 	@Test
 	public void testPartidoDevuelveLocal() {
@@ -60,6 +60,6 @@ public class PartidaTestCase {
 
 	@Test
 	public void testPartidoPreguntaSiJuegaOtro() {
-		assertFalse(partido.juega(mock(Deportista.class)));
+		assertFalse(partido.juega(mock(Competidor.class)));
 	}
 }

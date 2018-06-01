@@ -14,15 +14,17 @@ package models.competidor;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+//Importa Utilidades Java
+import java.util.ArrayList;
+
 // Importa desde org
 import org.junit.Test;
 
 // Importa del Modelo
-import models.competidor.Deportista.*;
-import models.competidor.Equipo.*;
+import models.competidor.*;
 
-public class DeportistaTest {
-  protected ArrayList<Deportista> deportistas = [mock(Deportista.class), mock(Deportista.class), mock(Deportista.class)]; //En caso de que no funcione agregar manualmente
+public class EquipoTestCase {
+  protected ArrayList<Deportista> deportistas = new ArrayList<Deportista>(); //En caso de que no funcione agregar manualmente
   private Equipo cervezero = new Equipo("Quilmes", deportistas);
 
 	@Test
@@ -32,13 +34,17 @@ public class DeportistaTest {
 
   @Test
 	public void cervezeroRetornaCantDeJugadores() {
-		assertEquals(cervezero.getCantDeJugadores(), this.deportistas.size());
+	  	this.deportistas.add(mock(Deportista.class));
+	  	this.deportistas.add(mock(Deportista.class));
+	  	this.deportistas.add(mock(Deportista.class));
+	  	
+		assertEquals(cervezero.getCantDeJugadores(), 3);
 	}
 
   @Test
 	public void cervezeroAgregaUnJugado() {
-    this.cervezero.addJugador(mock(Deportista.class))
+    this.cervezero.addJugador(mock(Deportista.class));
 
-		assertEquals(cervezero.getCantDeJugadores(), 4);
+		assertEquals(cervezero.getCantDeJugadores(), 1);
 	}
 }

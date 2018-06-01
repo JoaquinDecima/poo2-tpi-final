@@ -22,8 +22,8 @@ import models.proveedores.Proveedor.*;
 
 public class ProveedorTestCase {
   private ProveedorDePartido partidos = mock(ProveedorDePartido.class);
-  private ProveedorDeEstadistica estadistica = mock(ProVeedorDeEstadistica.class);
-  private Proveedor proveedor = new Proveerdor(partidos, estadistica);
+  private ProveedorDeEstadistica estadistica = mock(ProveedorDeEstadistica.class);
+  private Proveedor proveedor = new Proveedor(partidos, estadistica);
 
 	@Test
 	public void test() {

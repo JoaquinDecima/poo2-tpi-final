@@ -23,12 +23,12 @@ public class BoxeoTestCase {
 	private Boxeo deporte = new Boxeo();
 
 	@Test
-	public void testdeporteRespondeNombre() {
+	public void BoxeoRespondeNombre() {
 		assertEquals(deporte.getNombre(), "Boxeo");
 	}
 
 	@Test
-	public void testdeporteRespondeNombre() {
+	public void BoxeoRespondeSiPermiteEmpate() {
 		assertFalse(deporte.permiteEmpate());
 	}
 }

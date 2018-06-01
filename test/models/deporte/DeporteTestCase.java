@@ -20,15 +20,15 @@ import org.junit.Test;
 import models.deporte.Deporte.*;
 
 public class DeporteTestCase {
-	private Deporte deporte = new Deporte("Futbol", True);
+	private Deporte deporte = new Deporte("Futbol", true);
 
 	@Test
-	public void testdeporteRespondeNombre() {
+	public void testDeporteRespondeNombre() {
 		assertEquals(deporte.getNombre(), "Futbol");
 	}
 
 	@Test
-	public void testdeporteRespondeNombre() {
+	public void testDeporteSiPermiteEmpate() {
 		assertTrue(deporte.permiteEmpate());
 	}
 }

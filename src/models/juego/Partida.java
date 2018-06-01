@@ -15,9 +15,9 @@ package models.juego;
 import java.util.Date;
 
 // Importa de Mi modelo
-import models.competidor.Deportista;
+import models.competidor.*;
 import models.deporte.Deporte;
-import models.juego.estados.Estado;
+import models.juego.estados.*;
 
 public class Partida{
   protected Competidor local;
@@ -27,7 +27,7 @@ public class Partida{
   protected String lugar;
   protected Estado estado;
 
-  public Patrida(Competidor cLocal, Competidor cVisitante, Deporte dDeporte, Date dFecha, String sLugar){
+  public Partida(Competidor cLocal, Competidor cVisitante, Deporte dDeporte, Date dFecha, String sLugar) {
     this.local = cLocal;
     this.visitante = cVisitante;
     this.deporte = dDeporte;

@@ -18,12 +18,12 @@ import static org.mockito.Mockito.*;
 import org.junit.Test;
 
 // Importa del Modelo
-import models.competidor.Deportista.*;
+import models.competidor.Competidor.*;
 import models.cuota.HistoricaDirecta.*;
 
 public class HistoricaDirectaTestCase {
-  private Deportista local = mock(Deportista.class);
-  private Deportista visitante = mock(Deportista.class);
+  private Competidor local = mock(Competidor.class);
+  private Competidor visitante = mock(Competidor.class);
   private HistoricaDirecta cuota = new HistoricaDirecta();
 
 	@Test

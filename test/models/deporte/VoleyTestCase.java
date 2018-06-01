@@ -23,12 +23,12 @@ public class VoleyTestCase {
 	private Voley deporte = new Voley();
 
 	@Test
-	public void testdeporteRespondeNombre() {
+	public void voleyRespondeNombre() {
 		assertEquals(deporte.getNombre(), "Voley");
 	}
 
 	@Test
-	public void testdeporteRespondeNombre() {
+	public void voleyRespondeSiPermiteEmpate() {
 		assertTrue(deporte.permiteEmpate());
 	}
 }

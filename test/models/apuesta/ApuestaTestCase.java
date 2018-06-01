@@ -19,10 +19,10 @@ import org.junit.Test;
 
 // Importa del Modelo
 import models.apuesta.Apuesta.*;
-import models.juego.Patrida.*;
+import models.juego.*;
 
 public class ApuestaTestCase {
-	private Partida partido = mock(Partida.class)
+	private Partida partido = mock(Partida.class);
 
 	@Test
 	public void test() {

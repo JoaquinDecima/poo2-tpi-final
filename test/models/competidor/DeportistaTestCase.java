@@ -20,9 +20,9 @@ import java.util.Date;
 import org.junit.Test;
 
 // Importa del Modelo
-import models.competidor.Deportista.*;
+import models.competidor.*;
 
-public class DeportistaTest {
+public class DeportistaTestCase {
 	private Deportista deportistaPato;
 	private Deportista deportistaSinNombre;
 
@@ -43,11 +43,11 @@ public class DeportistaTest {
 
 	@Test
 	public void testPatoRespondeNombre() {
-		assertEquals(deportistaPato.getNombre, "Pato");
+		assertEquals(deportistaPato.getNombre(), "Pato");
 	}
 
 	@Test
 	public void testPatoRespondeLugarDeNacimiento() {
-		assertEquals(deportistaPato.getLugarNatal, "Quilmes");
+		assertEquals(deportistaPato.getLugarNatal(), "Quilmes");
 	}
 }

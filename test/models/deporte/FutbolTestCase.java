@@ -17,18 +17,18 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 // Importa del Modelo
-import models.deporte.Futboll.*;
+import models.deporte.*;
 
 public class FutbolTestCase {
-	private Futboll deporte = new Futboll();
+	private Futbol deporte = new Futbol();
 
 	@Test
-	public void testdeporteRespondeNombre() {
+	public void futbolRespondeNombre() {
 		assertEquals(deporte.getNombre(), "Futboll");
 	}
 
 	@Test
-	public void testdeporteRespondeNombre() {
+	public void futbolRespondeSiPermiteEmpate() {
 		assertTrue(deporte.permiteEmpate());
 	}
 }
