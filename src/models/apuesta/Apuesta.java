@@ -11,13 +11,13 @@
 
 package models.apuesta;
 
-import models.juego.Partida;
+import models.evento.*;
 
 public abstract class Apuesta{
-  protected Partida partido;
+  protected Evento partido;
   protected float monto;
 
-  public Apuesta(Partida pPartido, float fMonto){
+  public Apuesta(Evento pPartido, float fMonto){
     this.partido = pPartido;
     this.monto = fMonto;
   }

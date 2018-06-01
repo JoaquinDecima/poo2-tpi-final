@@ -26,6 +26,9 @@ public class Partida{
   protected Date fecha;
   protected String lugar;
   protected Estado estado;
+  protected Boolean ganoL = false;
+  protected Boolean ganoV = false;
+  protected Boolean empate = false;
 
   public Partida(Competidor cLocal, Competidor cVisitante, Deporte dDeporte, Date dFecha, String sLugar) {
     this.local = cLocal;
@@ -69,5 +72,30 @@ public int getFechaDeJuego(){
   // Retorna true si dDeporte es el deporte
   public Boolean esDeporte(Deporte dDeporte) {
 	  return(this.deporte.esDeporte(dDeporte));
+  }
+  
+  // Retorna True si gano local
+  public Boolean ganoLocal() {
+	  return(this.ganoL);
+  }
+  
+  //Retorna True si gano visitante
+  public Boolean ganoVisitante() {
+	  return(this.ganoV);
+  }
+ 
+  // Retorna True si empataron
+  public Boolean empato() {
+	  return(this.deporte.permiteEmpate() && this.empate);
+  }
+
+  // Retorna true si cOponente es Local
+  public Boolean esLocal(Competidor cOponente) {
+	  return(this.local == cOponente);
+  }
+  
+//Retorna true si cOponente es Visitante
+  public Boolean esVisitante(Competidor cOponente) {
+	  return(this.local == cOponente);
   }
 }
