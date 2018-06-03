@@ -11,6 +11,6 @@
 
 package models.juego.estado;
 
-public class EnJuego implements Estado {
+public class EnCurso implements Estado {
 
 }

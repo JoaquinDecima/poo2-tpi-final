@@ -24,9 +24,9 @@ import models.juego.*;
 public class ProveedorDeEstadistica {
 	
 	// Retorna la cantida de victorias de un competidor
-	public int victoriasDe(Competidor cCompetidor, int iCantida, ArrayList<Partida> aList) {
+	public int victoriasDe(Competidor cCompetidor, int iCantida, ArrayList<Partido> aList) {
 		int sum = 0;
-		for (Partida p : this.getPrimeros(iCantida, aList) ) {
+		for (Partido p : this.getPrimeros(iCantida, aList) ) {
 			if(p.esLocal(cCompetidor) && p.ganoLocal() || p.esVisitante(cCompetidor) && p.ganoVisitante()) {
 				sum += 1;
 			}
@@ -35,9 +35,9 @@ public class ProveedorDeEstadistica {
 	}
 	
 	// Retorna la cantida de victorias de un competidor
-	public int empatesDe(ArrayList<Partida> aList, int iCantidad) {
+	public int empatesDe(ArrayList<Partido> aList, int iCantidad) {
 		int sum = 0;
-		for (Partida p : this.getPrimeros(iCantidad, aList)) {
+		for (Partido p : this.getPrimeros(iCantidad, aList)) {
 			if(p.empato()) {
 				sum += 1;
 			}
@@ -53,19 +53,19 @@ public class ProveedorDeEstadistica {
    */
 
    // Invierte el orden de las listas para corregir la iteracion realizada
-   protected ArrayList<Partida> corregirLista(ArrayList<Partida> lList){
-     ArrayList<Partida> listPartidos = new ArrayList<Partida>();
-     for (Partida p : lList){
+   protected ArrayList<Partido> corregirLista(ArrayList<Partido> lList){
+     ArrayList<Partido> listPartidos = new ArrayList<Partido>();
+     for (Partido p : lList){
        listPartidos.add(p);
      }
      return(listPartidos);
    }
    
    // Obtiene iNum cantidad de Regiustro de aList
-	public ArrayList<Partida> getPrimeros(int iNum, ArrayList<Partida> aList){
+	public ArrayList<Partido> getPrimeros(int iNum, ArrayList<Partido> aList){
 		int sum = 0;
-		ArrayList<Partida> newList = new ArrayList<Partida>();
-		for(Partida p : aList) {
+		ArrayList<Partido> newList = new ArrayList<Partido>();
+		for(Partido p : aList) {
 			newList.add(p);
 			sum += 1;
 			if (sum == iNum) {

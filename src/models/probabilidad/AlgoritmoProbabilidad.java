@@ -9,20 +9,20 @@
  *        Otarola, Florencia
  */
 
-package models.posibilidad;
+package models.probabilidad;
 
 // Se importa Modelo
 import models.juego.*;
 import models.proveedores.*;
 
-public interface Posibilidad {
+public interface AlgoritmoProbabilidad {
 	
 	// Retorna la posibilidad de Victoria de un equipo
-	public double getPosibilidadDeVictoriaLocal(Partida pPartido, Proveedor pProveedor);
+	public double getPosibilidadDeVictoriaLocal(Partido pPartido, Proveedor pProveedor);
 	
 	// Retorna la posibilidad de Victoria de un equipo
-	public double getPosibilidadDeVictoriaVisitante(Partida pPartido, Proveedor pProveedor);
+	public double getPosibilidadDeVictoriaVisitante(Partido pPartido, Proveedor pProveedor);
 	
 	// Retorna la posibilidad de empate de un equipo
-	public double getPosibilidadDeEmpate(Partida pPartido, Proveedor pProveedor);
+	public double getPosibilidadDeEmpate(Partido pPartido, Proveedor pProveedor);
 }

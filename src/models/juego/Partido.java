@@ -19,18 +19,15 @@ import models.competidor.*;
 import models.deporte.Deporte;
 import models.juego.estado.*;
 
-public class Partida{
+public class Partido{
   protected Competidor local;
   protected Competidor visitante;
   protected Deporte deporte;
   protected Date fecha;
   protected String lugar;
   protected Estado estado;
-  protected Boolean ganoL = false;
-  protected Boolean ganoV = false;
-  protected Boolean empate = false;
 
-  public Partida(Competidor cLocal, Competidor cVisitante, Deporte dDeporte, Date dFecha, String sLugar) {
+  public Partido(Competidor cLocal, Competidor cVisitante, Deporte dDeporte, Date dFecha, String sLugar) {
     this.local = cLocal;
     this.visitante = cVisitante;
     this.deporte = dDeporte;
@@ -74,19 +71,22 @@ public int getFechaDeJuego(){
 	  return(this.deporte.esDeporte(dDeporte));
   }
   
-  // Retorna True si gano local
+  // Retorna True si gano local 
+  // TODO: Falta implementar
   public Boolean ganoLocal() {
-	  return(this.ganoL);
+	  return(false);
   }
   
   //Retorna True si gano visitante
+  //TODO: Falta implementar
   public Boolean ganoVisitante() {
-	  return(this.ganoV);
+	  return(false);
   }
  
   // Retorna True si empataron
+  //TODO: Falta implementar
   public Boolean empato() {
-	  return(this.deporte.permiteEmpate() && this.empate);
+	  return(this.deporte.permiteEmpate() && false);
   }
 
   // Retorna true si cOponente es Local

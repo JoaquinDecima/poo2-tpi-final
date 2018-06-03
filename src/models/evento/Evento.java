@@ -16,32 +16,42 @@ import java.util.Date;
 import java.util.Map;
 
 // Importa del Modelo
+import models.cuota.*;
 import models.juego.*;
 
 public class Evento {
 	
-		Partida partidoDelEvento;
-		Map<String, Integer> listaPosibilidadesDeApuestas;
-		Date fechaEvento;
-		String lugarEvento;
+		Partido partidoDelEvento;
+		AdminCuota posibilidadesDeApuestas;
 		
-		public Evento(Partida partido, Map<String, Integer> listaCuotasResultadosPosibles) {
+		public Evento(Partido partido, AdminCuota cuotasResultadosPosibles) {
 			
-			this.listaPosibilidadesDeApuestas = listaCuotasResultadosPosibles;
+			this.posibilidadesDeApuestas = cuotasResultadosPosibles;
 			this.setPartidoDelEvento(partido);
 			
 			}
 
-		public Partida getPartidoDelEvento() {
+		public Partido getPartidoDelEvento() {
 			return partidoDelEvento;
 		}
 
-		private void setPartidoDelEvento(Partida partidoDelEvento) {
+		private void setPartidoDelEvento(Partido partidoDelEvento) {
 			this.partidoDelEvento = partidoDelEvento;
 		}
 		
-		public Map<String, Integer> getPosibilidadesDeApuestas() {
-			return listaPosibilidadesDeApuestas;
+		// Retorna la posibilidad de Victoria de un equipo
+		public double getCuotaDeVictoriaLocal(Partido pPartido) {
+			return(this.posibilidadesDeApuestas.getCuotaDeVictoriaLocal(pPartido));
+		}
+		
+		// Retorna la posibilidad de Victoria de un equipo
+		public double getCuotaDeVictoriaVisitante(Partido pPartido) {
+			return(this.posibilidadesDeApuestas.getCuotaDeVictoriaVisitante(pPartido));
+		}
+		
+		// Retorna la posibilidad de empate de un equipo
+		public double getCuotaDeEmpate(Partido pPartido) {
+			return(getCuotaDeEmpate(pPartido));
 		}
 		
 

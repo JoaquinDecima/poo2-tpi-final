@@ -12,24 +12,31 @@
 package models.cuota;
 
 // Se importa de Modelos
-import models.juego.Partida;
-import models.posibilidad.*;
+import models.juego.Partido;
+import models.probabilidad.*;
 import models.proveedores.*;
-import models.posibilidad.*;
 
-public class Cuota {
+public class AdminCuota {
+	protected Proveedor pProveedor;
+	protected AlgoritmoProbabilidad pPosibilidad;
+	
+	public AdminCuota(Proveedor prove, AlgoritmoProbabilidad proba) {
+		this.pProveedor = prove;
+		this.pPosibilidad = proba;
+	}
+	
 	// Retorna la posibilidad de Victoria de un equipo
-	public double getCuotaDeVictoriaLocal(Partida pPartido, Proveedor pProveedor, Posibilidad pPosibilidad) {
+	public double getCuotaDeVictoriaLocal(Partido pPartido) {
 		return(pPosibilidad.getPosibilidadDeVictoriaLocal(pPartido, pProveedor) + 1);
 	}
 	
 	// Retorna la posibilidad de Victoria de un equipo
-	public double getCuotaDeVictoriaVisitante(Partida pPartido, Proveedor pProveedor, Posibilidad pPosibilidad) {
+	public double getCuotaDeVictoriaVisitante(Partido pPartido) {
 		return(pPosibilidad.getPosibilidadDeVictoriaVisitante(pPartido, pProveedor) + 1);
 	}
 	
 	// Retorna la posibilidad de empate de un equipo
-	public double getCuotaDeEmpate(Partida pPartido, Proveedor pProveedor, Posibilidad pPosibilidad) {
+	public double getCuotaDeEmpate(Partido pPartido) {
 		return(pPosibilidad.getPosibilidadDeEmpate(pPartido, pProveedor) + 1);
 	}
 }

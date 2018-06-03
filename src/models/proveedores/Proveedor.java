@@ -38,19 +38,19 @@ public class Proveedor {
 
   
   // Retorna una Lista de Partidos sin filtro
-  public ArrayList<Partida> getPatridosAll(){
+  public ArrayList<Partido> getPatridosAll(){
     return(this.partidos.getPatridosAll());
   }
 
   
   // Retorna una lista de partidos del deporte "dDeporte"
-  public ArrayList<Partida> getPartidosDeDeporte(Deporte dDeporte){
+  public ArrayList<Partido> getPartidosDeDeporte(Deporte dDeporte){
     return(this.partidos.getPartidosDeDeporte(dDeporte));
   }
 
   
   // Retorna todos los partidos que se juegen en dDate
-  public ArrayList<Partida> getPartidosDeFecha(Date dDate){
+  public ArrayList<Partido> getPartidosDeFecha(Date dDate){
     return(this.partidos.getPartidosDeFecha(dDate));
   }
 
@@ -91,11 +91,11 @@ public class Proveedor {
 
   
   // Retorna una lista de De partidos en la que participio "cCompetidor"
-  public ArrayList<Partida> getPartidosDeDeportista(Competidor cCompetidor){     //Recordar ver interface de Competidor
-    ArrayList<Partida> listPartidos = new ArrayList<Partida>();
+  public ArrayList<Partido> getPartidosDeDeportista(Competidor cCompetidor){     //Recordar ver interface de Competidor
+    ArrayList<Partido> listPartidos = new ArrayList<Partido>();
 
     // Recorro los partidos
-    for (Partida p : this.getPatridosAll()){
+    for (Partido p : this.getPatridosAll()){
       //Si el competidor Participa (juega)
       if (p.juega(cCompetidor)){
         // Lo sumo a la lista
@@ -113,11 +113,11 @@ public class Proveedor {
 
   
   // Retorna una lista de De partidos en la que participio "cCompetidor"
-  public ArrayList<Partida> getPartidosDeDeportistas(Competidor cLocal, Competidor cVisitante){     //Recordar ver interface de Competidor
-    ArrayList<Partida> listPartidos = new ArrayList<Partida>();
+  public ArrayList<Partido> getPartidosDeDeportistas(Competidor cLocal, Competidor cVisitante){     //Recordar ver interface de Competidor
+    ArrayList<Partido> listPartidos = new ArrayList<Partido>();
 
     // Recorro los predates
-    for (Partida p : this.getPatridosAll()){
+    for (Partido p : this.getPatridosAll()){
       //Si el competidor Participa (juega)
       if (p.juegan(cLocal, cVisitante)){
         // Lo sumo a la lista
@@ -137,9 +137,9 @@ public class Proveedor {
 
   
    // Invierte el orden de las listas para corregir la iteracion realizada
-   protected ArrayList<Partida> corregirLista(ArrayList<Partida> lList){
-     ArrayList<Partida> listPartidos = new ArrayList<Partida>();
-     for (Partida p : lList){
+   protected ArrayList<Partido> corregirLista(ArrayList<Partido> lList){
+     ArrayList<Partido> listPartidos = new ArrayList<Partido>();
+     for (Partido p : lList){
        listPartidos.add(p);
      }
      return(listPartidos);

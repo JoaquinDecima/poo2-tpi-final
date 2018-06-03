@@ -22,7 +22,7 @@ import models.apuesta.Apuesta.*;
 import models.juego.*;
 
 public class ApuestaTestCase {
-	private Partida partido = mock(Partida.class);
+	private Partido partido = mock(Partido.class);
 
 	@Test
 	public void test() {

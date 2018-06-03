@@ -31,7 +31,7 @@ public class PartidaTestCase {
 	private Competidor visitante = mock(Competidor.class);
 	private Deporte deporte = mock(Deporte.class);
 	private Date fecha = new Date(2018, 06, 23); // Se crea para tener la fecha
-	private Partida partido = new Partida(local, visitante, deporte, fecha, "Quilmes");
+	private Partido partido = new Partido(local, visitante, deporte, fecha, "Quilmes");
 
 	@Test
 	public void testPartidoDevuelveLocal() {

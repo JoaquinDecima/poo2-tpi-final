@@ -17,9 +17,11 @@ import java.util.Map;
 
 //Importa del Modelo
 import models.competidor.*;
+import models.cuota.*;
 import models.deporte.*;
 import models.evento.*;
 import models.juego.*;
+import models.probabilidad.*;
 import models.proveedores.*;
 
 public class CasaApuesta{
@@ -27,29 +29,18 @@ public class CasaApuesta{
 	ArrayList<Evento> eventos;
 	Proveedor proveedorDataPartidos;
 	ArrayList<Deporte> deportesQueParticipan;
-	CalculadorCuotasResultadosPosibles calculadorCuotasEventos;
-	AlgoritmoCalculoProbabilidad algoritmoProbabilidadSeteado;
+	AdminCuota calculadorCuotasEventos;
+	AlgoritmoProbabilidad algoritmoProbabilidadSeteado;
 	
-	public CasaApuesta(Proveedor proveedorDataPartidos, CalculadorCuotasResultadosPosibles algoritmoProbabilidadASetear) {
+	public CasaApuesta(Proveedor proveedorDataPartidos, AdminCuota algoritmoProbabilidadASetear) {
 		this.calculadorCuotasEventos = algoritmoProbabilidadASetear;
 		this.proveedorDataPartidos = proveedorDataPartidos; 
 	}
 		
 	// Crea un evento deportivo
-	public Evento crearEventoDeportivo(Partida partido) {
-		Map<String, Integer> resultadosYCuotasPosibles = this.calcularCuotasResultadosPosibles(partido);
+	public Evento crearEventoDeportivo(Partido partido) {
+		AdminCuota resultadosYCuotasPosibles = new AdminCuota(this.proveedorDataPartidos, this.algoritmoProbabilidadSeteado);
 		Evento nuevoEvento = new Evento(partido, resultadosYCuotasPosibles);
 		return nuevoEvento;
-	}
-		
-		
-	public Map<String, Integer> calcularCuotasResultadosPosibles(Partido partido) {
-		AlgoritmoCalculoProbabilidadResultados algoritmoCalculoProbabilidadResultadosElegido = this.algoritmoProbabilidadSeteado;
-		HistorialPartido historialCompetidores = this.proveedorDataPartidos.getHistorialPartido(partido); 
-		Map<String, Integer> resultadosYCuotasPosibles = this.calculadorCuotasEventos.calcularCuotasResultadosPosibles(partido, historialCompetidores, algoritmoCalculoProbabilidadResultadosElegido);
-		return resultadosYCuotasPosibles;			
-	}
-
-
-		
+	}		
 }

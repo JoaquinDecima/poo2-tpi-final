@@ -25,19 +25,19 @@ import models.juego.*;
  * funciones basicas que le permiten a los sitios obtener distintos datos
  */
 public class ProveedorDePartido {
-  protected ArrayList<Partida> partidos = new ArrayList<Partida>();
+  protected ArrayList<Partido> partidos = new ArrayList<Partido>();
 
   // Retorna una Lista de Partidos sin filtro
-  public ArrayList<Partida> getPatridosAll(){
+  public ArrayList<Partido> getPatridosAll(){
     return(this.partidos);
   }
 
   // Retorna una lista de partidos del deporte "dDeporte"
-  public ArrayList<Partida> getPartidosDeDeporte(Deporte dDeporte){
-    ArrayList<Partida> listPartidos = new ArrayList<Partida>();
+  public ArrayList<Partido> getPartidosDeDeporte(Deporte dDeporte){
+    ArrayList<Partido> listPartidos = new ArrayList<Partido>();
 
     // Recorro los partidos
-    for (Partida p : this.getPatridosAll()){
+    for (Partido p : this.getPatridosAll()){
       //Si el partido es de "dDeporte" deporte
       if (p.esDeporte(dDeporte)){
         // Lo sumo a la lista
@@ -48,11 +48,11 @@ public class ProveedorDePartido {
   }
 
   // Retorna todos los partidos que se juegen en dDate
-  public ArrayList<Partida> getPartidosDeFecha(Date dDate){
-    ArrayList<Partida> listPartidos = new ArrayList<Partida>();
+  public ArrayList<Partido> getPartidosDeFecha(Date dDate){
+    ArrayList<Partido> listPartidos = new ArrayList<Partido>();
 
     // Recorro los partidos
-    for (Partida p : this.getPatridosAll()){
+    for (Partido p : this.getPatridosAll()){
       //Si el partido es de "dDeporte" deporte
       if (p.getFechaDeJuego() == dDate.getDate()){
         // Lo sumo a la lista
@@ -70,9 +70,9 @@ public class ProveedorDePartido {
    */
 
    // Invierte el orden de las listas para corregir la iteracion realizada
-   protected ArrayList<Partida> corregirLista(ArrayList<Partida> lList){
-     ArrayList<Partida> listPartidos = new ArrayList<Partida>();
-     for (Partida p : lList){
+   protected ArrayList<Partido> corregirLista(ArrayList<Partido> lList){
+     ArrayList<Partido> listPartidos = new ArrayList<Partido>();
+     for (Partido p : lList){
        listPartidos.add(p);
      }
      return(listPartidos);
