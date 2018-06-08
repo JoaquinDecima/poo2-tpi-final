@@ -39,7 +39,12 @@ public class Partido{
   public Competidor getLocal(){
     return (this.local);
   }
-
+  
+  // Retorna el lugar de Juego
+  public String getLugarDeJuego() {
+	  return(this.lugar);
+  }
+  
   // Retrona el competidor Visitante
   public Competidor getVisitante(){
     return (this.visitante);

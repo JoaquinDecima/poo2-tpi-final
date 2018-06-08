@@ -16,7 +16,7 @@ import org.junit.Test;
 
 import models.apuesta.Apuesta.*;
 
-public class casaApuestaTestCase {
+public class CasaApuestaTestCase {
 
 	@Test
 	public void test() {

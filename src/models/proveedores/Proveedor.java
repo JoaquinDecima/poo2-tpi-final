@@ -54,7 +54,11 @@ public class Proveedor {
     return(this.partidos.getPartidosDeFecha(dDate));
   }
 
-  
+	//Retorna todos los partidos que se juegen en dDate
+	 public ArrayList<Partido> getPartidosQueSeJueguenEn(String sLugar){
+	   return(this.partidos.getPartidosQueSeJueguenEn(sLugar));
+	 }
+	 
   // Retorna la cantidad de Victorias de cCompetidor en iPartidos cantidad de partidos
   public int victoriasDeEnPartidos(Competidor cCompetidor, int iPartidos) { 
 	  return(this.estadistica.victoriasDe(cCompetidor, iPartidos, this.getPartidosDeDeportista(cCompetidor)));

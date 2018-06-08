@@ -61,6 +61,20 @@ public class ProveedorDePartido {
     }
     return(this.corregirLista(listPartidos));
   }
+  
+  public ArrayList<Partido> getPartidosQueSeJueguenEn(String sLugar){
+	    ArrayList<Partido> listPartidos = new ArrayList<Partido>();
+
+	    // Recorro los partidos
+	    for (Partido p : this.getPatridosAll()){
+	      //Si el partido es de "dDeporte" deporte
+	      if (p.getLugarDeJuego() == sLugar){
+	        // Lo sumo a la lista
+	        listPartidos.add(p);
+	      }
+	    }
+	    return(this.corregirLista(listPartidos));  
+  }
 
   /*
    * Funcionalidades adicionales para corregir problemas de implementacion, se
