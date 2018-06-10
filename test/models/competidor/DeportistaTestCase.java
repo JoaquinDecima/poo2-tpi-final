@@ -24,10 +24,9 @@ import models.competidor.*;
 
 public class DeportistaTestCase {
 	private Deportista deportistaPato;
-	private Deportista deportistaSinNombre;
 
 	/**
-     * Crea un escenario de test básico, que contiene un deportista
+     * Crea un escenario de test basico, que contiene un deportista
      *
      *
      * @throws Exception
@@ -35,9 +34,7 @@ public class DeportistaTestCase {
 	public void setUp() throws Exception {
 
         //Se crea el contador
-        deportistaPato = new Deportista("Pato","Quilmes", new Date(1996, 3, 29));
-        deportistaSinNombre = new Deportista("", "La Plata", new Date(1995, 8, 9));
-
+        deportistaPato = new Deportista("Pato","Quilmes", new Date(1996, 3, 29));	// TODO: Verificar uso de Date
     }
 
 

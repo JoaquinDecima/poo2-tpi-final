@@ -28,37 +28,48 @@ public class AdminCuotaTestCase {
 	
 	@Test
 	public void preguntaAAlgoritmoPosibilidadDeVictoriaLocal() {
-		fail("Not yet implemented");
+		admin.getCuotaDeVictoriaLocal(partido);
+		
+		verify(algoritmo).getPosibilidadDeVictoriaLocal(partido, proveedor);
 	}
+	
 	
 	@Test
 	public void preguntaAAlgoritmoPosibilidadDeVictoriaVisitante() {
-		fail("Not yet implemented");
+		admin.getCuotaDeVictoriaVisitante(partido);
+		
+		verify(algoritmo).getPosibilidadDeVictoriaVisitante(partido, proveedor);
 	}
+	
 	
 	@Test
 	public void preguntaAAlgoritmoPosibilidadDeEmpate() {
-		fail("Not yet implemented");
+		admin.getCuotaDeEmpate(partido);
+		
+		verify(algoritmo).getPosibilidadDeEmpate(partido, proveedor);
 	}
+	
 	
 	@Test
 	public void suma1APosibilidadDeVictoriaLocal() {
 		when(algoritmo.getPosibilidadDeVictoriaLocal(partido, proveedor)).thenReturn(0.3);
 		
-		fail("Not yet implemented");
+		assertEquals(admin.getCuotaDeVictoriaLocal(partido),1.3, 0.0);
 	}
+	
 	
 	@Test
 	public void suma1APosibilidadDeVictoriaVisitante() {
 		when(algoritmo.getPosibilidadDeVictoriaVisitante(partido, proveedor)).thenReturn(0.5);
 		
-		fail("Not yet implemented");
+		assertEquals(admin.getCuotaDeVictoriaVisitante(partido),1.5, 0.0);
 	}
+	
 	
 	@Test
 	public void suma1APosibilidadDeEmpate() {
-		when(algoritmo.getPosibilidadDeEmpate(partido, proveedor)).thenReturn(0.3);
+		when(algoritmo.getPosibilidadDeEmpate(partido, proveedor)).thenReturn(0.2);
 		
-		fail("Not yet implemented");
+		assertEquals(admin.getCuotaDeEmpate(partido),1.2, 0.0);
 	}
 }

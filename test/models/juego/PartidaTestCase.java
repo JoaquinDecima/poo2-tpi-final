@@ -43,6 +43,7 @@ public class PartidaTestCase {
 		assertEquals(partido.getVisitante(), this.visitante);
 	}
 
+	// TODO: Implementar estados
 	@Test
 	public void testPartidoDevuelveEstado() {
 		assertEquals(partido.getEstado(), this.local); // Implementar estados
