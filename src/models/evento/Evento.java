@@ -12,8 +12,7 @@
 package models.evento;
 
 // Importa utilidades Java
-import java.util.Date;
-import java.util.Map;
+
 
 // Importa del Modelo
 import models.cuota.*;
@@ -21,37 +20,37 @@ import models.juego.*;
 
 public class Evento {
 	
-		Partido partidoDelEvento;
-		AdminCuota posibilidadesDeApuestas;
+		Partido partido;
+		AdminCuota apuestasPosibles;
 		
 		public Evento(Partido partido, AdminCuota cuotasResultadosPosibles) {
 			
-			this.posibilidadesDeApuestas = cuotasResultadosPosibles;
+			this.apuestasPosibles = cuotasResultadosPosibles;
 			this.setPartidoDelEvento(partido);
 			
 			}
 
 		public Partido getPartidoDelEvento() {
-			return partidoDelEvento;
+			return partido;
 		}
 
 		private void setPartidoDelEvento(Partido partidoDelEvento) {
-			this.partidoDelEvento = partidoDelEvento;
+			this.partido = partidoDelEvento;
 		}
 		
 		// Retorna la posibilidad de Victoria de un equipo
-		public double getCuotaDeVictoriaLocal(Partido pPartido) {
-			return(this.posibilidadesDeApuestas.getCuotaDeVictoriaLocal(pPartido));
+		public double getCuotaPorVictoriaLocal() {
+			return(this.apuestasPosibles.getCuotaPorVictoriaLocal(this.partido));
 		}
 		
 		// Retorna la posibilidad de Victoria de un equipo
-		public double getCuotaDeVictoriaVisitante(Partido pPartido) {
-			return(this.posibilidadesDeApuestas.getCuotaDeVictoriaVisitante(pPartido));
+		public double getCuotaPorVictoriaVisitante() {
+			return(this.apuestasPosibles.getCuotaPorVictoriaVisitante(this.partido));
 		}
 		
 		// Retorna la posibilidad de empate de un equipo
-		public double getCuotaDeEmpate(Partido pPartido) {
-			return(getCuotaDeEmpate(pPartido));
+		public double getCuotaPorEmpate(Partido pPartido) {
+			return(this.apuestasPosibles.getCuotaPorEmpate(this.partido));
 		}
 		
 

@@ -13,10 +13,8 @@ package models.casaApuesta;
 
 // Importa utilidades java
 import java.util.ArrayList;
-import java.util.Map;
 
 //Importa del Modelo
-import models.competidor.*;
 import models.cuota.*;
 import models.deporte.*;
 import models.evento.*;
@@ -29,18 +27,28 @@ public class CasaApuesta{
 	ArrayList<Evento> eventos;
 	Proveedor proveedorDataPartidos;
 	ArrayList<Deporte> deportesQueParticipan;
-	AdminCuota calculadorCuotasEventos;
+	AdminCuota administradorCuotasEventos;
 	AlgoritmoProbabilidad algoritmoProbabilidadSeteado;
 	
-	public CasaApuesta(Proveedor proveedorDataPartidos, AdminCuota algoritmoProbabilidadASetear) {
-		this.calculadorCuotasEventos = algoritmoProbabilidadASetear;
+	// Constructor
+	public CasaApuesta(Proveedor proveedorDataPartidos, AdminCuota administradorCuotasEventosASetear, AlgoritmoProbabilidad algoritmoProbabilidadASetear ) {
+		this.administradorCuotasEventos = administradorCuotasEventosASetear;
 		this.proveedorDataPartidos = proveedorDataPartidos; 
+		this.algoritmoProbabilidadSeteado = algoritmoProbabilidadASetear;
 	}
 		
 	// Crea un evento deportivo
 	public Evento crearEventoDeportivo(Partido partido) {
-		AdminCuota resultadosYCuotasPosibles = new AdminCuota(this.proveedorDataPartidos, this.algoritmoProbabilidadSeteado);
-		Evento nuevoEvento = new Evento(partido, resultadosYCuotasPosibles);
+		
+		AdminCuota adminCuotas = new AdminCuota(this.proveedorDataPartidos, this.algoritmoProbabilidadSeteado);
+			
+		Evento nuevoEvento = new Evento(partido, adminCuotas);
 		return nuevoEvento;
 	}		
 }
+
+
+
+
+
+

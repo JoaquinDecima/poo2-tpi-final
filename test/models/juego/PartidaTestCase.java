@@ -11,20 +11,20 @@
 
 package models.juego;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 // Importa utilidades Java
 import java.util.Date;
 
-// Importa de Mi modelo
-import models.competidor.*;
-import models.deporte.*;
-import models.juego.*;
-import models.juego.estado.*;
-
 // Importa desde org
 import org.junit.Test;
+
+// Importa de Mi modelo
+import models.competidor.Competidor;
+import models.deporte.Deporte;
 
 public class PartidaTestCase {
 	private Competidor local = mock(Competidor.class) ;

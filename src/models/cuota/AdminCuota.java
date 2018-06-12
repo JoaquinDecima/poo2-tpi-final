@@ -17,26 +17,28 @@ import models.probabilidad.*;
 import models.proveedores.*;
 
 public class AdminCuota {
-	protected Proveedor pProveedor;
+	protected Proveedor proveedorDataPartidos;
 	protected AlgoritmoProbabilidad pPosibilidad;
 	
-	public AdminCuota(Proveedor prove, AlgoritmoProbabilidad proba) {
-		this.pProveedor = prove;
-		this.pPosibilidad = proba;
+	public AdminCuota(Proveedor proveedorASetear, AlgoritmoProbabilidad algoritmoASetear) {
+		this.proveedorDataPartidos = proveedorASetear;
+		this.pPosibilidad = algoritmoASetear;
+	}
+	
+	// Pensar como aplicar Template Method
+	
+	// Retorna la posibilidad de Victoria de un equipo
+	public double getCuotaPorVictoriaLocal(Partido pPartido) {
+		return(pPosibilidad.getPosibilidadDeVictoriaLocal(pPartido, proveedorDataPartidos) + 1);
 	}
 	
 	// Retorna la posibilidad de Victoria de un equipo
-	public double getCuotaDeVictoriaLocal(Partido pPartido) {
-		return(pPosibilidad.getPosibilidadDeVictoriaLocal(pPartido, pProveedor) + 1);
-	}
-	
-	// Retorna la posibilidad de Victoria de un equipo
-	public double getCuotaDeVictoriaVisitante(Partido pPartido) {
-		return(pPosibilidad.getPosibilidadDeVictoriaVisitante(pPartido, pProveedor) + 1);
+	public double getCuotaPorVictoriaVisitante(Partido pPartido) {
+		return(pPosibilidad.getPosibilidadDeVictoriaVisitante(pPartido, proveedorDataPartidos) + 1);
 	}
 	
 	// Retorna la posibilidad de empate de un equipo
-	public double getCuotaDeEmpate(Partido pPartido) {
-		return(pPosibilidad.getPosibilidadDeEmpate(pPartido, pProveedor) + 1);
+	public double getCuotaPorEmpate(Partido pPartido) {
+		return(pPosibilidad.getPosibilidadDeEmpate(pPartido, proveedorDataPartidos) + 1);
 	}
 }
