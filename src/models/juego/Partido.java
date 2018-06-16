@@ -20,12 +20,14 @@ import models.deporte.Deporte;
 import models.juego.estado.*;
 
 public class Partido{
-  protected Competidor local;
-  protected Competidor visitante;
-  protected Deporte deporte;
-  protected Date fecha;
-  protected String lugar;
-  protected Estado estado;
+  private Competidor local;
+  private Competidor visitante;
+  private Deporte deporte;
+  private Date fecha;
+  private String lugar;
+  private EstadoPartido estado;
+  private Resultado resultado;
+
 
   public Partido(Competidor cLocal, Competidor cVisitante, Deporte dDeporte, Date dFecha, String sLugar) {
     this.local = cLocal;
@@ -36,31 +38,38 @@ public class Partido{
   }
 
   // Retrona el competidor Local
-  public Competidor getLocal(){
+  public Competidor getLocal() {
     return (this.local);
+  }
+  
+  // Retorna el competidor Visitante
+  public Competidor getVisitante() {
+    return (this.visitante);
+  }
+
+  // Retorna estado del partido
+  public EstadoPartido getEstado() {
+    return (this.estado);
+  }
+  
+  // Setea el estado del partido
+  public void setEstado(EstadoPartido estadoNew) {
+	  this.estado = estadoNew;	  
+  }
+  
+  public Resultado getResultado() {
+	  return this.estado.resultadoPartido();
+  }
+
+  public void setearResultado(Resultado resultadoPartido) {
+	  this.resultado = resultadoPartido;
   }
   
   // Retorna el lugar de Juego
   public String getLugarDeJuego() {
-	  return(this.lugar);
+	  return (this.lugar);
   }
   
-  // Retrona el competidor Visitante
-  public Competidor getVisitante(){
-    return (this.visitante);
-  }
-
-  // Retrona el estado
-  public Estado getEstado(){
-    return(this.estado);
-  }
-
-  // Retrona la fecha de Juego
-  @SuppressWarnings("deprecation")
-public int getFechaDeJuego(){
-    return(this.fecha.getDate());
-  }
-
   // Retorna True si el competidor participa
   public Boolean juega(Competidor competidor){
     return(this.getLocal() == competidor || this.getVisitante() == competidor);
@@ -70,37 +79,24 @@ public int getFechaDeJuego(){
   public Boolean juegan(Competidor cLocal, Competidor cVisitante){
     return(this.getLocal() == cLocal && this.getVisitante() == cVisitante|| this.getVisitante() == cLocal && this.getLocal() == cVisitante);
   }
-  
-  // Retorna true si dDeporte es el deporte
-  public Boolean esDeporte(Deporte dDeporte) {
-	  return(this.deporte.esDeporte(dDeporte));
+
+  // Retorna True si gana local 
+  public Boolean ganaLocal() {
+	  return (this.resultado.ganaCompetidor() == this.getLocal());
   }
   
-  // Retorna True si gano local 
-  // TODO: Falta implementar
-  public Boolean ganoLocal() {
-	  return(false);
-  }
-  
-  //Retorna True si gano visitante
-  //TODO: Falta implementar
-  public Boolean ganoVisitante() {
-	  return(false);
-  }
- 
-  // Retorna True si empataron
-  //TODO: Falta implementar
-  public Boolean empato() {
-	  return(this.deporte.permiteEmpate() && false);
+  // Retorna True si gana visitante
+  public Boolean ganaVisitante() {
+	  return (this.resultado.ganaCompetidor() == this.getVisitante());
   }
 
-  // Retorna true si cOponente es Local
-  public Boolean esLocal(Competidor cOponente) {
-	  return(this.local == cOponente);
+  // Retorna True si empataron
+  public Boolean huboEmpate() {
+	  return (this.deporte.permiteEmpate() && this.resultado.empate());
   }
   
-//Retorna true si cOponente es Visitante
-  public Boolean esVisitante(Competidor cOponente) {
-	  return(this.local == cOponente);
-  }
 }
+
+
+
+
