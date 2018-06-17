@@ -11,6 +11,11 @@
 
 package juego.estado;
 
-public interface Estado {
+import juego.Partido;
+import juego.Resultado;
 
+public interface EstadoPartido {
+
+	Resultado resultadoPartido(Partido partido);
+		
 }

@@ -9,8 +9,15 @@
  *        Otarola, Florencia
  */
 
-package models.juego.estado;
+package juego.estado;
 
-public class EnCurso implements Estado {
+import juego.Partido;
+import juego.Resultado;
+
+public class EnCurso implements EstadoPartido {
+	@Override
+	public Resultado resultadoPartido(Partido partido) {
+		return partido.getResultado();		
+	}
 
 }

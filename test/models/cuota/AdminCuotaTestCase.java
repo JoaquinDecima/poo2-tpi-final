@@ -28,7 +28,7 @@ public class AdminCuotaTestCase {
 	
 	@Test
 	public void preguntaAAlgoritmoPosibilidadDeVictoriaLocal() {
-		admin.getCuotaDeVictoriaLocal(partido);
+		admin.getCuotaPorVictoriaLocal(partido);
 		
 		verify(algoritmo).getPosibilidadDeVictoriaLocal(partido, proveedor);
 	}
@@ -36,7 +36,7 @@ public class AdminCuotaTestCase {
 	
 	@Test
 	public void preguntaAAlgoritmoPosibilidadDeVictoriaVisitante() {
-		admin.getCuotaDeVictoriaVisitante(partido);
+		admin.getCuotaPorVictoriaVisitante(partido);
 		
 		verify(algoritmo).getPosibilidadDeVictoriaVisitante(partido, proveedor);
 	}
@@ -44,7 +44,7 @@ public class AdminCuotaTestCase {
 	
 	@Test
 	public void preguntaAAlgoritmoPosibilidadDeEmpate() {
-		admin.getCuotaDeEmpate(partido);
+		admin.getCuotaPorEmpate(partido);
 		
 		verify(algoritmo).getPosibilidadDeEmpate(partido, proveedor);
 	}
@@ -54,7 +54,7 @@ public class AdminCuotaTestCase {
 	public void suma1APosibilidadDeVictoriaLocal() {
 		when(algoritmo.getPosibilidadDeVictoriaLocal(partido, proveedor)).thenReturn(0.3);
 		
-		assertEquals(admin.getCuotaDeVictoriaLocal(partido),1.3, 0.0);
+		assertEquals(admin.getCuotaPorVictoriaLocal(partido),1.3, 0.0);
 	}
 	
 	
@@ -62,7 +62,7 @@ public class AdminCuotaTestCase {
 	public void suma1APosibilidadDeVictoriaVisitante() {
 		when(algoritmo.getPosibilidadDeVictoriaVisitante(partido, proveedor)).thenReturn(0.5);
 		
-		assertEquals(admin.getCuotaDeVictoriaVisitante(partido),1.5, 0.0);
+		assertEquals(admin.getCuotaPorVictoriaVisitante(partido),1.5, 0.0);
 	}
 	
 	
@@ -70,6 +70,6 @@ public class AdminCuotaTestCase {
 	public void suma1APosibilidadDeEmpate() {
 		when(algoritmo.getPosibilidadDeEmpate(partido, proveedor)).thenReturn(0.2);
 		
-		assertEquals(admin.getCuotaDeEmpate(partido),1.2, 0.0);
+		assertEquals(admin.getCuotaPorEmpate(partido),1.2, 0.0);
 	}
 }

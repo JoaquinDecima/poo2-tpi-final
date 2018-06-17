@@ -9,38 +9,50 @@
  *        Otarola, Florencia
  */
 
-package models.casaApuesta;
+
 
 // Importa utilidades java
 import java.util.ArrayList;
-import java.util.Map;
 
-//Importa del Modelo
-import models.competidor.*;
-import models.cuota.*;
-import models.deporte.*;
-import models.evento.*;
-import models.juego.*;
-import models.probabilidad.*;
-import models.proveedores.*;
+import cuota.AdminCuota;
+import deporte.Deporte;
+import evento.Evento;
+import juego.Partido;
+import probabilidad.AlgoritmoProbabilidad;
+import proveedores.Proveedor;
 
 public class CasaApuesta{
 	
 	ArrayList<Evento> eventos;
 	Proveedor proveedorDataPartidos;
 	ArrayList<Deporte> deportesQueParticipan;
-	AdminCuota calculadorCuotasEventos;
+	AdminCuota administradorCuotasEventos;
 	AlgoritmoProbabilidad algoritmoProbabilidadSeteado;
 	
-	public CasaApuesta(Proveedor proveedorDataPartidos, AdminCuota algoritmoProbabilidadASetear) {
-		this.calculadorCuotasEventos = algoritmoProbabilidadASetear;
+	// Constructor
+	public CasaApuesta(Proveedor proveedorDataPartidos, AlgoritmoProbabilidad algoritmoProbabilidadASetear ) {
 		this.proveedorDataPartidos = proveedorDataPartidos; 
+		this.algoritmoProbabilidadSeteado = algoritmoProbabilidadASetear;
+		this.administradorCuotasEventos = new AdminCuota(this.proveedorDataPartidos, this.algoritmoProbabilidadSeteado);
+
 	}
 		
 	// Crea un evento deportivo
 	public Evento crearEventoDeportivo(Partido partido) {
-		AdminCuota resultadosYCuotasPosibles = new AdminCuota(this.proveedorDataPartidos, this.algoritmoProbabilidadSeteado);
-		Evento nuevoEvento = new Evento(partido, resultadosYCuotasPosibles);
+					
+		Evento nuevoEvento = new Evento(partido, this.administradorCuotasEventos);
 		return nuevoEvento;
-	}		
+	}
+
+	public AdminCuota adminCuota() {
+		return this.administradorCuotasEventos;
+	}
+	
+	
 }
+
+
+
+
+
+
