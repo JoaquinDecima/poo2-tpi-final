@@ -14,14 +14,16 @@ package models.apuesta;
 import models.evento.*;
 
 public abstract class Apuesta{
-  protected Evento partido;
+  protected Evento evento;
+  protected OpcionApuesta apuesta;
   protected float monto;
-
-  public Apuesta(Evento pPartido, float fMonto){
-    this.partido = pPartido;
-    this.monto = fMonto;
-  }
+  
 
   abstract float ganaciaBruta();
   abstract float ganaciaNeta();
+  abstract float montoApostado();
+  abstract OpcionApuesta opcionApostada();
 }
+
+
+
