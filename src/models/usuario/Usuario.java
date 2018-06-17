@@ -1,6 +1,7 @@
 package usuario;
 
-import apuesta.Apuesta;
+
+import apuesta.*;
 import apuesta.OpcionApuesta;
 import evento.Evento;
 
@@ -11,6 +12,10 @@ public class Usuario {
 
 	public Usuario(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public String getNombre() {
+		return this.nombre;
 	}
 
 	public void incrementarMontoWallet(int i) {
@@ -23,9 +28,9 @@ public class Usuario {
 		return null;
 	}
 
-	public Apuesta hacerApuestaSegura(Evento evento, OpcionApuesta mockOpcionApuesta, float monto) {
-		// TODO Auto-generated method stub
-		return null;
+	public ApuestaSegura hacerApuestaSegura(Evento evento, OpcionApuesta opcionApuesta, double monto) {
+		
+		return (new ApuestaSegura(this, evento, opcionApuesta, monto));
 	}
 
 	public void cancelarApuesta() {

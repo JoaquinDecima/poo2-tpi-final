@@ -9,19 +9,21 @@
  *        Otarola, Florencia
  */
 
-package models.apuesta;
+package apuesta;
 
-import models.evento.*;
+import evento.Evento;
+import usuario.Usuario;
 
 public abstract class Apuesta{
   protected Evento evento;
   protected OpcionApuesta apuesta;
-  protected float monto;
+  protected Double monto;
+  protected Usuario usuario;
   
 
   abstract float ganaciaBruta();
   abstract float ganaciaNeta();
-  abstract float montoApostado();
+  abstract Double montoApostado();
   abstract OpcionApuesta opcionApostada();
 }
 

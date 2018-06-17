@@ -9,13 +9,10 @@
  *        Otarola, Florencia
  */
 
-package models.competidor;
+package competidor;
 
 // Importa Utilidades Java
 import java.util.ArrayList;
-
-// Importa del Modelo
-import models.competidor.Deportista;
 
 public class Equipo implements Competidor{
   protected ArrayList<Deportista> deportistas = new ArrayList<Deportista>();

@@ -9,7 +9,7 @@
  *        Otarola, Florencia
  */
 
-package models.deporte;
+package deporte;
 
 public class Deporte{
 	protected String nombreDeporte;

@@ -1,6 +1,16 @@
-package models.apuesta;
+package apuesta;
 
-class ApuestaSegura extends Apuesta {
+import evento.Evento;
+import usuario.Usuario;
+
+public class ApuestaSegura extends Apuesta {
+	
+	public ApuestaSegura(Usuario u, Evento e, OpcionApuesta op, Double m) {
+		this.usuario = u;
+		this.evento = e;
+		this.monto = m;
+		this.apuesta = op;
+	}
 
 	@Override
 	float ganaciaBruta() {
@@ -15,7 +25,7 @@ class ApuestaSegura extends Apuesta {
 	}
 
 	@Override
-	float montoApostado() {
+	Double montoApostado() {
 		return monto;
 	}
 
