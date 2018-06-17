@@ -9,15 +9,14 @@
  *        Otarola, Florencia
  */
 
-package models.juego;
+package juego;
 
 // Importa utilidades Java
 import java.util.Date;
 
-// Importa de Mi modelo
-import models.competidor.*;
-import models.deporte.Deporte;
-import models.juego.estado.*;
+import competidor.Competidor;
+import deporte.Deporte;
+import juego.estado.EstadoPartido;
 
 public class Partido{
   private Competidor local;
@@ -58,7 +57,7 @@ public class Partido{
   }
   
   public Resultado getResultado() {
-	  return this.estado.resultadoPartido();
+	  return this.estado.resultadoPartido(this);
   }
 
   public void setearResultado(Resultado resultadoPartido) {
@@ -94,6 +93,16 @@ public class Partido{
   public Boolean huboEmpate() {
 	  return (this.deporte.permiteEmpate() && this.resultado.empate());
   }
+
+public Date getFecha() {
+	return fecha;
+}
+
+
+public boolean enCurso() {
+	// TODO Auto-generated method stub
+	return false;
+}
   
 }
 
