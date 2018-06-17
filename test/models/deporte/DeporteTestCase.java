@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 // Importa del Modelo
-import models.deporte.Deporte.*;
+import deporte.Deporte;
 
 public class DeporteTestCase {
 	private Deporte deporte = new Deporte("Futbol", true);

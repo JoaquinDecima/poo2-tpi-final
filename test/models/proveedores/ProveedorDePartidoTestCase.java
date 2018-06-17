@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 // Importa del Modelo
-import models.proveedores.ProveedorDePartido.*;
+import proveedores.ProveedorDePartido;
 
 public class ProveedorDePartidoTestCase {
 

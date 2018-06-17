@@ -9,15 +9,15 @@
  *        Otarola, Florencia
  */
 
-package models.proveedores;
+package proveedores;
 
 // Importa utilidades Java
 import java.util.ArrayList;
 
-import models.competidor.Competidor;
+import competidor.Competidor;
 // Importa del Modelo
-import models.deporte.Deporte.*;
-import models.juego.*;
+import deporte.Deporte.*;
+import juego.*;
 
 
 
@@ -27,7 +27,7 @@ public class ProveedorDeEstadistica {
 	public int victoriasDe(Competidor cCompetidor, int iCantida, ArrayList<Partido> aList) {
 		int sum = 0;
 		for (Partido p : this.getPrimeros(iCantida, aList) ) {
-			if(p.esLocal(cCompetidor) && p.ganoLocal() || p.esVisitante(cCompetidor) && p.ganoVisitante()) {
+			if(p.esLocal(cCompetidor) && p.ganaLocal() || p.esVisitante(cCompetidor) && p.ganaVisitante()) {
 				sum += 1;
 			}
 		}
@@ -38,7 +38,7 @@ public class ProveedorDeEstadistica {
 	public int empatesDe(ArrayList<Partido> aList, int iCantidad) {
 		int sum = 0;
 		for (Partido p : this.getPrimeros(iCantidad, aList)) {
-			if(p.empato()) {
+			if(p.huboEmpate()) {
 				sum += 1;
 			}
 		}

@@ -9,15 +9,15 @@
  *        Otarola, Florencia
  */
 
-package models.proveedores;
+package proveedores;
 
 // Importa utilidades Java
 import java.util.ArrayList;
 import java.util.Date;
 
 // Importa del Modelo
-import models.deporte.*;
-import models.juego.*;
+import deporte.*;
+import juego.*;
 
 /*
  * Se encuentra aqui el controlador y gestor de partido Oficial utilizado por
@@ -54,7 +54,7 @@ public class ProveedorDePartido {
     // Recorro los partidos
     for (Partido p : this.getPatridosAll()){
       //Si el partido es de "dDeporte" deporte
-      if (p.getFechaDeJuego() == dDate.getDate()){
+      if (p.getFecha() == dDate.getDate()){
         // Lo sumo a la lista
         listPartidos.add(p);
       }

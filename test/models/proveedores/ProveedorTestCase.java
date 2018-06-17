@@ -18,7 +18,7 @@ import static org.mockito.Mockito.*;
 import org.junit.Test;
 
 // Importa del Modelo
-import models.proveedores.Proveedor.*;
+import proveedores.*;
 
 public class ProveedorTestCase {
   private ProveedorDePartido partidos = mock(ProveedorDePartido.class);

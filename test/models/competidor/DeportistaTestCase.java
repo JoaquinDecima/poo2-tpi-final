@@ -20,7 +20,7 @@ import java.util.Date;
 import org.junit.Test;
 
 // Importa del Modelo
-import models.competidor.*;
+import competidor.*;
 
 public class DeportistaTestCase {
 	private Deportista deportistaPato;

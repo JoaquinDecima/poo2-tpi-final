@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 // Importa del Modelo
-import models.competidor.*;
+import competidor.*;
 
 public class EquipoTestCase {
   protected ArrayList<Deportista> deportistas = new ArrayList<Deportista>(); //En caso de que no funcione agregar manualmente

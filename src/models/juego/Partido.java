@@ -93,17 +93,27 @@ public class Partido{
   public Boolean huboEmpate() {
 	  return (this.deporte.permiteEmpate() && this.resultado.empate());
   }
-
-public Date getFecha() {
-	return fecha;
-}
-
-
-public boolean enCurso() {
-	// TODO Auto-generated method stub
-	return false;
-}
   
+  // Retorna la Fecha de Juego
+  public int getFecha() {
+	return fecha.getDate();
+  }
+
+  // Retorna True si el partido conrresponde al deporte dDeporte
+  public boolean esDeporte(Deporte dDeporte) {
+	return (this.deporte.esDeporte(dDeporte));
+  }
+ 
+  // Retorna True si el cCompetidor es Local
+  public boolean esLocal(Competidor cCompetidor) {
+	return (this.getLocal() == cCompetidor);
+  }
+ 
+  // Retorna True si cCompetidor es Visitante
+  public boolean esVisitante(Competidor cCompetidor) {
+	// TODO Auto-generated method stub
+	return (this.getVisitante() == cCompetidor);
+  }  
 }
 
 

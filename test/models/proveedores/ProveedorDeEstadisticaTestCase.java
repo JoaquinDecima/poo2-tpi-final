@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 // Importa del Modelo
-import models.proveedores.ProveedorDeEstadistica.*;
+import proveedores.ProveedorDeEstadistica;
 
 public class ProveedorDeEstadisticaTestCase {
 

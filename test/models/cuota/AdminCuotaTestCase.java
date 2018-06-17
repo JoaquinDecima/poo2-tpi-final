@@ -16,9 +16,10 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
-import models.juego.Partido;
-import models.probabilidad.AlgoritmoProbabilidad;
-import models.proveedores.Proveedor;
+import cuota.*;
+import juego.Partido;
+import probabilidad.AlgoritmoProbabilidad;
+import proveedores.Proveedor;
 
 public class AdminCuotaTestCase {
 	private Proveedor proveedor = mock(Proveedor.class);
