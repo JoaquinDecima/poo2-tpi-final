@@ -1,4 +1,6 @@
-package models.apuesta;
+
+
+package apuesta;
 
 public class OpcionApuesta {
 	

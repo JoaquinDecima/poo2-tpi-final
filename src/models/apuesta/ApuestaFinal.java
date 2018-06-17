@@ -1,4 +1,4 @@
-package models.apuesta;
+package apuesta;
 
 class ApuestaFinal extends Apuesta {
 

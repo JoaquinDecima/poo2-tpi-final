@@ -35,7 +35,7 @@ public class UsuarioTestCase {
 		mockCasaApuesta = mock(CasaApuesta.class);
 		mockPartido = mock(Partido.class);
 		usuario = new Usuario("diego");
-		evento = new Evento(mockPartido, mockCasaApuesta.adminCuota());
+		evento = new Evento(mockPartido, mockCasaApuesta.getAdminCuota());
 		mockOpcionApuesta = mock(OpcionApuesta.class);
 		
 		

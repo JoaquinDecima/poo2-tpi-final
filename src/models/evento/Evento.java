@@ -14,6 +14,7 @@ package evento;
 import java.util.ArrayList;
 
 import apuesta.Apuesta;
+import apuesta.OpcionApuesta;
 import cuota.AdminCuota;
 import juego.Partido;
 import usuario.Usuario;
@@ -22,14 +23,14 @@ import usuario.Usuario;
 public class Evento {
 	
 		Partido partido;
-		AdminCuota apuestasPosibles;
-		ArrayList<Usuario> apuestasHechas;
+		AdminCuota adminCuotasApuestasPosibles;
+		ArrayList<Apuesta> apuestasRealizadas;
+		boolean estaActivo;
 		
 		public Evento(Partido partido, AdminCuota cuotasResultadosPosibles) {
 			
-			this.apuestasPosibles = cuotasResultadosPosibles;
-			this.setPartidoDelEvento(partido);
-			
+			this.adminCuotasApuestasPosibles = cuotasResultadosPosibles;
+			this.setPartidoDelEvento(partido);		
 			}
 
 		public Partido getPartidoDelEvento() {
@@ -40,25 +41,47 @@ public class Evento {
 			this.partido = partidoDelEvento;
 		}
 		
-		// Retorna la posibilidad de Victoria de un equipo
+		// Retorna la cuota establecida en caso de victoria de competidor local
 		public double getCuotaPorVictoriaLocal() {
-			return(this.apuestasPosibles.getCuotaPorVictoriaLocal(this.partido));
+			return(this.adminCuotasApuestasPosibles.getCuotaPorVictoriaLocal(this.partido));
 		}
 		
-		// Retorna la posibilidad de Victoria de un equipo
+		// Retorna la cuota establecida en caso de derrota de competidor local
 		public double getCuotaPorVictoriaVisitante() {
-			return(this.apuestasPosibles.getCuotaPorVictoriaVisitante(this.partido));
+			return(this.adminCuotasApuestasPosibles.getCuotaPorVictoriaVisitante(this.partido));
 		}
 		
-		// Retorna la posibilidad de empate de un equipo
-		public double getCuotaPorEmpate(Partido pPartido) {
-			return(this.apuestasPosibles.getCuotaPorEmpate(this.partido));
+		// la cuota establecida en caso de empate
+		public double getCuotaPorEmpate() {
+			return(this.adminCuotasApuestasPosibles.getCuotaPorEmpate(this.partido));
 		}
 
 		public ArrayList<Apuesta> getApuestasUsuario(Usuario usuario, Evento evento) {
 			// TODO Auto-generated method stub
 			return null;
 		}
+		
+		public Resultado getResultadoPartido() {
+			
+		}
+		
+		public boolean partidoEnCurso() {
+			
+		}
+		
+		public boolean partidoFinalizado() {
+			
+		}
+		
+		public boolean partidoProximo() {
+			
+		}
+
+		public void addApuestaSegura(Apuesta apuestaUsuario) {
+			this.apuestasRealizadas.add(apuestaUsuario);
+			
+		}
+		
 		
 
 }

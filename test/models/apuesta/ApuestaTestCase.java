@@ -11,15 +11,13 @@
 
 package models.apuesta;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.fail;
+import static org.mockito.Mockito.mock;
 
 // Importa desde org
 import org.junit.Test;
 
-// Importa del Modelo
-import models.apuesta.Apuesta.*;
-import models.juego.*;
+import juego.Partido;
 
 public class ApuestaTestCase {
 	private Partido partido = mock(Partido.class);

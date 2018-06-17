@@ -9,10 +9,7 @@
  *        Otarola, Florencia
  */
 
-package models.deporte;
-
-// Importa Modelos
-import models.deporte.Deporte;
+package deporte;
 
 public class Boxeo extends Deporte{
 

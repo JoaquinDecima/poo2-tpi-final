@@ -9,16 +9,15 @@
  *        Otarola, Florencia
  */
 
-package models.proveedores;
+package proveedores;
 
 // Importa utilidades Java
 import java.util.ArrayList;
 import java.util.Date;
 
-// Importa del Modelo
-import models.competidor.*;
-import models.deporte.*;
-import models.juego.*;
+import competidor.Competidor;
+import deporte.Deporte;
+import juego.Partido;
 
 /*
  * La Siguiente clase Represnta una API que funciona como medio para obtener datos

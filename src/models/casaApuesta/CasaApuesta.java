@@ -1,3 +1,6 @@
+package casaApuesta;
+
+
 /*
  * Programacion Orientada a Objetos II 2018 s1
  * Universidad Nacional de Quilmes
@@ -36,16 +39,22 @@ public class CasaApuesta{
 		this.administradorCuotasEventos = new AdminCuota(this.proveedorDataPartidos, this.algoritmoProbabilidadSeteado);
 
 	}
+	
+	public AdminCuota getAdminCuota() {
+		return this.administradorCuotasEventos;
+	}
 		
 	// Crea un evento deportivo
 	public Evento crearEventoDeportivo(Partido partido) {
 					
-		Evento nuevoEvento = new Evento(partido, this.administradorCuotasEventos);
+		Evento nuevoEvento = new Evento(partido, this.getAdminCuota());
 		return nuevoEvento;
 	}
 
-	public AdminCuota adminCuota() {
-		return this.administradorCuotasEventos;
+
+	
+	public void setAlgoritmoProbabilidad(AlgoritmoProbabilidad algoritmoNuevo) {
+		this.algoritmoProbabilidadSeteado = algoritmoNuevo;
 	}
 	
 	
