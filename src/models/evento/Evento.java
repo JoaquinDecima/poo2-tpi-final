@@ -9,19 +9,21 @@
  *        Otarola, Florencia
  */
 
-package models.evento;
+package evento;
 
-// Importa utilidades Java
+import java.util.ArrayList;
 
+import apuesta.Apuesta;
+import cuota.AdminCuota;
+import juego.Partido;
+import usuario.Usuario;
 
-// Importa del Modelo
-import models.cuota.*;
-import models.juego.*;
 
 public class Evento {
 	
 		Partido partido;
 		AdminCuota apuestasPosibles;
+		ArrayList<Usuario> apuestasHechas;
 		
 		public Evento(Partido partido, AdminCuota cuotasResultadosPosibles) {
 			
@@ -51,6 +53,11 @@ public class Evento {
 		// Retorna la posibilidad de empate de un equipo
 		public double getCuotaPorEmpate(Partido pPartido) {
 			return(this.apuestasPosibles.getCuotaPorEmpate(this.partido));
+		}
+
+		public ArrayList<Apuesta> getApuestasUsuario(Usuario usuario, Evento evento) {
+			// TODO Auto-generated method stub
+			return null;
 		}
 		
 

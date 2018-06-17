@@ -1,5 +1,10 @@
+package cuota;
+
+
 /*
- * Programacion Orientada a Objetos II 2018 s1
+ 
+
+* Programacion Orientada a Objetos II 2018 s1
  * Universidad Nacional de Quilmes
  *
  * Casa de Apuestas HITO 1
@@ -9,12 +14,10 @@
  *        Otarola, Florencia
  */
 
-package models.cuota;
 
-// Se importa de Modelos
-import models.juego.Partido;
-import models.probabilidad.*;
-import models.proveedores.*;
+import juego.Partido;
+import probabilidad.AlgoritmoProbabilidad;
+import proveedores.Proveedor;
 
 public class AdminCuota {
 	protected Proveedor proveedorDataPartidos;

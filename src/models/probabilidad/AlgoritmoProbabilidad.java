@@ -1,3 +1,5 @@
+package probabilidad;
+
 /*
  * Programacion Orientada a Objetos II 2018 s1
  * Universidad Nacional de Quilmes
@@ -9,11 +11,11 @@
  *        Otarola, Florencia
  */
 
-package models.probabilidad;
+
 
 // Se importa Modelo
-import models.juego.*;
-import models.proveedores.*;
+import juego.Partido;
+import proveedores.Proveedor;
 
 public interface AlgoritmoProbabilidad {
 	
