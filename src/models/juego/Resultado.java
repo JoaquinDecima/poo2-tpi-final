@@ -1,11 +1,12 @@
-package models.juego;
+package juego;
 
-import models.competidor.Competidor;
+import competidor.Competidor;
 
 public class Resultado {
 	
 	private Competidor gana;
 	private Competidor pierde;
+	private boolean empate;
 	
 	public Resultado(Competidor competidorGana, Competidor competidorPierde) {
 		this.gana = competidorGana;
@@ -18,6 +19,10 @@ public class Resultado {
 	
 	public Competidor pierdeCompetidor() {
 		return this.pierde;	
+	}
+
+	public boolean empate() {
+		return empate;
 	}
 	
 	
