@@ -55,7 +55,7 @@ public class AdminCuotaTestCase {
 	public void suma1APosibilidadDeVictoriaLocal() {
 		when(algoritmo.getPosibilidadDeVictoriaLocal(partido, proveedor)).thenReturn(0.3);
 		
-		assertEquals(admin.getCuotaPorVictoriaLocal(partido),1.3, 0.0);
+		assertEquals(admin.getCuotaPorVictoriaLocal(partido),1.7, 0.0);
 	}
 	
 	
@@ -71,6 +71,6 @@ public class AdminCuotaTestCase {
 	public void suma1APosibilidadDeEmpate() {
 		when(algoritmo.getPosibilidadDeEmpate(partido, proveedor)).thenReturn(0.2);
 		
-		assertEquals(admin.getCuotaPorEmpate(partido),1.2, 0.0);
+		assertEquals(admin.getCuotaPorEmpate(partido),1.8, 0.0);
 	}
 }

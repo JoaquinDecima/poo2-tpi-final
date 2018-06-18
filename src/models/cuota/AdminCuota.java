@@ -32,16 +32,16 @@ public class AdminCuota {
 	
 	// Retorna la posibilidad de Victoria de un equipo
 	public double getCuotaPorVictoriaLocal(Partido pPartido) {
-		return(pPosibilidad.getPosibilidadDeVictoriaLocal(pPartido, proveedorDataPartidos) + 1);
+		return((1 - pPosibilidad.getPosibilidadDeVictoriaLocal(pPartido, proveedorDataPartidos)) + 1);
 	}
 	
 	// Retorna la posibilidad de Victoria de un equipo
 	public double getCuotaPorVictoriaVisitante(Partido pPartido) {
-		return(pPosibilidad.getPosibilidadDeVictoriaVisitante(pPartido, proveedorDataPartidos) + 1);
+		return((1 - pPosibilidad.getPosibilidadDeVictoriaVisitante(pPartido, proveedorDataPartidos)) + 1);
 	}
 	
 	// Retorna la posibilidad de empate de un equipo
 	public double getCuotaPorEmpate(Partido pPartido) {
-		return(pPosibilidad.getPosibilidadDeEmpate(pPartido, proveedorDataPartidos) + 1);
+		return((1-pPosibilidad.getPosibilidadDeEmpate(pPartido, proveedorDataPartidos)) + 1);
 	}
 }
