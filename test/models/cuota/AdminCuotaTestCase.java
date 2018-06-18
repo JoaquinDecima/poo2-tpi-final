@@ -30,7 +30,7 @@ public class AdminCuotaTestCase {
 	
 	@Test
 	public void testAdminCuotaHacePeticionProbabilidadVictoriaLocal() {
-		algoritmo.getProbabilidadVictoriaLocal(partido, proveedor);
+		algoritmo.getPosibilidadVictoriaLocal(partido, proveedor);
 		
 		verify(algoritmo).getPosibilidadDeVictoriaLocal(partido, proveedor);
 	}

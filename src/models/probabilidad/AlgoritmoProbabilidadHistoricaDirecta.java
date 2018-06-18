@@ -11,8 +11,8 @@
 
 package models.probabilidad;
 
-import models.juego.Partido;
-import models.proveedores.Proveedor;
+import juego.Partido;
+import proveedores.Proveedor;
 
 // Por error de implementaicon cuenta con margen de error inversamente propocional a la cantidad de partidos jugados
 public class AlgoritmoProbabilidadHistoricaDirecta implements AlgoritmoProbabilidad {

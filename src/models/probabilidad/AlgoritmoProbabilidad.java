@@ -21,7 +21,7 @@ import proveedores.ProveedorDataPartido;
 public interface AlgoritmoProbabilidad {
 	
 	// Retorna la posibilidad de Victoria de un equipo
-	public double getProbabilidadVictoriaLocal(Partido pPartido, ProveedorDataPartido proveedor);
+	public double getPosibilidadDeVictoriaLocal(Partido pPartido, ProveedorDataPartido proveedor);
 	
 	// Retorna la posibilidad de Victoria de un equipo
 	public double getPosibilidadDeVictoriaVisitante(Partido pPartido, Proveedor pProveedor);
