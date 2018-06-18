@@ -19,18 +19,18 @@ import org.junit.Test;
 import cuota.*;
 import juego.Partido;
 import probabilidad.AlgoritmoProbabilidad;
-import proveedores.Proveedor;
+import proveedores.*;
 import proveedores.ProveedorDataPartido;
 
 public class AdminCuotaTestCase {
-	private ProveedorDataPartido proveedor = mock(ProveedorDataPartido.class);
+	private Proveedor proveedor = mock(Proveedor.class);
 	private AlgoritmoProbabilidad algoritmo = mock(AlgoritmoProbabilidad.class);
 	private AdminCuota admin = new AdminCuota(proveedor, algoritmo);
 	private Partido partido = mock(Partido.class);
 	
 	@Test
 	public void testAdminCuotaHacePeticionProbabilidadVictoriaLocal() {
-		algoritmo.getPosibilidadVictoriaLocal(partido, proveedor);
+		algoritmo.getPosibilidadDeVictoriaLocal(partido, proveedor);
 		
 		verify(algoritmo).getPosibilidadDeVictoriaLocal(partido, proveedor);
 	}

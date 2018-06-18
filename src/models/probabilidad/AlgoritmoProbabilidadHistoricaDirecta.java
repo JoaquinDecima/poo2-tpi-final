@@ -9,7 +9,7 @@
  *        Otarola, Florencia
  */
 
-package models.probabilidad;
+package probabilidad;
 
 import juego.Partido;
 import proveedores.Proveedor;
