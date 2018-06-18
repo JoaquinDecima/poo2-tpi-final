@@ -11,12 +11,15 @@
 
 package juego;
 
+import java.util.ArrayList;
 // Importa utilidades Java
 import java.util.Date;
 
+import casaApuesta.CasaApuesta;
 import competidor.Competidor;
 import deporte.Deporte;
 import juego.estado.EstadoPartido;
+import juego.estado.Proximo;
 
 public class Partido{
   private Competidor local;
@@ -26,6 +29,7 @@ public class Partido{
   private String lugar;
   private EstadoPartido estado;
   private Resultado resultado;
+  private ArrayList<ISubscriptorPartido> subscriptores; 
 
 
   public Partido(Competidor cLocal, Competidor cVisitante, Deporte dDeporte, Date dFecha, String sLugar) {
@@ -34,6 +38,7 @@ public class Partido{
     this.deporte = dDeporte;
     this.fecha = dFecha;
     this.lugar = sLugar;
+    this.estado = new Proximo();
   }
 
   // Retrona el competidor Local
@@ -51,16 +56,18 @@ public class Partido{
     return (this.estado);
   }
   
-  // Setea el estado del partido
+  // Setea el estado del partido y handlea acciones que deben darse cuando cambia al nuevo estado
   public void setEstado(EstadoPartido estadoNew) {
-	  this.estado = estadoNew;	  
+	  this.estado = estadoNew;
+	  this.estado.accionar();
   }
   
+  // Delega el mensaje a su estado interno
   public Resultado getResultado() {
 	  return this.estado.resultadoPartido(this);
   }
 
-  public void setearResultado(Resultado resultadoPartido) {
+  public void setResultado(Resultado resultadoPartido) {
 	  this.resultado = resultadoPartido;
   }
   
@@ -113,7 +120,24 @@ public class Partido{
   public boolean esVisitante(Competidor cCompetidor) {
 	// TODO Auto-generated method stub
 	return (this.getVisitante() == cCompetidor);
-  }  
+  }
+
+	public boolean enCurso() {
+		// TODO Auto-generated method stub
+		return false;
+	} 
+	
+	// Implementa metodos de notificacion a subscriptores (como CasaApuestas)
+
+	public void notificarFinalSubscriptores() {
+		this.subscriptores.forEach(subscriptor->subscriptor.updateFinalPartido(this));
+	}
+	
+
+	public void addSubscriptor(ISubscriptorPartido subscriptor) {
+		this.subscriptores.add(subscriptor);
+		
+	}
 }
 
 

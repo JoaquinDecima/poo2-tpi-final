@@ -43,11 +43,6 @@ public class PartidoTestCase {
 		assertEquals(partido.getVisitante(), this.visitante);
 	}
 
-	// TODO: Implementar estados
-	@Test
-	public void testPartidoDevuelveEstado() {
-		assertEquals(partido.getEstado(), this.local); // Implementar estados
-	}
 
 	@SuppressWarnings("deprecation")
 	@Test
@@ -55,13 +50,5 @@ public class PartidoTestCase {
 		assertEquals(partido.getFecha(), this.fecha.getDate());
 	}
 
-	@Test
-	public void testPartidoPreguntaSiJuegaLocal() {
-		assertTrue(partido.juega(this.local));
-	}
 
-	@Test
-	public void testPartidoPreguntaSiJuegaOtro() {
-		assertFalse(partido.juega(mock(Competidor.class)));
-	}
 }

@@ -18,13 +18,14 @@ package cuota;
 import juego.Partido;
 import probabilidad.AlgoritmoProbabilidad;
 import proveedores.Proveedor;
+import proveedores.ProveedorDataPartido;
 
 public class AdminCuota {
 	protected Proveedor proveedorDataPartidos;
 	protected AlgoritmoProbabilidad pPosibilidad;
 	
-	public AdminCuota(Proveedor proveedorASetear, AlgoritmoProbabilidad algoritmoASetear) {
-		this.proveedorDataPartidos = proveedorASetear;
+	public AdminCuota(ProveedorDataPartido proveedorDataPartidos2, AlgoritmoProbabilidad algoritmoASetear) {
+		this.proveedorDataPartidos = proveedorDataPartidos2;
 		this.pPosibilidad = algoritmoASetear;
 	}
 	

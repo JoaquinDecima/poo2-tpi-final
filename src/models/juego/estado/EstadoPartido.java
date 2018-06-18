@@ -17,5 +17,8 @@ import juego.Resultado;
 public interface EstadoPartido {
 
 	Resultado resultadoPartido(Partido partido);
+
+	// metodo llamado cuando cambia el estado
+	void accionar();
 		
 }

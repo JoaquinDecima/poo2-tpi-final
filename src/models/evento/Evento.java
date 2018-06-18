@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import apuesta.Apuesta;
 import apuesta.OpcionApuesta;
 import cuota.AdminCuota;
+import juego.ISubscriptorPartido;
 import juego.Partido;
+import juego.Resultado;
 import usuario.Usuario;
 
 
@@ -62,25 +64,15 @@ public class Evento {
 		}
 		
 		public Resultado getResultadoPartido() {
+			return this.partido.getResultado();
 			
 		}
 		
-		public boolean partidoEnCurso() {
-			
-		}
-		
-		public boolean partidoFinalizado() {
-			
-		}
-		
-		public boolean partidoProximo() {
-			
-		}
-
 		public void addApuestaSegura(Apuesta apuestaUsuario) {
 			this.apuestasRealizadas.add(apuestaUsuario);
 			
 		}
+		
 		
 		
 

@@ -16,11 +16,12 @@ package probabilidad;
 // Se importa Modelo
 import juego.Partido;
 import proveedores.Proveedor;
+import proveedores.ProveedorDataPartido;
 
 public interface AlgoritmoProbabilidad {
 	
 	// Retorna la posibilidad de Victoria de un equipo
-	public double getPosibilidadDeVictoriaLocal(Partido pPartido, Proveedor pProveedor);
+	public double getProbabilidadVictoriaLocal(Partido pPartido, ProveedorDataPartido proveedor);
 	
 	// Retorna la posibilidad de Victoria de un equipo
 	public double getPosibilidadDeVictoriaVisitante(Partido pPartido, Proveedor pProveedor);
