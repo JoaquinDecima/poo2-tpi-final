@@ -19,12 +19,16 @@ public abstract class Apuesta{
   protected OpcionApuesta apuesta;
   protected Double monto;
   protected Usuario usuario;
+  protected Double gananciaBruta;
+  protected Double gananciaNeta;
   
 
-  abstract float ganaciaBruta();
-  abstract float ganaciaNeta();
+  abstract Double ganaciaBruta();
+  abstract Double ganaciaNeta();
   abstract Double montoApostado();
   abstract OpcionApuesta opcionApostada();
+  abstract Evento getEvento();
+  abstract Usuario getUsuario();
 }
 
 

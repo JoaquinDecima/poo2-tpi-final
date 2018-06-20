@@ -1,29 +1,40 @@
 package apuesta;
 
+import evento.Evento;
+import usuario.Usuario;
+
 class ApuestaFinal extends Apuesta {
+	
+	
 
 	@Override
-	float ganaciaBruta() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	float ganaciaNeta() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	float montoApostado() {
-		// TODO Auto-generated method stub
-		return 0;
+	Double montoApostado() {
+		return this.monto;
 	}
 
 	@Override
 	OpcionApuesta opcionApostada() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.apuesta;
+	}
+
+	@Override
+	Evento getEvento() {
+		return this.evento;
+	}
+
+	@Override
+	Double ganaciaBruta() {
+		return this.gananciaBruta;
+	}
+
+	@Override
+	Double ganaciaNeta() {
+		return this.gananciaNeta;
+	}
+
+	@Override
+	Usuario getUsuario() {
+		return this.usuario;
 	}
 
 }

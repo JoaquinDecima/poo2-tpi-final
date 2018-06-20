@@ -5,42 +5,56 @@ import usuario.Usuario;
 
 public class ApuestaSegura extends Apuesta {
 	
+	// con esta variable se lleva registro de todas las apuestas, incluso las canceladas
+	private boolean estaActiva;
+	
 	public ApuestaSegura(Usuario u, Evento e, OpcionApuesta op, Double m) {
 		this.usuario = u;
 		this.evento = e;
 		this.monto = m;
 		this.apuesta = op;
+		this.estaActiva = true;
 	}
 
 	@Override
-	float ganaciaBruta() {
-		// TODO Auto-generated method stub
-		return 0;
+	Double ganaciaBruta() {
+		//TODO:retornar excepcion si el partido aun no finalizo
+		return this.gananciaBruta;
 	}
 
 	@Override
-	float ganaciaNeta() {
-		// TODO Auto-generated method stub
-		return 0;
+	Double ganaciaNeta() {
+		//TODO:retornar excepcion si el partido aun no finalizo
+		return this.ganaciaNeta();
 	}
 
 	@Override
 	Double montoApostado() {
-		return monto;
+		return this.monto;
 	}
 
 	@Override
 	OpcionApuesta opcionApostada() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void cancelarApuesta() {
-		
+		return this.apuesta;
 	}
 	
-	public void reactivarApuesta() {
+	public boolean estaActiva() {
+		return this.estaActiva;
+	}
+	
+	public void updateEstado() {
+		this.estaActiva = !this.estaActiva;
+	}
+
+
+	public Evento getEvento() {
 		
+		return this.evento;
+	}
+
+	@Override
+	Usuario getUsuario() {
+		return this.usuario;
 	}
 	
 }
