@@ -75,6 +75,11 @@ public class ProveedorDePartido {
 	    }
 	    return(this.corregirLista(listPartidos));  
   }
+  
+  // Agrega Partido
+  public void addPartido(Partido p) {
+	  this.partidos.add(p);
+  }
 
   /*
    * Funcionalidades adicionales para corregir problemas de implementacion, se
