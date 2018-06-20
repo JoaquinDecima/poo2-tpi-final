@@ -11,14 +11,14 @@ import casaApuesta.CasaApuesta;
 import evento.Evento;
 import juego.Partido;
 import probabilidad.AlgoritmoProbabilidad;
-import proveedores.ProveedorDataPartido;
+import proveedores.Proveedor;
 import usuario.Usuario;
 
 public class CasaApuestaTestCase {
 	
 	private CasaApuesta casaApuesta;
 	private Partido mockPartido;
-	private ProveedorDataPartido proveedorDataPartidos;
+	private Proveedor proveedorDataPartidos;
 	private AlgoritmoProbabilidad algoritmoProbabilidadASetear;
 	private Usuario usuario;
 	
