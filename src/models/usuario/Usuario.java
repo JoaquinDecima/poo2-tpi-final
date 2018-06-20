@@ -9,9 +9,12 @@ import evento.Evento;
 public class Usuario {
 
 	private String nombre;
+	private Double wallet;
 
 	public Usuario(String nombre) {
 		this.nombre = nombre;
+		this.wallet = 0.00;
+		
 	}
 	
 	public String getNombre() {
@@ -23,9 +26,8 @@ public class Usuario {
 		
 	}
 
-	public String getMontoWallet() {
-		// TODO Auto-generated method stub
-		return null;
+	public Double getMontoWallet() {
+		return wallet;
 	}
 
 	public ApuestaSegura hacerApuestaSegura(Evento evento, OpcionApuesta opcionApuesta, double monto) {
