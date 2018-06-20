@@ -73,6 +73,14 @@ public class Evento {
 			
 		}
 		
+		public OpcionApuesta getOpcionAPuestaVictoriaLocal() {
+			fhk
+			ggggggggggggggggggghjl
+			
+			return 
+			
+		}
+		
 		
 		
 

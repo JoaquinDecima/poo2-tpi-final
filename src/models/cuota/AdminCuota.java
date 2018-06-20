@@ -45,4 +45,5 @@ public class AdminCuota {
 	public double getCuotaPorEmpate(Partido pPartido) {
 		return((1-pPosibilidad.getPosibilidadDeEmpate(pPartido, proveedorDataPartidos)) + 1);
 	}
+	
 }

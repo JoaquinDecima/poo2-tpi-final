@@ -30,7 +30,10 @@ public class Usuario {
 
 	public ApuestaSegura hacerApuestaSegura(Evento evento, OpcionApuesta opcionApuesta, double monto) {
 		
-		return (new ApuestaSegura(this, evento, opcionApuesta, monto));
+		ApuestaSegura apuesta = new ApuestaSegura(this, evento, opcionApuesta, monto);
+
+		
+		return apuesta;
 	}
 
 	public void cancelarApuesta() {

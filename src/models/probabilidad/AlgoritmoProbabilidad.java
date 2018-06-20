@@ -27,5 +27,5 @@ public interface AlgoritmoProbabilidad {
 	public double getPosibilidadDeVictoriaVisitante(Partido pPartido, Proveedor pProveedor);
 	
 	// Retorna la posibilidad de empate de un equipo
-	public double getPosibilidadDeEmpate(Partido pPartido, Proveedor pProveedor);
+	public double getPosibilidadDeEmpate(Partido pPartido, ProveedorDataPartido proveedor);
 }
