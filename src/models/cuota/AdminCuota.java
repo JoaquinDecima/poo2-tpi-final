@@ -24,7 +24,7 @@ public class AdminCuota {
 	protected Proveedor proveedorDataPartidos;
 	protected AlgoritmoProbabilidad pPosibilidad;
 	
-	public AdminCuota(ProveedorDataPartido proveedorDataPartidos2, AlgoritmoProbabilidad algoritmoASetear) {
+	public AdminCuota(Proveedor proveedorDataPartidos2, AlgoritmoProbabilidad algoritmoASetear) {
 		this.proveedorDataPartidos = proveedorDataPartidos;
 		this.pPosibilidad = algoritmoASetear;
 	}
