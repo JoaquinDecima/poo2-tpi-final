@@ -24,7 +24,7 @@ public class FutbolTestCase {
 
 	@Test
 	public void futbolRespondeNombre() {
-		assertEquals(deporte.getNombre(), "Futboll");
+		assertEquals(deporte.getNombre(), "Futbol");
 	}
 
 	@Test
