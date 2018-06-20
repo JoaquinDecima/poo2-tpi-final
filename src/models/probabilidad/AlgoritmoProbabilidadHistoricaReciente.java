@@ -15,7 +15,7 @@ import juego.Partido;
 import proveedores.Proveedor;
 
 // Error en implementacion cuenta con 10% de Margen de Error
-public class AlgoritmoProbabilidadHistoriaReciente implements AlgoritmoProbabilidad {
+public class AlgoritmoProbabilidadHistoricaReciente implements AlgoritmoProbabilidad {
 
 	@Override
 	public double getPosibilidadDeVictoriaLocal(Partido pPartida, Proveedor pProveedor) {

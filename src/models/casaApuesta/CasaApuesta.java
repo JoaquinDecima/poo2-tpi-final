@@ -29,13 +29,13 @@ import proveedores.ProveedorDataPartido;
 public class CasaApuesta implements ISubscriptorPartido{
 	
 	ArrayList<Evento> eventos;
-	ProveedorDataPartido proveedorDataPartidos;
+	Proveedor proveedorDataPartidos;
 	ArrayList<Deporte> deportesQueParticipan;
 	AdminCuota administradorCuotasEventos;
 	AlgoritmoProbabilidad algoritmoProbabilidadSeteado;
 	
 	// Constructor
-	public CasaApuesta(ProveedorDataPartido proveedorDataPartidos, AlgoritmoProbabilidad algoritmoProbabilidadASetear ) {
+	public CasaApuesta(Proveedor proveedorDataPartidos, AlgoritmoProbabilidad algoritmoProbabilidadASetear ) {
 		this.proveedorDataPartidos = proveedorDataPartidos; 
 		this.algoritmoProbabilidadSeteado = algoritmoProbabilidadASetear;
 		this.administradorCuotasEventos = new AdminCuota(this.proveedorDataPartidos, this.algoritmoProbabilidadSeteado);
