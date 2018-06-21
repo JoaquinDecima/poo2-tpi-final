@@ -17,14 +17,18 @@ package casaApuesta;
 // Importa utilidades java
 import java.util.ArrayList;
 
+import apuesta.Apuesta;
+import apuesta.ApuestaSegura;
 import cuota.AdminCuota;
 import deporte.Deporte;
 import evento.Evento;
 import juego.ISubscriptorPartido;
 import juego.Partido;
+import juego.Resultado;
 import probabilidad.AlgoritmoProbabilidad;
 import proveedores.Proveedor;
 import proveedores.ProveedorDataPartido;
+import usuario.Usuario;
 
 public class CasaApuesta implements ISubscriptorPartido{
 	
@@ -71,12 +75,33 @@ public class CasaApuesta implements ISubscriptorPartido{
 		this.calcularGananciasEvento(eventoPartido);
 	}
 
-	private Evento calcularGananciasEvento(Evento eventoPartido) {
-		// TODO Auto-generated method stub
-		return null;
+	private void calcularGananciasEvento(Evento eventoPartido) {
+		for(Apuesta apuesta : eventoPartido.getApuestasRealizadas()) {
+			this.setGananciasApuesta(apuesta);
+			
+		}
+		
+
 	}
 
-	
+	private void setGananciasApuesta(Apuesta apuesta) {
+		Resultado resultadoFinal = apuesta.getPartido().getResultado();
+		boolean usuarioGanaApuesta = resultadoFinal == apuesta.opcionApostada().resultado(); 
+		Usuario usuario = apuesta.getUsuario();
+		
+		if (usuarioGanaApuesta) {
+			if(apuesta instanceof ApuestaSegura) {
+				usuario.incrementarMontoWallet(monto);
+				this.cobrarDescuento()
+				
+				
+			}
+					
+					
+		}
+		
+	}
+
 	
 }
 

@@ -12,12 +12,12 @@
 package evento;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import apuesta.Apuesta;
 import apuesta.ApuestaSegura;
 import apuesta.OpcionApuesta;
 import cuota.AdminCuota;
-import juego.ISubscriptorPartido;
 import juego.Partido;
 import juego.Resultado;
 import usuario.Usuario;
@@ -28,21 +28,21 @@ public class Evento {
 		Partido partido;
 		AdminCuota adminCuotasApuestasPosibles;
 		ArrayList<Apuesta> apuestasRealizadas;
-		boolean estaActivo;
 		
 		public Evento(Partido partido, AdminCuota cuotasResultadosPosibles) {
 			
 			this.adminCuotasApuestasPosibles = cuotasResultadosPosibles;
-			this.setPartidoDelEvento(partido);		
+			this.setPartidoDelEvento(partido);	
+			this.apuestasRealizadas = new ArrayList<Apuesta>();
+			// pensar en la posibilidad de que evento tenga un estado que dependa del estado del partido
 			}
+		
+		// metodos getters
 
 		public Partido getPartidoDelEvento() {
-			return partido;
+			return this.partido;
 		}
-
-		private void setPartidoDelEvento(Partido partidoDelEvento) {
-			this.partido = partidoDelEvento;
-		}
+		
 		
 		// Retorna la cuota establecida en caso de victoria de competidor local
 		public double getCuotaPorVictoriaLocal() {
@@ -58,41 +58,83 @@ public class Evento {
 		public double getCuotaPorEmpate() {
 			return(this.adminCuotasApuestasPosibles.getCuotaPorEmpate(this.partido));
 		}
-
-		public ArrayList<Apuesta> getApuestasUsuario(Usuario usuario, Evento evento) {
-			// TODO Auto-generated method stub
-			return null;
-		}
 		
+		// retorna una lista de apuestas realizadas por usuario en evento
+		public ArrayList<Apuesta> getApuestasUsuario(Usuario usuario) {	
+			return (apuestasRealizadas.stream().filter( a -> a.getUsuario() == usuario)).collect(Collectors.toCollection(ArrayList::new));
+		}
+			
 		public Resultado getResultadoPartido() {
-			return this.partido.getResultado();
-			
+			return this.partido.getResultado();		
 		}
-
-		
+	
+		// retorna la opcion de apuesta por victoria local que usuario puede elegir p/ hacer apuesta
 		public OpcionApuesta getOpcionAPuestaVictoriaLocal() {
-			fhk
-			ggggggggggggggggggghjl
+			//TODO
+			return  null;
 			
-			return 
-			
-		}
+				}
+		// metodos setters
 
-		public ApuestaSegura addApuestaSegura(Usuario usuario, Evento evento, OpcionApuesta opcionApuesta,
-				double monto) {
-			
-			ApuestaSegura nuevaApuesta = new ApuestaSegura(usuario, evento, opcionApuesta, monto);
-			this.apuestasRealizadas.add(nuevaApuesta);
-			
-			return nuevaApuesta;
-		}
-
-		public void cancelarApuestaSegura(ApuestaSegura apuestaACancelar) {
-			// TODO Auto-generated method stub
-			
+		private void setPartidoDelEvento(Partido partidoDelEvento) {
+			this.partido = partidoDelEvento;
 		}
 		
-		
-		
+		// metodos void
 
+		public ApuestaSegura addApuestaSegura(Usuario usuario, OpcionApuesta opcionApuesta,
+				double monto) throws Exception{
+			// checueo que el partido no haya finalizado
+			if(!this.partido.finalizado()) {
+				// si no finalizo el partido, entonces se crea la apuesta solicitada por el usuario
+				ApuestaSegura nuevaApuesta = new ApuestaSegura(usuario, this, opcionApuesta, monto);
+				this.apuestasRealizadas.add(nuevaApuesta);
+				// retorno nueva apuesta
+				return nuevaApuesta;
+			} 
+				// si el partido ha finalizado, entonces se lanza excepcion
+				else throw new Exception();
+		}
+
+		public void cancelarApuestaSegura(ApuestaSegura apuestaACancelar) throws Exception {
+			
+			// se chequea que el partido no haya finalizado
+			if(!this.partido.finalizado()) {
+				// se cobra penalidad por cancelacion
+				this.cobrarPenalidadApuestaCancelada(apuestaACancelar);
+				// cambia estado de la apuesta. Ahora ya no esta activa.
+				apuestaACancelar.updateEstado();			
+			} else {
+				// si el partido ha finalizado no se puede cancelar una apuesta segura
+				throw new Exception();
+			}	
+		}
+		
+		private void cobrarPenalidadApuestaCancelada(ApuestaSegura apuestaACancelar) {
+			Usuario usuarioPenalizado = apuestaACancelar.getUsuario();
+			// Si el partido aun no ha comenzado, cobrar penalidad fija de 200 pesos.
+			if(apuestaACancelar.getPartido().esProximo()) {
+				usuarioPenalizado.decrementarMontoWallet(200.00);
+			} else {
+				Double montoACobrar = ((apuestaACancelar.montoApostado()) * 30.0) / 100.0;
+				usuarioPenalizado.decrementarMontoWallet(montoACobrar);
+				}
+		}
+		
+		// Reactiva una apuesta ya cancelada. Cambia el estado de la apuesta: se activa.
+		// Invariante: se debe tratar de una apuesta cancelada.
+		public void reactivarApuestaSegura(ApuestaSegura apuestaAReactivar) throws Exception {
+			// Solo se puede reactivar una apuesta cuando el partido aun no ha comenzado.
+			if(apuestaAReactivar.getPartido().esProximo()) {
+				apuestaAReactivar.updateEstado();
+			} else {	
+				// Si el partido esta en curso o ha finalizado, se lanza una excepcion.
+				throw new Exception();
+			}			
+		}
+
+		public ArrayList<Apuesta> getApuestasRealizadas() {
+			return this.apuestasRealizadas;
+			
+		}
 }

@@ -12,6 +12,7 @@
 package apuesta;
 
 import evento.Evento;
+import juego.Partido;
 import usuario.Usuario;
 
 public abstract class Apuesta{
@@ -23,12 +24,13 @@ public abstract class Apuesta{
   protected Double gananciaNeta;
   
 
-  abstract Double ganaciaBruta();
-  abstract Double ganaciaNeta();
-  abstract Double montoApostado();
-  abstract OpcionApuesta opcionApostada();
-  abstract Evento getEvento();
-  abstract Usuario getUsuario();
+  public abstract Double ganaciaBruta();
+  public abstract Double ganaciaNeta();
+  public abstract Double montoApostado();
+  public abstract OpcionApuesta opcionApostada();
+  public abstract Evento getEvento();
+  public abstract Partido getPartido();
+  public abstract Usuario getUsuario();
 }
 
 

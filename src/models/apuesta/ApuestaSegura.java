@@ -1,6 +1,7 @@
 package apuesta;
 
 import evento.Evento;
+import juego.Partido;
 import usuario.Usuario;
 
 public class ApuestaSegura extends Apuesta {
@@ -17,23 +18,27 @@ public class ApuestaSegura extends Apuesta {
 	}
 
 	@Override
+	public
 	Double ganaciaBruta() {
 		//TODO:retornar excepcion si el partido aun no finalizo
 		return this.gananciaBruta;
 	}
 
 	@Override
+	public
 	Double ganaciaNeta() {
 		//TODO:retornar excepcion si el partido aun no finalizo
 		return this.ganaciaNeta();
 	}
 
 	@Override
+	public
 	Double montoApostado() {
 		return this.monto;
 	}
 
 	@Override
+	public
 	OpcionApuesta opcionApostada() {
 		return this.apuesta;
 	}
@@ -53,8 +58,14 @@ public class ApuestaSegura extends Apuesta {
 	}
 
 	@Override
+	public
 	Usuario getUsuario() {
 		return this.usuario;
+	}
+
+	@Override
+	public Partido getPartido() {
+		return this.evento.getPartidoDelEvento();
 	}
 	
 }
