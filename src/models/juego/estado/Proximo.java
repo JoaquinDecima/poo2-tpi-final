@@ -11,5 +11,11 @@ public class Proximo implements EstadoPartido {
 		return null;
 	}
 
+	@Override
+	public void accionar() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 //devuelve resultado nll object

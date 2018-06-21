@@ -15,10 +15,11 @@ import java.util.ArrayList;
 // Importa utilidades Java
 import java.util.Date;
 
-import casaApuesta.CasaApuesta;
 import competidor.Competidor;
 import deporte.Deporte;
+import juego.estado.EnCurso;
 import juego.estado.EstadoPartido;
+import juego.estado.Finalizado;
 import juego.estado.Proximo;
 
 public class Partido{
@@ -123,9 +124,16 @@ public class Partido{
   }
 
 	public boolean enCurso() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.getEstado() instanceof EnCurso;
 	} 
+	
+	public boolean esProximo() {
+		return this.getEstado() instanceof Proximo;	
+	}
+	
+	public boolean finalizado() {
+		return this.getEstado() instanceof Finalizado;	
+	}
 	
 	// Implementa metodos de notificacion a subscriptores (como CasaApuestas)
 

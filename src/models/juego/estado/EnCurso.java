@@ -20,4 +20,10 @@ public class EnCurso implements EstadoPartido {
 		return partido.getResultado();		
 	}
 
+	@Override
+	public void accionar() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

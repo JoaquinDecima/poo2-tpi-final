@@ -9,6 +9,12 @@ public class Finalizado implements EstadoPartido {
 	public Resultado resultadoPartido(Partido partido) {
 		return partido.getResultado();		
 	}
+
+	@Override
+	public void accionar() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 
