@@ -14,6 +14,7 @@ package evento;
 import java.util.ArrayList;
 
 import apuesta.Apuesta;
+import apuesta.ApuestaSegura;
 import apuesta.OpcionApuesta;
 import cuota.AdminCuota;
 import juego.ISubscriptorPartido;
@@ -67,17 +68,27 @@ public class Evento {
 			return this.partido.getResultado();
 			
 		}
-		
-		public void addApuestaSegura(Apuesta apuestaUsuario) {
-			this.apuestasRealizadas.add(apuestaUsuario);
-			
-		}
+
 		
 		public OpcionApuesta getOpcionAPuestaVictoriaLocal() {
 			fhk
 			ggggggggggggggggggghjl
 			
 			return 
+			
+		}
+
+		public ApuestaSegura addApuestaSegura(Usuario usuario, Evento evento, OpcionApuesta opcionApuesta,
+				double monto) {
+			
+			ApuestaSegura nuevaApuesta = new ApuestaSegura(usuario, evento, opcionApuesta, monto);
+			this.apuestasRealizadas.add(nuevaApuesta);
+			
+			return nuevaApuesta;
+		}
+
+		public void cancelarApuestaSegura(ApuestaSegura apuestaACancelar) {
+			// TODO Auto-generated method stub
 			
 		}
 		

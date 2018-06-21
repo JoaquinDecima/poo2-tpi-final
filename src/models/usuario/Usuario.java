@@ -21,9 +21,12 @@ public class Usuario {
 		return this.nombre;
 	}
 
-	public void incrementarMontoWallet(int i) {
-		// TODO Auto-generated method stub
-		
+	public void incrementarMontoWallet(Double monto) {
+		this.wallet = this.wallet + monto;	
+	}
+	
+	public void decrementarMontoWallet(Double monto) {
+		this.wallet = this.wallet - monto;			
 	}
 
 	public Double getMontoWallet() {
@@ -32,15 +35,18 @@ public class Usuario {
 
 	public ApuestaSegura hacerApuestaSegura(Evento evento, OpcionApuesta opcionApuesta, double monto) {
 		
-		ApuestaSegura apuesta = new ApuestaSegura(this, evento, opcionApuesta, monto);
-
-		
+		ApuestaSegura apuesta = evento.addApuestaSegura(this, opcionApuesta, monto);
+		this.decrementarMontoWallet(monto);
 		return apuesta;
 	}
 
-	public void cancelarApuesta() {
-		// TODO Auto-generated method stub
-		
+	public void cancelarApuesta(ApuestaSegura apuestaACancelar) {
+		apuestaACancelar.getEvento().cancelarApuestaSegura(apuestaACancelar);
+	
 	}
 
+	public void reactivarApuesta(ApuestaSegura apuestaAReactivar) {
+		apuestaAReactivar.getEvento().reactivarApuestaSegura(apuestaAReactivar);
+	
+	}
 }
