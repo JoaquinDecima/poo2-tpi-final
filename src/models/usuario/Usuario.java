@@ -33,6 +33,11 @@ public class Usuario {
 		return wallet;
 	}
 
+	
+	/* 
+	 * metodos sobre apuestas seguras 
+	 */
+	
 	// usuario crea apuesta solo si el partido no ha comenzado. Accion que se delega en el evento.
 	public void hacerApuestaSegura(Evento evento, OpcionApuesta opcionApuesta, double monto) {		
 		try {
