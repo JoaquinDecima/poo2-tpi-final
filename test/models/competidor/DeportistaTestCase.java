@@ -23,28 +23,18 @@ import org.junit.Test;
 import competidor.*;
 
 public class DeportistaTestCase {
-	private Deportista deportistaPato;
-
-	/**
-     * Crea un escenario de test basico, que contiene un deportista
-     *
-     *
-     * @throws Exception
-     */
-	public void setUp() throws Exception {
-
-        //Se crea el contador
-        deportistaPato = new Deportista("Pato","Quilmes", new Date(1996, 3, 29));	// TODO: Verificar uso de Date
-    }
-
+	private String sNombre = "Pato";
+	private String sLugarNatal = "Quilmes";
+	private Deportista deportistaPato = new Deportista(sNombre, sLugarNatal, new Date(1996, 3, 29));
+	
 
 	@Test
 	public void testPatoRespondeNombre() {
-		assertEquals(deportistaPato.getNombre(), "Pato");
+		assertEquals(deportistaPato.getNombre(), sNombre);
 	}
 
 	@Test
 	public void testPatoRespondeLugarDeNacimiento() {
-		assertEquals(deportistaPato.getLugarNatal(), "Quilmes");
+		assertEquals(deportistaPato.getLugarNatal(), sLugarNatal);
 	}
 }

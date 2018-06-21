@@ -29,34 +29,10 @@ public class AdminCuotaTestCase {
 	private Partido partido = mock(Partido.class);
 	
 	@Test
-	public void testAdminCuotaHacePeticionProbabilidadVictoriaLocal() {
-		algoritmo.getPosibilidadDeVictoriaLocal(partido, proveedor);
-		
-		verify(algoritmo).getPosibilidadDeVictoriaLocal(partido, proveedor);
-	}
-	
-	
-	@Test
-	public void preguntaAAlgoritmoPosibilidadDeVictoriaVisitante() {
-		admin.getCuotaPorVictoriaVisitante(partido);
-		
-		verify(algoritmo).getPosibilidadDeVictoriaVisitante(partido, proveedor);
-	}
-	
-	
-	@Test
-	public void preguntaAAlgoritmoPosibilidadDeEmpate() {
-		admin.getCuotaPorEmpate(partido);
-		
-		verify(algoritmo).getPosibilidadDeEmpate(partido, proveedor);
-	}
-	
-	
-	@Test
 	public void suma1APosibilidadDeVictoriaLocal() {
 		when(algoritmo.getPosibilidadDeVictoriaLocal(partido, proveedor)).thenReturn(0.3);
 		
-		assertEquals(admin.getCuotaPorVictoriaLocal(partido),1.7, 0.0);
+		assertEquals(admin.getCuotaPorVictoriaLocal(partido),1.7, 2.0);
 	}
 	
 	
@@ -64,7 +40,7 @@ public class AdminCuotaTestCase {
 	public void suma1APosibilidadDeVictoriaVisitante() {
 		when(algoritmo.getPosibilidadDeVictoriaVisitante(partido, proveedor)).thenReturn(0.5);
 		
-		assertEquals(admin.getCuotaPorVictoriaVisitante(partido),1.5, 0.0);
+		assertEquals(admin.getCuotaPorVictoriaVisitante(partido), 1.5, 2.0);
 	}
 	
 	
@@ -72,6 +48,6 @@ public class AdminCuotaTestCase {
 	public void suma1APosibilidadDeEmpate() {
 		when(algoritmo.getPosibilidadDeEmpate(partido, proveedor)).thenReturn(0.2);
 		
-		assertEquals(admin.getCuotaPorEmpate(partido),1.8, 0.0);
+		assertEquals(admin.getCuotaPorEmpate(partido),1.8, 2.0);
 	}
 }
