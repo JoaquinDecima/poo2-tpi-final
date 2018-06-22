@@ -5,8 +5,13 @@ import competidor.Competidor;
 public class ResultadoSinEmpate extends Resultado {
 
 	public ResultadoSinEmpate(Competidor competidorGana, Competidor competidorPierde) {
+		this.gana = competidorGana;
+		this.pierde = competidorPierde;
+	}
 
-		// TODO Auto-generated constructor stub
+	@Override
+	public boolean empate() {
+		return false;
 	}
 
 }

@@ -15,9 +15,7 @@ package proveedores;
 import java.util.ArrayList;
 
 import competidor.Competidor;
-// Importa del Modelo
-import deporte.Deporte.*;
-import juego.*;
+import juego.Partido;
 
 
 
@@ -34,11 +32,11 @@ public class ProveedorDeEstadistica {
 		return (sum);
 	}
 	
-	// Retorna la cantida de victorias de un competidor
+	// Retorna la cantida de empates de competidor
 	public int empatesDe(ArrayList<Partido> aList, int iCantidad) {
 		int sum = 0;
 		for (Partido p : this.getPrimeros(iCantidad, aList)) {
-			if(p.huboEmpate()) {
+			if(p.getResultado().empate()) {
 				sum += 1;
 			}
 		}

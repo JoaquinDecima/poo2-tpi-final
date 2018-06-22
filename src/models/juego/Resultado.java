@@ -4,8 +4,8 @@ import competidor.Competidor;
 
 public abstract class Resultado {
 	
-	private Competidor gana;
-	private Competidor pierde;
+	protected Competidor gana;
+	protected Competidor pierde;
 	
 	
 	public Competidor ganaCompetidor() {
@@ -16,7 +16,7 @@ public abstract class Resultado {
 		return this.pierde;	
 	}
 
-	
-	
+	public abstract boolean empate();
+
 
 }

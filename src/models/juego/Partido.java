@@ -115,7 +115,6 @@ public class Partido{
  
   // Retorna True si cCompetidor es Visitante
   public boolean esVisitante(Competidor cCompetidor) {
-	// TODO Auto-generated method stub
 	return (this.getVisitante() == cCompetidor);
   }
 
@@ -146,6 +145,10 @@ public class Partido{
 	public Deporte getDeporte() {
 		
 		return this.deporte;
+	}
+
+	public boolean huboEmpate() {
+		return this.resultado.empate();
 	}
 }
 
