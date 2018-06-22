@@ -17,20 +17,14 @@ package casaApuesta;
 // Importa utilidades java
 import java.util.ArrayList;
 
-import apuesta.Apuesta;
-import apuesta.ApuestaSegura;
 import cuota.AdminCuota;
 import deporte.Deporte;
 import evento.Evento;
-import juego.ISubscriptorPartido;
 import juego.Partido;
-import juego.Resultado;
 import probabilidad.AlgoritmoProbabilidad;
 import proveedores.Proveedor;
-import proveedores.ProveedorDataPartido;
-import usuario.Usuario;
 
-public class CasaApuesta implements ISubscriptorPartido{
+public class CasaApuesta {
 	
 	ArrayList<Evento> eventos;
 	Proveedor proveedorDataPartidos;
@@ -52,9 +46,15 @@ public class CasaApuesta implements ISubscriptorPartido{
 		
 	// Crea un evento deportivo
 	public Evento crearEventoDeportivo(Partido partido) {
-		partido.addSubscriptor(this);
+
+		// se instancia nuevo Evento y se pasa objeto AdminCuota para que pueda delegar el calculo de las cuotas y opciones de resultados posibles
 		Evento nuevoEvento = new Evento(partido, this.getAdminCuota());
+		nuevoEvento.calcularOpcionesResultadosPosibles();
+		// se agrega el evento al registro de eventos de la casa de apuestas
 		this.eventos.add(nuevoEvento);
+		// sistema de notificaciones: la casa de apuestas se subscribe a los eventos de partido;
+		partido.addSubscriptor(nuevoEvento);
+		// se retorna el evento creado
 		return nuevoEvento;
 	}
 
@@ -64,43 +64,8 @@ public class CasaApuesta implements ISubscriptorPartido{
 		this.algoritmoProbabilidadSeteado = algoritmoNuevo;
 	}
 	
-	// implementa interfaz de subscriptor a partidos
 
-	@Override
-	// cuando un partido finaliza debe calcular ganancias de usuarios del evento creado
-	public void updateFinalPartido(Partido p) {
-		Evento eventoPartido = (this.eventos.stream()
-											.filter(e -> e.getPartidoDelEvento() == p)
-													.findFirst()).get();				
-		this.calcularGananciasEvento(eventoPartido);
-	}
 
-	private void calcularGananciasEvento(Evento eventoPartido) {
-		for(Apuesta apuesta : eventoPartido.getApuestasRealizadas()) {
-			this.setGananciasApuesta(apuesta);
-			
-		}
-		
-
-	}
-
-	private void setGananciasApuesta(Apuesta apuesta) {
-		Resultado resultadoFinal = apuesta.getPartido().getResultado();
-		boolean usuarioGanaApuesta = resultadoFinal == apuesta.opcionApostada().resultado(); 
-		Usuario usuario = apuesta.getUsuario();
-		
-		if (usuarioGanaApuesta) {
-			if(apuesta instanceof ApuestaSegura) {
-				usuario.incrementarMontoWallet(monto);
-				this.cobrarDescuento()
-				
-				
-			}
-					
-					
-		}
-		
-	}
 
 	
 }
