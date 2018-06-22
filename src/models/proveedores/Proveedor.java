@@ -46,7 +46,6 @@ public class Proveedor {
   public ArrayList<Partido> getPartidosDeDeporte(Deporte dDeporte){
     return(this.partidos.getPartidosDeDeporte(dDeporte));
   }
-
   
   // Retorna todos los partidos que se juegen en dDate
   public ArrayList<Partido> getPartidosDeFecha(Date dDate){
@@ -129,7 +128,28 @@ public class Proveedor {
     }
     return(this.corregirLista(listPartidos));
   }
-
+  
+  // Realiza un OR logico entre las 2 listas
+  public ArrayList<Partido> logicOR(ArrayList<Partido> list1, ArrayList<Partido> list2){
+	  ArrayList<Partido> temp = list1;
+	  for (Partido p : list2) {
+		  if (!list1.contains(p)) {
+			  temp.add(p);
+		  }
+	  }
+	  return temp;
+  }
+  
+  //Realiza un AND logico entre las 2 listas
+	public ArrayList<Partido> logicAND(ArrayList<Partido> list1, ArrayList<Partido> list2){
+		ArrayList<Partido> temp = new ArrayList<Partido>();
+		for (Partido p : list1) {
+			if (list2.contains(p)) {
+				temp.add(p);
+			}
+		}
+		return temp;
+	}	
   
   /*
    * Funcionalidades adicionales para corregir problemas de implementacion, se
