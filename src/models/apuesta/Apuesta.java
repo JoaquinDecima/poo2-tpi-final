@@ -26,6 +26,8 @@ public abstract class Apuesta{
 
   public abstract Double ganaciaBruta();
   public abstract Double ganaciaNeta();
+  public abstract void setGananciaBruta(Double monto);
+  public abstract void setGananciaNeta(Double monto);
   public abstract Double montoApostado();
   public abstract OpcionApuesta opcionApostada();
   public abstract Evento getEvento();

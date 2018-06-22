@@ -46,8 +46,17 @@ class ApuestaFinal extends Apuesta {
 
 	@Override
 	public Partido getPartido() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.evento.getPartidoDelEvento();
+	}
+
+	@Override
+	public void setGananciaBruta(Double monto) {
+		this.gananciaBruta = monto;	
+	}
+
+	@Override
+	public void setGananciaNeta(Double monto) {
+		this.gananciaNeta = monto;
 	}
 
 }
