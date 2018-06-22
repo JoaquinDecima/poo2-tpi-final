@@ -2,7 +2,7 @@
 
 package apuesta;
 
-import juego.Resultado;
+import juego.resultado.Resultado;
 
 public class OpcionApuesta {
 	

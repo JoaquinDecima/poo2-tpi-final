@@ -21,6 +21,7 @@ import juego.estado.EnCurso;
 import juego.estado.EstadoPartido;
 import juego.estado.Finalizado;
 import juego.estado.Proximo;
+import juego.resultado.Resultado;
 
 public class Partido{
   private Competidor local;

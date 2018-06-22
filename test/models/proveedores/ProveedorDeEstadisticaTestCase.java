@@ -22,11 +22,15 @@ import org.junit.Test;
 
 import competidor.Competidor;
 import juego.Partido;
+import juego.resultado.Resultado;
 import proveedores.ProveedorDeEstadistica;
 
 public class ProveedorDeEstadisticaTestCase {
 	private ProveedorDeEstadistica estadistica = new ProveedorDeEstadistica();
 	private Competidor local = mock(Competidor.class);
+	
+	private Resultado resultado = mock(Resultado.class);
+	private Resultado resultado2 = mock(Resultado.class);
 	
 	private ArrayList<Partido> listapartidos = new ArrayList<Partido>();
 	private ArrayList<Partido> listapartidos2 = new ArrayList<Partido>();
@@ -62,10 +66,12 @@ public class ProveedorDeEstadisticaTestCase {
 		listapartidos.add(partido1);
 		listapartidos.add(partido2);
 		listapartidos.add(partido3);
-
-		when(partido1.huboEmpate()).thenReturn(true);
-		when(partido2.huboEmpate()).thenReturn(false);
-		when(partido3.huboEmpate()).thenReturn(true);
+		
+		when(resultado.empate()).thenReturn(true);
+		when(resultado2.empate()).thenReturn(false);
+		when(partido1.getResultado()).thenReturn(resultado);
+		when(partido2.getResultado()).thenReturn(resultado2);
+		when(partido3.getResultado()).thenReturn(resultado);
 		
 		assertEquals(estadistica.empatesDe(listapartidos, 3), 2);
 	}

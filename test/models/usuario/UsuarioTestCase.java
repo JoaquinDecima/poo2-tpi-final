@@ -21,24 +21,12 @@ import usuario.Usuario;
 
 public class UsuarioTestCase {
 	
-	private Usuario usuario;
-	private CasaApuesta mockCasaApuesta;
-	private Evento evento;
-	private Partido mockPartido;
-	private OpcionApuesta mockOpcionApuesta;
+	private Usuario usuario = new Usuario("diego");
+	private CasaApuesta mockCasaApuesta = mock(CasaApuesta.class);
+	private Partido mockPartido = mock(Partido.class);
+	private Evento evento = new Evento(mockPartido, mockCasaApuesta.getAdminCuota());
+	private OpcionApuesta mockOpcionApuesta = mock(OpcionApuesta.class);
 	
-	@Before
-	public void setUp(){
-		
-		mockCasaApuesta = mock(CasaApuesta.class);
-		mockPartido = mock(Partido.class);
-		usuario = new Usuario("diego");
-		evento = new Evento(mockPartido, mockCasaApuesta.getAdminCuota());
-		mockOpcionApuesta = mock(OpcionApuesta.class);
-		
-		
-	}
-
 	@Test
 	public void testCuandoUsuarioCancelaApuestaSeguraConPartidoEnCursoSePenalizaCobrando30porcientoApostado() {
 		

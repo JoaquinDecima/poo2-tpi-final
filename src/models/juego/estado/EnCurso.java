@@ -12,7 +12,7 @@
 package juego.estado;
 
 import juego.Partido;
-import juego.Resultado;
+import juego.resultado.Resultado;
 
 public class EnCurso implements EstadoPartido {
 	@Override

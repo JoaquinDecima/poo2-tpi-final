@@ -20,9 +20,9 @@ import apuesta.OpcionApuesta;
 import cuota.AdminCuota;
 import juego.ISubscriptorPartido;
 import juego.Partido;
-import juego.Resultado;
-import juego.ResultadoConEmpate;
-import juego.ResultadoSinEmpate;
+import juego.resultado.Resultado;
+import juego.resultado.ResultadoConEmpate;
+import juego.resultado.ResultadoSinEmpate;
 import usuario.Usuario;
 
 

@@ -1,4 +1,4 @@
-package juego;
+package juego.resultado;
 
 import competidor.Competidor;
 
