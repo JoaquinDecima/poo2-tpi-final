@@ -144,7 +144,6 @@ public class Partido{
 	}
 
 	public Deporte getDeporte() {
-		
 		return this.deporte;
 	}
 

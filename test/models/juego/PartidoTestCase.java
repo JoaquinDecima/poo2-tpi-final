@@ -15,6 +15,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 // Importa utilidades Java
 import java.util.Date;
@@ -25,13 +26,17 @@ import org.junit.Test;
 import competidor.Competidor;
 import deporte.Deporte;
 import juego.Partido;
+import juego.resultado.Resultado;
 
 public class PartidoTestCase {
 	private Competidor local = mock(Competidor.class) ;
 	private Competidor visitante = mock(Competidor.class);
+	
 	private Deporte deporte = mock(Deporte.class);
 	private Date fecha = new Date(2018, 06, 23); // Se crea para tener la fecha
 	private Partido partido = new Partido(local, visitante, deporte, fecha, "Quilmes");
+	
+	private Resultado resultado = mock(Resultado.class);
 
 	@Test
 	public void testPartidoDevuelveLocal() {
@@ -50,5 +55,35 @@ public class PartidoTestCase {
 		assertEquals(partido.getFecha(), this.fecha.getDate());
 	}
 
-
+	@Test
+	public void testPartidoPreguntaJuega() {
+		assertTrue(partido.juega(local));
+		assertTrue(partido.juega(visitante));
+		assertTrue(partido.juegan(local, visitante));
+	}
+	
+	@Test
+	public void testPartidoRetornaLugar() {
+		assertEquals(partido.getLugarDeJuego(), "Quilmes");
+	}
+	
+	@Test
+	public void testPartidoPreguntaDeporte() {
+		when(deporte.esDeporte(deporte)).thenReturn(true);
+		
+		assertTrue(partido.esDeporte(deporte));
+		assertEquals(partido.getDeporte(), deporte);
+	}
+	
+	@Test
+	public void testPartidoPreguntaEsLocal() {		
+		assertTrue(partido.esLocal(local));
+		assertTrue(!partido.esLocal(visitante));
+	}
+	
+	@Test
+	public void testPartidoPreguntaEsVisitante() {		
+		assertTrue(!partido.esVisitante(local));
+		assertTrue(partido.esVisitante(visitante));
+	}
 }
