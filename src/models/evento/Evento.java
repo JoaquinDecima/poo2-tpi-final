@@ -18,6 +18,9 @@ import apuesta.Apuesta;
 import apuesta.ApuestaSegura;
 import apuesta.OpcionApuesta;
 import cuota.AdminCuota;
+import evento.estado.EstadoEvento;
+import evento.estado.Finalizado;
+import evento.estado.PartidoProximo;
 import juego.ISubscriptorPartido;
 import juego.Partido;
 import juego.resultado.Resultado;
@@ -30,7 +33,7 @@ public class Evento implements ISubscriptorPartido {
 	
 		Partido partido;
 		AdminCuota adminCuotasApuestasPosibles;
-		ArrayList<Apuesta> apuestasRealizadas;
+		public ArrayList<Apuesta> apuestasRealizadas;
 		ArrayList<OpcionApuesta> opcionesApuestasPosibles;
 		EstadoEvento estado;
 		
@@ -81,7 +84,7 @@ public class Evento implements ISubscriptorPartido {
 			this.estado.cancelarApuestaSegura(apuestaACancelar);
 		}
 		
-		void cobrarPenalidadApuestaCancelada(ApuestaSegura apuestaACancelar) {
+		public void cobrarPenalidadApuestaCancelada(ApuestaSegura apuestaACancelar) {
 			Usuario usuarioPenalizado = apuestaACancelar.getUsuario();
 			// Si el partido aun no ha comenzado, cobrar penalidad fija de 200 pesos.
 			if(apuestaACancelar.getPartido().esProximo()) {
@@ -197,7 +200,7 @@ public class Evento implements ISubscriptorPartido {
 	
 		// metodos que se ejecutan al finalizar un partido
 
-		void setGananciasApuestas() {
+		public void setGananciasApuestas() {
 			// setear las ganancias por cada apuesta realizada en el evento
 			for(Apuesta apuesta : this.getApuestasRealizadas()) {
 				

@@ -1,7 +1,8 @@
-package evento;
+package evento.estado;
 
 import apuesta.ApuestaSegura;
 import apuesta.OpcionApuesta;
+import evento.Evento;
 import usuario.Usuario;
 
 public abstract class EstadoEvento {

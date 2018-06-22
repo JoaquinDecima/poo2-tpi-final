@@ -4,10 +4,15 @@ import evento.Evento;
 import juego.Partido;
 import usuario.Usuario;
 
-class ApuestaFinal extends Apuesta {
+public class ApuestaFinal extends Apuesta {
 	
+	public ApuestaFinal(Usuario u, Evento e, OpcionApuesta op, Double m) {
+		this.usuario = u;
+		this.evento = e;
+		this.monto = m;
+		this.apuesta = op;
+	}
 	
-
 	@Override
 	public
 	Double montoApostado() {
@@ -29,12 +34,14 @@ class ApuestaFinal extends Apuesta {
 	@Override
 	public
 	Double ganaciaBruta() {
+		// TODO: Implementar
 		return this.gananciaBruta;
 	}
 
 	@Override
 	public
 	Double ganaciaNeta() {
+		// TODO: Implementar
 		return this.gananciaNeta;
 	}
 

@@ -20,14 +20,16 @@ public class ApuestaSegura extends Apuesta {
 	@Override
 	public
 	Double ganaciaBruta() {
-		//TODO:retornar excepcion si el partido aun no finalizo
+		// TODO: retornar excepcion si el partido aun no finalizo
+		// TODO: Mal Implementado
 		return this.gananciaBruta;
 	}
 
 	@Override
 	public
 	Double ganaciaNeta() {
-		//TODO:retornar excepcion si el partido aun no finalizo
+		// TODO: retornar excepcion si el partido aun no finalizo
+		// TODO: Mal Implementado
 		return this.ganaciaNeta();
 	}
 

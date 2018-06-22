@@ -1,21 +1,21 @@
-package evento;
+package evento.estado;
 
 import apuesta.ApuestaSegura;
 import apuesta.OpcionApuesta;
+import evento.Evento;
 import usuario.Usuario;
 
-public class PartidoProximo extends EstadoEvento {
-
-	public PartidoProximo(Evento e) {
+public class ConPartidoEnCurso extends EstadoEvento {
+	
+	public ConPartidoEnCurso(Evento e) {
 		this.evento = e;
 	}
-	
+
 	@Override
 	public void addApuestaSegura(Usuario usuario, OpcionApuesta opcionApuesta, double monto) {
 		// si no finalizo el partido, entonces se crea la apuesta solicitada por el usuario
 		ApuestaSegura nuevaApuesta = new ApuestaSegura(usuario, this.evento, opcionApuesta, monto);
-		this.evento.apuestasRealizadas.add(nuevaApuesta);
-
+		this.evento.getApuestasRealizadas().add(nuevaApuesta);
 	}
 
 	@Override
@@ -34,7 +34,8 @@ public class PartidoProximo extends EstadoEvento {
 
 	@Override
 	public void reactivarApuestaSegura(ApuestaSegura apuestaAReactivar) throws Exception {
-		apuestaAReactivar.updateEstado();	
+		throw new Exception();
+		
 	}
 
 }
