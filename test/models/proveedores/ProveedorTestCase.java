@@ -33,6 +33,7 @@ public class ProveedorTestCase {
   
   private ArrayList<Partido> listapartidos = new ArrayList<Partido>();
   private ArrayList<Partido> listapartidos2 = new ArrayList<Partido>();
+  private ArrayList<Partido> listapartidos3 = new ArrayList<Partido>();
   
   private Deporte deporte1 = mock(Deporte.class);
   
@@ -182,5 +183,27 @@ public class ProveedorTestCase {
 		assertEquals(proveedor.getPartidosDeDeportistas(local, visitante), listapartidos2);
 	}
 	
+	@Test
+	public void testORLogico() {
+		listapartidos.add(partido1);
+		listapartidos.add(partido2);
+		listapartidos2.add(partido1);
+		listapartidos2.add(partido3);
+		listapartidos3.add(partido1);
+		listapartidos3.add(partido2);
+		listapartidos3.add(partido3);
+		
+		assertEquals(proveedor.logicOR(listapartidos, listapartidos2), listapartidos3);
+	}
 	
+	@Test
+	public void testANDLogico() {
+		listapartidos.add(partido2);
+		listapartidos.add(partido3);
+		listapartidos2.add(partido1);
+		listapartidos2.add(partido3);
+		listapartidos3.add(partido3);
+		
+		assertEquals(proveedor.logicAND(listapartidos, listapartidos2), listapartidos3);
+	}
 }
