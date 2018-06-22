@@ -25,5 +25,11 @@ public class EnCurso implements EstadoPartido {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	// Retorna el estado del partido
+	// Importante para Test
+	public String getEstado() {
+		return("En Curso");
+	}
 
 }

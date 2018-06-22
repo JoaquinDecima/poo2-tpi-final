@@ -20,7 +20,9 @@ import java.util.Date;
 
 // Importa desde org
 import org.junit.Test;
+import org.mockito.Mockito;
 
+import competidor.Competidor;
 import deporte.Deporte;
 import juego.Partido;
 // Importa del Modelo
@@ -32,11 +34,15 @@ public class ProveedorDePartidoTestCase {
 	
 	private Deporte deporte1 = mock(Deporte.class);
 	
+	private Competidor local = mock(Competidor.class);
+	private Competidor visitante = mock(Competidor.class);
+	
+	private Date fecha1 = new Date();
+	
 	private Partido partido1 = mock(Partido.class);
 	private Partido partido2 = mock(Partido.class);
 	private Partido partido3 = mock(Partido.class);
-	
-	private Date fecha1 = new Date();
+	private Partido partidoSpy = Mockito.spy(new Partido(local, visitante, deporte1, fecha1, "Quilmes"));
 	
 	@Test
 	public void testAddPartido() {
@@ -100,5 +106,14 @@ public class ProveedorDePartidoTestCase {
 		when(partido3.getLugarDeJuego()).thenReturn("Quilmes");
 		
 		assertEquals(partidos.getPartidosQueSeJueguenEn("Quilmes"), listapartidos);
+	}
+	
+	@Test
+	public void testCambioDeEstado() {
+		partidos.iniciarPartido(partidoSpy);
+		assertTrue(partidoSpy.enCurso());
+		
+		partidos.finalizarPartido(partidoSpy);
+		assertTrue(partidoSpy.finalizado());
 	}
 }

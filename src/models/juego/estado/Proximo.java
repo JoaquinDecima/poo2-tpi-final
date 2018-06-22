@@ -16,6 +16,11 @@ public class Proximo implements EstadoPartido {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	// Retorna el estado del partido
+	// Importante para Test
+	public String getEstado() {
+		return("Proximo");
+	}
 }
 //devuelve resultado nll object

@@ -20,7 +20,6 @@ import cuota.*;
 import juego.Partido;
 import probabilidad.AlgoritmoProbabilidad;
 import proveedores.*;
-import proveedores.ProveedorDataPartido;
 
 public class AdminCuotaTestCase {
 	private Proveedor proveedor = mock(Proveedor.class);

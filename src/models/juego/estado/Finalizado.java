@@ -16,6 +16,9 @@ public class Finalizado implements EstadoPartido {
 		
 	}
 	
-
-
+	// Retorna el estado del partido
+	// Importante para Test
+	public String getEstado() {
+		return("Finalizado");
+	}
 }

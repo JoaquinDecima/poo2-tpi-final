@@ -206,4 +206,13 @@ public class ProveedorTestCase {
 		
 		assertEquals(proveedor.logicAND(listapartidos, listapartidos2), listapartidos3);
 	}
+	
+	@Test
+	public void testCamioEstado() {
+		proveedor.iniciarPartido(partido1);
+		verify(partidos).iniciarPartido(partido1);
+		
+		proveedor.finalizarPartido(partido1);
+		verify(partidos).finalizarPartido(partido1);
+	}
 }
