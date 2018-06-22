@@ -1,5 +1,6 @@
 package models.casaApuesta;
 
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import java.util.Date;
@@ -20,55 +21,23 @@ import proveedores.Proveedor;
 import usuario.Usuario;
 
 public class CasaApuestaTestCase {
+	private Proveedor proveedor = mock(Proveedor.class);
+	private AlgoritmoProbabilidad algoritmo = mock(AlgoritmoProbabilidad.class);
+	private AlgoritmoProbabilidad algoritmo2 = mock(AlgoritmoProbabilidad.class);
+	private CasaApuesta casa = new CasaApuesta(proveedor, algoritmo);
 	
-	private CasaApuesta casaApuesta;
-	private Partido partido;
-	private Proveedor proveedorDataPartidos;
-	private AlgoritmoProbabilidad algoritmoProbabilidadASetear;
-	private AdminCuota administradorCuotasEventos;
-	private Usuario usuario;
-	private Competidor mockJugadorLocal;
-	private Competidor mockJugadorVisitante;
-	private Deporte mockDeporte; 
-	private Date mockDate;
-	private Evento evento;
-	
-	@Before
-	public void setUp(){
-		
-		mockDeporte = mock(Deporte.class);
-		when(mockDeporte.permiteEmpate()).thenReturn(false);
-		
-		mockDate = mock(Date.class);
-		mockJugadorLocal = mock(Equipo.class);
-		mockJugadorVisitante = mock(Equipo.class);
-		partido = new Partido(mockJugadorLocal, mockJugadorVisitante, mockDeporte, mockDate, "Avellaneda");
-		
-		algoritmoProbabilidadASetear = new AlgoritmoProbabilidadHistoricaReciente();
-		casaApuesta = new CasaApuesta(proveedorDataPartidos, algoritmoProbabilidadASetear); 	
-		usuario = new Usuario("diego");
-	}
+	private AdminCuota admin = casa.getAdminCuota();
 
-	
-	
-	
 	
 	@Test
-	public void testCuandoUnPartidoFinalizaLaCasaDeApuestasPagaGananciasAUsuariosConBaseAalgoritmoProbabilidadHistoricaReciente() {
-			
+	public void testGetAdminCuota() {
+		assertEquals(casa.getAdminCuota(), admin);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
+	@Test
+	public void testSetAlgoritmo() {
+		assertEquals(casa.getAlgoritmoProbabilidad(), algoritmo);
+		casa.setAlgoritmoProbabilidad(algoritmo2);
+		assertEquals(casa.getAlgoritmoProbabilidad(), algoritmo2);
+	}
 };

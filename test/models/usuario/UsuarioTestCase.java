@@ -57,6 +57,8 @@ public class UsuarioTestCase {
 		// compruebo que se ha quitado la apuesta del registro en el evento
 		System.out.println(evento.getApuestasUsuario(usuario).size());
 		assertFalse(((ApuestaSegura) evento.getApuestasUsuario(usuario).get(0)).estaActiva());	
+		
+		assertEquals(usuario.getNombre(), "diego");
 	}
 
 

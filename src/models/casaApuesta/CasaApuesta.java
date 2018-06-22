@@ -57,17 +57,16 @@ public class CasaApuesta {
 		// se retorna el evento creado
 		return nuevoEvento;
 	}
-
-
 	
+	// Setea Nuevo Algoritmo
 	public void setAlgoritmoProbabilidad(AlgoritmoProbabilidad algoritmoNuevo) {
 		this.algoritmoProbabilidadSeteado = algoritmoNuevo;
 	}
 	
-
-
-
-	
+	// Retorna Algoritmo
+	public AlgoritmoProbabilidad getAlgoritmoProbabilidad() {
+		return(this.algoritmoProbabilidadSeteado);
+	}
 }
 
 

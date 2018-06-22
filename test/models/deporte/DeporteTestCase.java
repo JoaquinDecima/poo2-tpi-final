@@ -31,4 +31,9 @@ public class DeporteTestCase {
 	public void testDeporteSiPermiteEmpate() {
 		assertTrue(deporte.permiteEmpate());
 	}
+	
+	@Test
+	public void testDeporteEsDeporte() {
+		assertTrue(deporte.esDeporte(deporte));
+	}
 }
