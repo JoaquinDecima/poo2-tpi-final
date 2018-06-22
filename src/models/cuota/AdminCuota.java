@@ -1,6 +1,8 @@
 package cuota;
 
 
+import apuesta.Apuesta;
+
 /*
  
 
@@ -24,7 +26,8 @@ public class AdminCuota {
 	protected Proveedor proveedorDataPartidos;
 	protected AlgoritmoProbabilidad pPosibilidad;
 	
-	public AdminCuota(Proveedor proveedorDataPartidos2, AlgoritmoProbabilidad algoritmoASetear) {
+	
+	public AdminCuota(Proveedor proveedorDataPartidos, AlgoritmoProbabilidad algoritmoASetear) {
 		this.proveedorDataPartidos = proveedorDataPartidos;
 		this.pPosibilidad = algoritmoASetear;
 	}
@@ -45,5 +48,6 @@ public class AdminCuota {
 	public double getCuotaPorEmpate(Partido pPartido) {
 		return((1-pPosibilidad.getPosibilidadDeEmpate(pPartido, proveedorDataPartidos)) + 1);
 	}
+
 	
 }

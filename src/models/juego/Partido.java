@@ -97,10 +97,6 @@ public class Partido{
 	  return (this.resultado.ganaCompetidor() == this.getVisitante());
   }
 
-  // Retorna True si empataron
-  public Boolean huboEmpate() {
-	  return (this.deporte.permiteEmpate() && this.resultado.empate());
-  }
   
   // Retorna la Fecha de Juego
   public int getFecha() {
@@ -138,13 +134,18 @@ public class Partido{
 	// Implementa metodos de notificacion a subscriptores (como CasaApuestas)
 
 	public void notificarFinalSubscriptores() {
-		this.subscriptores.forEach(subscriptor->subscriptor.updateFinalPartido(this));
+		this.subscriptores.forEach(subscriptor->subscriptor.updateFinalPartido());
 	}
 	
 
 	public void addSubscriptor(ISubscriptorPartido subscriptor) {
 		this.subscriptores.add(subscriptor);
 		
+	}
+
+	public Deporte getDeporte() {
+		
+		return this.deporte;
 	}
 }
 
