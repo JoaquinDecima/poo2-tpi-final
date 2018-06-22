@@ -18,6 +18,8 @@ import java.util.Date;
 import competidor.Competidor;
 import deporte.Deporte;
 import juego.Partido;
+import juego.estado.EnCurso;
+import juego.estado.Finalizado;
 
 /*
  * La Siguiente clase Represnta una API que funciona como medio para obtener datos
@@ -41,6 +43,15 @@ public class Proveedor {
     return(this.partidos.getPatridosAll());
   }
 
+  //Finaliza Partido
+  public void finalizarPartido(Partido p) {
+	this.partidos.finalizarPartido(p);;
+  }
+		
+  // inicia partido
+  public void iniciarPartido(Partido p) {
+	this.partidos.iniciarPartido(p);;
+  }
   
   // Retorna una lista de partidos del deporte "dDeporte"
   public ArrayList<Partido> getPartidosDeDeporte(Deporte dDeporte){

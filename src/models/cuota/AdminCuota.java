@@ -20,7 +20,6 @@ import apuesta.Apuesta;
 import juego.Partido;
 import probabilidad.AlgoritmoProbabilidad;
 import proveedores.Proveedor;
-import proveedores.ProveedorDataPartido;
 
 public class AdminCuota {
 	protected Proveedor proveedorDataPartidos;

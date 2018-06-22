@@ -16,7 +16,6 @@ package probabilidad;
 // Se importa Modelo
 import juego.Partido;
 import proveedores.Proveedor;
-import proveedores.ProveedorDataPartido;
 
 public interface AlgoritmoProbabilidad {
 	

@@ -18,6 +18,8 @@ import java.util.Date;
 // Importa del Modelo
 import deporte.*;
 import juego.*;
+import juego.estado.EnCurso;
+import juego.estado.Finalizado;
 
 /*
  * Se encuentra aqui el controlador y gestor de partido Oficial utilizado por
@@ -79,6 +81,16 @@ public class ProveedorDePartido {
   // Agrega Partido
   public void addPartido(Partido p) {
 	  this.partidos.add(p);
+  }
+  
+  // Finaliza Partido
+  public void finalizarPartido(Partido p) {
+		p.setEstado(new Finalizado());
+  }
+	
+  // inicia partido
+  public void iniciarPartido(Partido p) {
+	p.setEstado(new EnCurso());
   }
 
   /*
