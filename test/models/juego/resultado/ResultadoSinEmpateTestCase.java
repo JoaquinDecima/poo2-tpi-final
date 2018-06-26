@@ -15,6 +15,16 @@ public class ResultadoSinEmpateTestCase {
 	
 	@Test
 	public void test() {
-		assertTrue(!resultado.empate());
+		assertFalse(resultado.empate());
+	}
+	
+	@Test
+	public void testGanador() {
+		assertEquals(resultado.ganaCompetidor(),local);
+	}
+	
+	@Test
+	public void testPerdedor() {
+		assertEquals(resultado.pierdeCompetidor(),visitante);
 	}
 }

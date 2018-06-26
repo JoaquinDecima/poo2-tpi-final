@@ -31,6 +31,7 @@ import juego.resultado.Resultado;
 public class PartidoTestCase {
 	private Competidor local = mock(Competidor.class) ;
 	private Competidor visitante = mock(Competidor.class);
+	private Competidor otroEquipo = mock(Competidor.class);
 	
 	private Deporte deporte = mock(Deporte.class);
 	private Date fecha = new Date(2018, 06, 23); // Se crea para tener la fecha
@@ -60,6 +61,9 @@ public class PartidoTestCase {
 		assertTrue(partido.juega(local));
 		assertTrue(partido.juega(visitante));
 		assertTrue(partido.juegan(local, visitante));
+		
+		assertFalse(partido.juega(otroEquipo));
+		assertFalse(partido.juegan(local, otroEquipo));
 	}
 	
 	@Test
@@ -85,5 +89,44 @@ public class PartidoTestCase {
 	public void testPartidoPreguntaEsVisitante() {		
 		assertTrue(!partido.esVisitante(local));
 		assertTrue(partido.esVisitante(visitante));
+	}
+	
+	@Test
+	public void testGetYSetResultado() {		
+		partido.setResultado(resultado);
+		assertEquals(partido.getResultado(), resultado);
+	}
+	
+	@Test
+	public void testGanaLocal() {		
+		partido.setResultado(resultado);
+		
+		when(resultado.ganaCompetidor()).thenReturn(local);
+		assertTrue(partido.ganaLocal());
+		
+		when(resultado.ganaCompetidor()).thenReturn(visitante);
+		assertFalse(partido.ganaLocal());
+	}
+	
+	@Test
+	public void testGanaVisitante() {		
+		partido.setResultado(resultado);
+		
+		when(resultado.ganaCompetidor()).thenReturn(visitante);
+		assertTrue(partido.ganaVisitante());
+		
+		when(resultado.ganaCompetidor()).thenReturn(local);
+		assertFalse(partido.ganaVisitante());
+	}
+	
+	@Test
+	public void testHuboEmpate() {
+		partido.setResultado(resultado);
+		
+		when(resultado.empate()).thenReturn(true);
+		assertTrue(partido.huboEmpate());
+		
+		when(resultado.empate()).thenReturn(false);
+		assertFalse(partido.huboEmpate());
 	}
 }

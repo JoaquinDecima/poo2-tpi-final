@@ -21,6 +21,7 @@ import deporte.Deporte;
 
 public class DeporteTestCase {
 	private Deporte deporte = new Deporte("Futbol", true);
+	private Deporte deporte2 = new Deporte("Tennis", true);
 
 	@Test
 	public void testDeporteRespondeNombre() {
@@ -35,5 +36,6 @@ public class DeporteTestCase {
 	@Test
 	public void testDeporteEsDeporte() {
 		assertTrue(deporte.esDeporte(deporte));
+		assertFalse(deporte.esDeporte(deporte2));
 	}
 }

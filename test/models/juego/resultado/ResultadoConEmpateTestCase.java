@@ -15,9 +15,18 @@ public class ResultadoConEmpateTestCase {
 	private ResultadoConEmpate resultadoNoEmpato = new ResultadoConEmpate(local, visitante, false);
 	
 	@Test
-	public void test() {
+	public void testConEmpte() {
 		assertTrue(resultadoEmpato.empate());
 		assertTrue(!resultadoNoEmpato.empate());
 	}
-
+	
+	@Test
+	public void testGanador() {
+		assertEquals(resultadoEmpato.ganaCompetidor(),local);
+	}
+	
+	@Test
+	public void testPerdedor() {
+		assertEquals(resultadoEmpato.pierdeCompetidor(),visitante);
+	}
 }
