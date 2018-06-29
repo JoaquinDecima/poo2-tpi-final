@@ -29,7 +29,7 @@ import usuario.Usuario;
 
 public class CasaApuesta {
 	
-	ArrayList<Evento> eventos;
+	ArrayList<Evento> eventos = new ArrayList<Evento>();
 	Proveedor proveedorDataPartidos;
 	ArrayList<Deporte> deportesQueParticipan;
 	AdminCuota administradorCuotasEventos;
@@ -82,18 +82,16 @@ public class CasaApuesta {
 	}
 
 	// Retorna la lista de Apuestas
-	private ArrayList<Apuesta> getApuestas() {
+	public ArrayList<Apuesta> getApuestas() {
 		ArrayList<Apuesta> apuestas = new ArrayList<Apuesta>();
-		
 		for (Evento event : this.eventos) {
 			apuestas.addAll(event.getApuestasRealizadas());
 		}
-		
 		return apuestas;
 	}
 
 	// Retorna una lista de usuarios
-	private ArrayList<Usuario> getUsuarios() {
+	public ArrayList<Usuario> getUsuarios() {
 		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 		for (Evento event : this.eventos) {
 			usuarios.addAll(event.getUsuarios());
