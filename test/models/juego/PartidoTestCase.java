@@ -12,6 +12,7 @@
 package models.juego;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
@@ -29,6 +30,7 @@ import models.juego.ISubscriptorPartido;
 import models.juego.Partido;
 import models.juego.estado.EstadoPartido;
 import models.juego.resultado.Resultado;
+import models.usuario.Usuario;
 
 public class PartidoTestCase {
 	private Competidor local = mock(Competidor.class) ;

@@ -6,6 +6,7 @@ import static org.mockito.Mockito.*;
 import org.junit.Test;
 
 import models.apuesta.opcion.OpcionApuesta;
+import models.juego.Partido;
 import models.juego.resultado.Resultado;
 
 public class OpcionApuestaTestCase {

@@ -15,10 +15,13 @@ import java.util.ArrayList;
 // Importa utilidades Java
 import java.util.Date;
 
+import models.apuesta.ApuestaSegura;
+import models.apuesta.opcion.OpcionApuesta;
 import models.competidor.Competidor;
 import models.deporte.Deporte;
 import models.juego.estado.*;
 import models.juego.resultado.Resultado;
+import models.usuario.Usuario;
 
 public class Partido{
   private Competidor local;

@@ -92,14 +92,14 @@ public class CasaApuestaTestCase {
 		Evento evento3 = casa.crearEventoDeportivo(partido3);
 		
 		// Se agregan apuestas al evento
-		evento1.addApuestaSegura(usuario1, opcionApuesta1, 200.0);
-		evento1.addApuestaSegura(usuario2, opcionApuesta2, 200.0);
-		evento2.addApuestaSegura(usuario3, opcionApuesta1, 200.0);
-		evento2.addApuestaSegura(usuario4, opcionApuesta2, 200.0);
-		evento2.addApuestaSegura(usuario5, opcionApuesta1, 200.0);
-		evento3.addApuestaSegura(usuario6, opcionApuesta2, 200.0);
-		evento3.addApuestaSegura(usuario7, opcionApuesta1, 200.0);
-		evento3.addApuestaSegura(usuario8, opcionApuesta2, 200.0);
+		partido1.addApuestaSegura(usuario1, opcionApuesta1, 200.0);
+		partido1.addApuestaSegura(usuario2, opcionApuesta2, 200.0);
+		partido2.addApuestaSegura(usuario3, opcionApuesta1, 200.0);
+		partido2.addApuestaSegura(usuario4, opcionApuesta2, 200.0);
+		partido2.addApuestaSegura(usuario5, opcionApuesta1, 200.0);
+		partido3.addApuestaSegura(usuario6, opcionApuesta2, 200.0);
+		partido3.addApuestaSegura(usuario7, opcionApuesta1, 200.0);
+		partido3.addApuestaSegura(usuario8, opcionApuesta2, 200.0);
 		
 		usuarios.add(usuario1);
 		usuarios.add(usuario2);
