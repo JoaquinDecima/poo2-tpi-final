@@ -1,7 +1,10 @@
 package models.juego.estado;
 
+import models.apuesta.ApuestaSegura;
+import models.apuesta.opcion.OpcionApuesta;
 import models.juego.Partido;
 import models.juego.resultado.Resultado;
+import models.usuario.Usuario;
 
 public class Finalizado implements EstadoPartido {
 

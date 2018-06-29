@@ -22,10 +22,12 @@ public abstract class Apuesta{
   protected Evento evento;
   protected OpcionApuesta apuesta;
   protected Double monto;
+  protected Double ganaciaNeta;
+  protected Double ganaciaBruta;
   protected Usuario usuario;
 
   // Retorna la ganancia bruta
-  public Double gananciaBruta() {
+  public Double intGananciaBruta() {
 	  Double resultado = 0.0;
 	  if (this.gano()) {
 		  resultado = ((this.montoApostado()) * (this.opcionApostada().cuota()));
@@ -40,13 +42,21 @@ public abstract class Apuesta{
   }
 
   // Retorna la Ganancia Neta
-  public Double ganaciaNeta() {
+  public Double intGanaciaNeta() {
 	  Double resultado = 0.0;
 	  if (this.gano()) {
 		  resultado = (this.gananciaBruta() - this.montoApostado());
 	  }
 
 	  return resultado;
+  }
+  
+  public Double gananciaBruta() {
+	  return (this.ganaciaBruta);
+  }
+  
+  public Double gananciaNeta() {
+	  return (this.ganaciaNeta);
   }
 
   // Retorna el Monto apostado
@@ -77,5 +87,10 @@ public abstract class Apuesta{
   // Retorna la Fecha del Evento
   public Date getFecha() {
 	  return(this.evento.getFecha());
+  }
+
+  public void calcularGanancias() {
+	this.ganaciaNeta = this.intGanaciaNeta();
+	this.ganaciaBruta = this.intGananciaBruta();
   }
 }

@@ -1,5 +1,9 @@
 package models.juego.estado;
 
+import models.juego.resultado.ResultadoNull;
+import models.usuario.Usuario;
+import models.apuesta.ApuestaSegura;
+import models.apuesta.opcion.OpcionApuesta;
 import models.juego.Partido;
 import models.juego.resultado.Resultado;
 

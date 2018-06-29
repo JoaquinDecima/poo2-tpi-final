@@ -1,4 +1,4 @@
-package juego.resultado;
+package models.juego.resultado;
 
 public class ResultadoNull extends Resultado {
 
