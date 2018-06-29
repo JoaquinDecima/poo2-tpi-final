@@ -13,18 +13,14 @@ package models.competidor;
 
 import static org.junit.Assert.*;
 
-// Importa Utilidades Java
 import java.util.Date;
-
-// Importa desde org
 import org.junit.Test;
 
-// Importa del Modelo
-import competidor.*;
 
 public class DeportistaTestCase {
 	private String sNombre = "Pato";
 	private String sLugarNatal = "Quilmes";
+	@SuppressWarnings("deprecation")
 	private Deportista deportistaPato = new Deportista(sNombre, sLugarNatal, new Date(1996, 3, 29));
 	
 

@@ -1,4 +1,4 @@
-package tools;
+package models.tools;
 
 public class EmailBalanceNotifier {
 	

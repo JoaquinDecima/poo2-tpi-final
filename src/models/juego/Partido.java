@@ -9,19 +9,16 @@
  *        Otarola, Florencia
  */
 
-package juego;
+package models.juego;
 
 import java.util.ArrayList;
 // Importa utilidades Java
 import java.util.Date;
 
-import competidor.Competidor;
-import deporte.Deporte;
-import juego.estado.EnCurso;
-import juego.estado.EstadoPartido;
-import juego.estado.Finalizado;
-import juego.estado.Proximo;
-import juego.resultado.Resultado;
+import models.competidor.Competidor;
+import models.deporte.Deporte;
+import models.juego.estado.*;
+import models.juego.resultado.Resultado;
 
 public class Partido{
   private Competidor local;
@@ -100,6 +97,7 @@ public class Partido{
 
   
   // Retorna la Fecha de Juego
+  @SuppressWarnings("deprecation")
   public int getFecha() {
 	return fecha.getDate();
   }

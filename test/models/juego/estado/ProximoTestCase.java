@@ -1,15 +1,11 @@
 package models.juego.estado;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
-import juego.Partido;
-import juego.estado.*;
+import models.juego.Partido;
 
 public class ProximoTestCase {
 	private Proximo estado = new Proximo();

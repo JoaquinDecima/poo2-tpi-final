@@ -6,21 +6,18 @@ import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import apuesta.opcion.OpcionApuesta;
-import casaApuesta.CasaApuesta;
-import competidor.Competidor;
-import competidor.Equipo;
-import cuota.AdminCuota;
-import deporte.Deporte;
-import evento.Evento;
-import juego.Partido;
-import probabilidad.AlgoritmoProbabilidad;
-import probabilidad.AlgoritmoProbabilidadHistoricaReciente;
-import proveedores.Proveedor;
-import usuario.Usuario;
+import models.apuesta.opcion.OpcionApuesta;
+import models.casaApuesta.CasaApuesta;
+import models.competidor.Competidor;
+import models.cuota.AdminCuota;
+import models.deporte.Deporte;
+import models.evento.Evento;
+import models.juego.Partido;
+import models.probabilidad.AlgoritmoProbabilidad;
+import models.proveedores.Proveedor;
+import models.usuario.Usuario;
 
 public class CasaApuestaTestCase {
 	private Proveedor proveedor = mock(Proveedor.class);

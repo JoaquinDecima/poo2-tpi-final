@@ -1,9 +1,9 @@
-package usuario;
+package models.usuario;
 
 
-import apuesta.*;
-import apuesta.opcion.OpcionApuesta;
-import evento.Evento;
+import models.apuesta.*;
+import models.apuesta.opcion.OpcionApuesta;
+import models.evento.Evento;
 
 
 public class Usuario {

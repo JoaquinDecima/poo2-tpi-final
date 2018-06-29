@@ -5,8 +5,7 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
-import juego.Partido;
-import juego.estado.*;
+import models.juego.Partido;
 
 public class EnCursoTestCase {
 	private EnCurso estado = new EnCurso();

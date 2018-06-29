@@ -1,4 +1,4 @@
-package casaApuesta;
+package models.casaApuesta;
 
 
 /*
@@ -17,15 +17,15 @@ package casaApuesta;
 // Importa utilidades java
 import java.util.ArrayList;
 
-import apuesta.Apuesta;
-import balance.BalanceManager;
-import cuota.AdminCuota;
-import deporte.Deporte;
-import evento.Evento;
-import juego.Partido;
-import probabilidad.AlgoritmoProbabilidad;
-import proveedores.Proveedor;
-import usuario.Usuario;
+import models.apuesta.Apuesta;
+import models.balance.BalanceManager;
+import models.cuota.AdminCuota;
+import models.deporte.Deporte;
+import models.evento.Evento;
+import models.juego.Partido;
+import models.probabilidad.AlgoritmoProbabilidad;
+import models.proveedores.Proveedor;
+import models.usuario.Usuario;
 
 public class CasaApuesta {
 	

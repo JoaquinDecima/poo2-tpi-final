@@ -9,26 +9,25 @@
  *        Otarola, Florencia
  */
 
-package evento;
+package models.evento;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
 
-import apuesta.Apuesta;
-import apuesta.ApuestaSegura;
-import apuesta.opcion.OpcionApuesta;
-import cuota.AdminCuota;
-import evento.estado.EstadoEvento;
-import evento.estado.Finalizado;
-import evento.estado.PartidoProximo;
-import juego.ISubscriptorPartido;
-import juego.Partido;
-import juego.resultado.Resultado;
-import juego.resultado.ResultadoConEmpate;
-import juego.resultado.ResultadoSinEmpate;
-import usuario.Usuario;
+import models.apuesta.Apuesta;
+import models.apuesta.ApuestaSegura;
+import models.apuesta.opcion.OpcionApuesta;
+import models.cuota.AdminCuota;
+import models.evento.estado.EstadoEvento;
+import models.evento.estado.Finalizado;
+import models.evento.estado.PartidoProximo;
+import models.juego.ISubscriptorPartido;
+import models.juego.Partido;
+import models.juego.resultado.Resultado;
+import models.juego.resultado.ResultadoConEmpate;
+import models.juego.resultado.ResultadoSinEmpate;
+import models.usuario.Usuario;
 
 
 public class Evento implements ISubscriptorPartido {

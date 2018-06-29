@@ -1,7 +1,7 @@
-package juego.estado;
+package models.juego.estado;
 
-import juego.Partido;
-import juego.resultado.Resultado;
+import models.juego.Partido;
+import models.juego.resultado.Resultado;
 
 public class Proximo implements EstadoPartido {
 

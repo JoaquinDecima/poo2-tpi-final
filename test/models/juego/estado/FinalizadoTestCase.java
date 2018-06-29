@@ -6,8 +6,7 @@ import static org.mockito.Mockito.verify;
 
 import org.junit.Test;
 
-import juego.Partido;
-import juego.estado.*;
+import models.juego.Partido;
 
 public class FinalizadoTestCase {
 	private Finalizado estado = new Finalizado();

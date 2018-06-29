@@ -20,10 +20,10 @@ import java.util.ArrayList;
 // Importa desde org
 import org.junit.Test;
 
-import competidor.Competidor;
-import juego.Partido;
-import juego.resultado.Resultado;
-import proveedores.ProveedorDeEstadistica;
+import models.competidor.Competidor;
+import models.juego.Partido;
+import models.juego.resultado.Resultado;
+import models.proveedores.ProveedorDeEstadistica;
 
 public class ProveedorDeEstadisticaTestCase {
 	private ProveedorDeEstadistica estadistica = new ProveedorDeEstadistica();

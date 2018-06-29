@@ -8,15 +8,14 @@ import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import apuesta.ApuestaSegura;
-import apuesta.opcion.OpcionApuesta;
-import casaApuesta.CasaApuesta;
-import evento.Evento;
-import juego.Partido;
-import usuario.Usuario;
+import models.apuesta.ApuestaSegura;
+import models.apuesta.opcion.OpcionApuesta;
+import models.casaApuesta.CasaApuesta;
+import models.evento.Evento;
+import models.juego.Partido;
+import models.usuario.Usuario;
 
 
 public class UsuarioTestCase {

@@ -9,14 +9,14 @@
  *        Otarola, Florencia
  */
 
-package apuesta;
+package models.apuesta;
 
 import java.util.Date;
 
-import apuesta.opcion.OpcionApuesta;
-import evento.Evento;
-import juego.Partido;
-import usuario.Usuario;
+import models.apuesta.opcion.OpcionApuesta;
+import models.evento.Evento;
+import models.juego.Partido;
+import models.usuario.Usuario;
 
 public abstract class Apuesta{
   protected Evento evento;

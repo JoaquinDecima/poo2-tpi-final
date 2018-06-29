@@ -1,9 +1,9 @@
-package evento.estado;
+package models.evento.estado;
 
-import apuesta.ApuestaSegura;
-import apuesta.opcion.OpcionApuesta;
-import evento.Evento;
-import usuario.Usuario;
+import models.apuesta.ApuestaSegura;
+import models.apuesta.opcion.OpcionApuesta;
+import models.evento.Evento;
+import models.usuario.Usuario;
 
 public class ConPartidoEnCurso extends EstadoEvento {
 	

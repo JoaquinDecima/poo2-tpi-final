@@ -5,8 +5,8 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
-import apuesta.opcion.OpcionApuesta;
-import juego.resultado.Resultado;
+import models.apuesta.opcion.OpcionApuesta;
+import models.juego.resultado.Resultado;
 
 public class OpcionApuestaTestCase {
 	private Resultado resultado = mock(Resultado.class);

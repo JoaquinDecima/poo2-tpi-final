@@ -7,11 +7,11 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import apuesta.Apuesta;
-import apuesta.opcion.OpcionApuesta;
-import evento.Evento;
-import evento.estado.ConPartidoEnCurso;
-import usuario.Usuario;
+import models.apuesta.Apuesta;
+import models.apuesta.opcion.OpcionApuesta;
+import models.evento.Evento;
+import models.evento.estado.ConPartidoEnCurso;
+import models.usuario.Usuario;
 
 public class ConPartidoEnCursoTestCase {
 	private Evento evento = mock(Evento.class);

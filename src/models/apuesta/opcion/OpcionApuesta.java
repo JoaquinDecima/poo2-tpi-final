@@ -1,8 +1,8 @@
 
 
-package apuesta.opcion;
+package models.apuesta.opcion;
 
-import juego.resultado.Resultado;
+import models.juego.resultado.Resultado;
 
 public class OpcionApuesta {
 	

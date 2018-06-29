@@ -5,10 +5,10 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
-import competidor.Competidor;
-import juego.Partido;
-import probabilidad.AlgoritmoProbabilidadHistoricaReciente;
-import proveedores.Proveedor;
+import models.competidor.Competidor;
+import models.juego.Partido;
+import models.probabilidad.AlgoritmoProbabilidadHistoricaReciente;
+import models.proveedores.Proveedor;
 
 public class AlgoritmoProbabilidadHistoricaRecienteTestCase {
 	Partido partida = mock(Partido.class);

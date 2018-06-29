@@ -1,4 +1,4 @@
-package juego;
+package models.juego;
 
 public interface ISubscriptorPartido {
 	

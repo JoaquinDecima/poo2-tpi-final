@@ -23,12 +23,12 @@ import java.util.Date;
 // Importa desde org
 import org.junit.Test;
 
-import competidor.Competidor;
-import deporte.Deporte;
-import juego.ISubscriptorPartido;
-import juego.Partido;
-import juego.estado.EstadoPartido;
-import juego.resultado.Resultado;
+import models.competidor.Competidor;
+import models.deporte.Deporte;
+import models.juego.ISubscriptorPartido;
+import models.juego.Partido;
+import models.juego.estado.EstadoPartido;
+import models.juego.resultado.Resultado;
 
 public class PartidoTestCase {
 	private Competidor local = mock(Competidor.class) ;
@@ -36,6 +36,7 @@ public class PartidoTestCase {
 	private Competidor otroEquipo = mock(Competidor.class);
 	
 	private Deporte deporte = mock(Deporte.class);
+	@SuppressWarnings("deprecation")
 	private Date fecha = new Date(2018, 06, 23); // Se crea para tener la fecha
 	private Partido partido = new Partido(local, visitante, deporte, fecha, "Quilmes");
 	

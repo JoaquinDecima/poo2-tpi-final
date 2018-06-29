@@ -5,14 +5,13 @@ import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import cuota.AdminCuota;
-import evento.Evento;
-import juego.Partido;
-import apuesta.Apuesta;
-import competidor.Competidor;
+import models.cuota.AdminCuota;
+import models.evento.Evento;
+import models.juego.Partido;
+import models.apuesta.Apuesta;
+import models.competidor.Competidor;
 
 public class EventoTestCase {
 	private Partido partido = mock(Partido.class);

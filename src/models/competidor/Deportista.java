@@ -1,4 +1,4 @@
-package competidor;
+package models.competidor;
 
 //Importa Utilidades Java
 import java.util.Date;

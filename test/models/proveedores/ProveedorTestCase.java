@@ -20,11 +20,10 @@ import java.util.ArrayList;
 // Importa desde org
 import org.junit.Test;
 
-import competidor.Competidor;
-import deporte.Deporte;
-import juego.Partido;
-// Importa del Modelo
-import proveedores.*;
+import models.competidor.Competidor;
+import models.deporte.Deporte;
+import models.juego.Partido;
+
 
 public class ProveedorTestCase {
   private ProveedorDePartido partidos = mock(ProveedorDePartido.class);

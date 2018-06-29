@@ -5,8 +5,8 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
-import competidor.Competidor;
-import juego.resultado.ResultadoConEmpate;
+import models.competidor.Competidor;
+import models.juego.resultado.ResultadoConEmpate;
 
 public class ResultadoConEmpateTestCase {
 	private Competidor local = mock(Competidor.class);
