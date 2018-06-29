@@ -31,7 +31,7 @@ public class Partido{
   private String lugar;
   private EstadoPartido estado;
   private Resultado resultado;
-  private ArrayList<ISubscriptorPartido> subscriptores; 
+  private ArrayList<ISubscriptorPartido> subscriptores = new ArrayList<ISubscriptorPartido>(); 
 
 
   public Partido(Competidor cLocal, Competidor cVisitante, Deporte dDeporte, Date dFecha, String sLugar) {
@@ -153,6 +153,10 @@ public class Partido{
 
 	public Date getFechaDate() {
 		return (this.fecha);
+	}
+	
+	public ArrayList<ISubscriptorPartido> getSubscriptores(){
+		return(this.subscriptores);
 	}
 }
 

@@ -25,6 +25,7 @@ import org.junit.Test;
 
 import competidor.Competidor;
 import deporte.Deporte;
+import juego.ISubscriptorPartido;
 import juego.Partido;
 import juego.estado.EstadoPartido;
 import juego.resultado.Resultado;
@@ -40,6 +41,8 @@ public class PartidoTestCase {
 	
 	private Resultado resultado = mock(Resultado.class);
 	private EstadoPartido estado = mock(EstadoPartido.class);
+	
+	private ISubscriptorPartido subscriptor = mock(ISubscriptorPartido.class);
 
 	@Test
 	public void testPartidoDevuelveLocal() {
@@ -66,6 +69,13 @@ public class PartidoTestCase {
 		
 		assertFalse(partido.juega(otroEquipo));
 		assertFalse(partido.juegan(local, otroEquipo));
+		assertFalse(partido.juegan(otroEquipo, local));
+		assertFalse(partido.juegan(otroEquipo, otroEquipo));
+		assertFalse(partido.juegan(local, local));
+		assertFalse(partido.juegan(visitante, otroEquipo));
+		assertFalse(partido.juegan(otroEquipo, visitante));
+		assertFalse(partido.juegan(visitante, visitante));
+		
 	}
 	
 	@Test
@@ -134,5 +144,24 @@ public class PartidoTestCase {
 		
 		when(resultado.empate()).thenReturn(false);
 		assertFalse(partido.huboEmpate());
+	}
+	
+	@Test
+	public void testEsProximo() {
+		assertTrue(partido.esProximo());
+	}
+	
+	@Test
+	public void testGetFechaDate() {
+		assertEquals(partido.getFechaDate(), this.fecha);
+	}
+	
+	@Test
+	public void testSuscriptores() {
+		assertEquals(partido.getSubscriptores().size(), 0);
+		partido.addSubscriptor(subscriptor);
+		assertEquals(partido.getSubscriptores().size(), 1);
+		
+		partido.notificarFinalSubscriptores();
 	}
 }
