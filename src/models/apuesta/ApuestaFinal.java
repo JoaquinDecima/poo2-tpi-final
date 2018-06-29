@@ -33,20 +33,6 @@ public class ApuestaFinal extends Apuesta {
 
 	@Override
 	public
-	Double ganaciaBruta() {
-		// TODO: Implementar
-		return this.gananciaBruta;
-	}
-
-	@Override
-	public
-	Double ganaciaNeta() {
-		// TODO: Implementar
-		return this.gananciaNeta;
-	}
-
-	@Override
-	public
 	Usuario getUsuario() {
 		return this.usuario;
 	}
@@ -55,15 +41,4 @@ public class ApuestaFinal extends Apuesta {
 	public Partido getPartido() {
 		return this.evento.getPartidoDelEvento();
 	}
-
-	@Override
-	public void setGananciaBruta(Double monto) {
-		this.gananciaBruta = monto;	
-	}
-
-	@Override
-	public void setGananciaNeta(Double monto) {
-		this.gananciaNeta = monto;
-	}
-
 }

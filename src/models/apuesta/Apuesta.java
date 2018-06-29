@@ -20,14 +20,31 @@ public abstract class Apuesta{
   protected OpcionApuesta apuesta;
   protected Double monto;
   protected Usuario usuario;
-  protected Double gananciaBruta;
-  protected Double gananciaNeta;
   
-
-  public abstract Double ganaciaBruta();
-  public abstract Double ganaciaNeta();
-  public abstract void setGananciaBruta(Double monto);
-  public abstract void setGananciaNeta(Double monto);
+  // Retorna la ganancia bruta
+  public Double gananciaBruta() {
+	  Double resultado = 0.0;
+	  if (this.gano()) {
+		  resultado = ((this.montoApostado()) * (this.opcionApostada().cuota()));  
+	  }
+	  
+	  return resultado;
+  }
+  
+  // Retorna True si el usuario gano la apuesta
+  public boolean gano() {
+	  return (this.getPartido().getResultado() == this.opcionApostada().resultado());
+  }
+  
+  // Retorna la Ganancia Neta
+  public Double ganaciaNeta() {
+	  Double resultado = 0.0;
+	  if (this.gano()) {
+		  resultado = (this.gananciaBruta() - this.montoApostado());  
+	  }
+	  
+	  return resultado;
+  }
   public abstract Double montoApostado();
   public abstract OpcionApuesta opcionApostada();
   public abstract Evento getEvento();

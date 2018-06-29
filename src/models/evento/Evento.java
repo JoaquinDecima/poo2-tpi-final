@@ -196,34 +196,6 @@ public class Evento implements ISubscriptorPartido {
 			this.estado.accionar();
 			
 		}
-		
-	
-		// metodos que se ejecutan al finalizar un partido
-
-		public void setGananciasApuestas() {
-			// setear las ganancias por cada apuesta realizada en el evento
-			for(Apuesta apuesta : this.getApuestasRealizadas()) {
-				
-				Resultado resultadoFinal = apuesta.getPartido().getResultado();
-				Resultado resultadoApostado = apuesta.opcionApostada().resultado();
-				
-				boolean usuarioGanaApuesta = (resultadoFinal == resultadoApostado); 	
-						
-				if (usuarioGanaApuesta) {				
-					Double gananciaBruta = (apuesta.montoApostado()) * (apuesta.opcionApostada().cuota());
-					Double gananciaNeta = gananciaBruta - (apuesta.montoApostado());
-					
-					// se setean las ganancias en la apuesta
-					this.setearGananciasApuesta(apuesta, gananciaBruta, gananciaNeta);
-					// se incrementa usuario wallet con la ganancia neta
-					this.pagarGananciasUsuario(apuesta);
-					
-				}	else {
-					// si el usuario no acertó el resultado, entonces obtiene ganancias 0 pesos.
-						this.setearGananciasApuesta(apuesta, 0.00, 0.00);
-				}
-			}	
-		}
 
 		private void pagarGananciasUsuario(Apuesta apuesta) {
 			Usuario usuario = apuesta.getUsuario();
@@ -239,10 +211,11 @@ public class Evento implements ISubscriptorPartido {
 			usuario.decrementarMontoWallet((apuesta.ganaciaNeta()*15) / 100);
 		}
 
-		private void setearGananciasApuesta(Apuesta apuesta, Double gananciaBruta, Double gananciaNeta) {
-			apuesta.setGananciaBruta(gananciaBruta);
-			apuesta.setGananciaNeta(gananciaNeta);		
-		}
-		
-		
+
+		public void pagarApuestas() {
+			// TODO Auto-generated method stub
+			for(Apuesta apuesta : apuestasRealizadas) {
+				this.pagarGananciasUsuario(apuesta);
+			}
+		}		
 }

@@ -19,22 +19,6 @@ public class ApuestaSegura extends Apuesta {
 
 	@Override
 	public
-	Double ganaciaBruta() {
-		// TODO: retornar excepcion si el partido aun no finalizo
-		// TODO: Mal Implementado
-		return this.gananciaBruta;
-	}
-
-	@Override
-	public
-	Double ganaciaNeta() {
-		// TODO: retornar excepcion si el partido aun no finalizo
-		// TODO: Mal Implementado
-		return this.ganaciaNeta();
-	}
-
-	@Override
-	public
 	Double montoApostado() {
 		return this.monto;
 	}
@@ -68,18 +52,6 @@ public class ApuestaSegura extends Apuesta {
 	@Override
 	public Partido getPartido() {
 		return this.evento.getPartidoDelEvento();
-	}
-
-	@Override
-	public void setGananciaBruta(Double monto) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setGananciaNeta(Double monto) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }

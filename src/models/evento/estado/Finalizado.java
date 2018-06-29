@@ -19,8 +19,7 @@ public class Finalizado extends EstadoEvento {
 	}
 	@Override
 	public void accionar() {
-		
-		this.evento.setGananciasApuestas();
+		this.evento.pagarApuestas();
 	}
 
 	@Override
