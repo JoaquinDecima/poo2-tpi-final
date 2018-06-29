@@ -12,11 +12,15 @@ import cuota.AdminCuota;
 import evento.Evento;
 import juego.Partido;
 import apuesta.Apuesta;
+import competidor.Competidor;
 
 public class EventoTestCase {
 	private Partido partido = mock(Partido.class);
 	private AdminCuota adminCuota = mock(AdminCuota.class);
 	private Evento evento = new Evento(partido, adminCuota);
+	
+	private Competidor local = mock(Competidor.class);
+	private Competidor visitante = mock(Competidor.class);
 	
 	@Test
 	public void testPartido() {
@@ -38,5 +42,15 @@ public class EventoTestCase {
 	@Test
 	public void testApuestaRealizadas() {
 		assertEquals(evento.getApuestasRealizadas(), new ArrayList<Apuesta>());
+	}
+	
+	@Test
+	public void testGetResultados() {
+		when(partido.getLocal()).thenReturn(local);
+		when(partido.getVisitante()).thenReturn(visitante);
+		
+		assertEquals(evento.getResultadoVictoriaLocal().ganaCompetidor(), local);
+		assertEquals(evento.getResultadoVictoriaVisitante().ganaCompetidor(), visitante);
+		assertTrue(evento.getResultadoEmpate().empate());
 	}
 }

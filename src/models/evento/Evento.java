@@ -128,15 +128,15 @@ public class Evento implements ISubscriptorPartido {
 		 *  metodos getters resultados posibles
 		 */
 				
-		private Resultado getResultadoVictoriaLocal() {
+		public Resultado getResultadoVictoriaLocal() {
 			return new ResultadoSinEmpate(this.partido.getLocal(), this.partido.getVisitante());
 		}
 		
-		private Resultado getResultadoVictoriaVisitante() {
+		public Resultado getResultadoVictoriaVisitante() {
 			return new ResultadoSinEmpate(this.partido.getVisitante(), this.partido.getLocal());
 		}
 
-		private ResultadoConEmpate getResultadoEmpate() {
+		public ResultadoConEmpate getResultadoEmpate() {
 			return new ResultadoConEmpate(this.partido.getLocal(), this.partido.getVisitante(), true);
 		}
 		
