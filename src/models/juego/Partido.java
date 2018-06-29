@@ -52,11 +52,6 @@ public class Partido{
   public Competidor getVisitante() {
     return (this.visitante);
   }
-
-  // Retorna estado del partido
-  public EstadoPartido getEstado() {
-    return (this.estado);
-  }
   
   // Setea el estado del partido y handlea acciones que deben darse cuando cambia al nuevo estado
   public void setEstado(EstadoPartido estadoNew) {
@@ -66,9 +61,14 @@ public class Partido{
   
   // Delega el mensaje a su estado interno
   public Resultado getResultado() {
-	  return this.estado.resultadoPartido(this);
+	  return this.getEstado().resultadoPartido(this);
   }
 
+  // Retorna estado del partido
+  public EstadoPartido getEstado() {
+    return (this.estado);
+  }
+  
   public void setResultado(Resultado resultadoPartido) {
 	  this.resultado = resultadoPartido;
   }

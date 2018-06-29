@@ -26,6 +26,7 @@ import org.junit.Test;
 import competidor.Competidor;
 import deporte.Deporte;
 import juego.Partido;
+import juego.estado.EstadoPartido;
 import juego.resultado.Resultado;
 
 public class PartidoTestCase {
@@ -38,6 +39,7 @@ public class PartidoTestCase {
 	private Partido partido = new Partido(local, visitante, deporte, fecha, "Quilmes");
 	
 	private Resultado resultado = mock(Resultado.class);
+	private EstadoPartido estado = mock(EstadoPartido.class);
 
 	@Test
 	public void testPartidoDevuelveLocal() {
@@ -94,6 +96,10 @@ public class PartidoTestCase {
 	@Test
 	public void testGetYSetResultado() {		
 		partido.setResultado(resultado);
+		partido.setEstado(estado);
+		
+		when(estado.resultadoPartido(partido)).thenReturn(resultado);
+		
 		assertEquals(partido.getResultado(), resultado);
 	}
 	
