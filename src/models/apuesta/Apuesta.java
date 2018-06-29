@@ -33,6 +33,10 @@ public abstract class Apuesta{
   public abstract Evento getEvento();
   public abstract Partido getPartido();
   public abstract Usuario getUsuario();
+  public void calcularGanancias() {
+	  this.setGananciaBruta(this.montoApostado() * this.opcionApostada().cuota());
+		this.setGananciaNeta(gananciaBruta - this.montoApostado());
+  };
 }
 
 

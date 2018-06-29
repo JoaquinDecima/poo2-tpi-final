@@ -56,7 +56,7 @@ public class ProveedorDePartido {
     // Recorro los partidos
     for (Partido p : this.getPatridosAll()){
       //Si el partido es de "dDeporte" deporte
-      if (p.getFecha() == dDate.getDate()){
+      if (p.getFecha() == dDate){
         // Lo sumo a la lista
         listPartidos.add(p);
       }

@@ -11,16 +11,41 @@ import org.junit.Test;
 import cuota.AdminCuota;
 import evento.Evento;
 import juego.Partido;
+import juego.estado.EnCurso;
+import proveedores.Proveedor;
+import usuario.Usuario;
 import apuesta.Apuesta;
+import apuesta.OpcionApuesta;
+import casaApuesta.CasaApuesta;
 
 public class EventoTestCase {
-	private Partido partido = mock(Partido.class);
-	private AdminCuota adminCuota = mock(AdminCuota.class);
-	private Evento evento = new Evento(partido, adminCuota);
+	
+	
+	private Usuario usuario;
+	private AdminCuota adminCuota;
+	private OpcionApuesta opcionApuesta;
+	private Partido mockPartido;
+	private Evento evento;
+	
+	@Before
+	void setUp() {
+		adminCuota = mock(AdminCuota.class);
+		mockPartido = mock(Partido.class);
+		evento = new Evento(mockPartido, adminCuota);
+		opcionApuesta = mock(OpcionApuesta.class);
+		
+		
+		
+		
+		
+		
+	}
+	
+	
 	
 	@Test
 	public void testPartido() {
-		assertEquals(evento.getPartidoDelEvento(), partido);
+		assertEquals(evento.getPartidoDelEvento(), mockPartido);
 	}
 	
 	@Test
@@ -32,11 +57,13 @@ public class EventoTestCase {
 	@Test
 	public void testResultado() {
 		evento.getResultadoPartido();
-		verify(partido).getResultado();
+		verify(mockPartido).getResultado();
 	}
 	
 	@Test
 	public void testApuestaRealizadas() {
 		assertEquals(evento.getApuestasRealizadas(), new ArrayList<Apuesta>());
 	}
+	
+	
 }

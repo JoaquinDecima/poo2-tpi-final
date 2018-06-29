@@ -12,31 +12,38 @@
 package models.juego;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 // Importa utilidades Java
 import java.util.Date;
 
 // Importa desde org
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.mockito.asm.tree.analysis.AnalyzerException;
 
+import apuesta.OpcionApuesta;
 import competidor.Competidor;
 import deporte.Deporte;
+import evento.Evento;
 import juego.Partido;
+import juego.estado.EnCurso;
+import juego.estado.Finalizado;
 import juego.resultado.Resultado;
+import usuario.Usuario;
 
 public class PartidoTestCase {
 	private Competidor local = mock(Competidor.class) ;
 	private Competidor visitante = mock(Competidor.class);
+	private Evento mockEvento = mock(Evento.class);
 	
 	private Deporte deporte = mock(Deporte.class);
 	private Date fecha = new Date(2018, 06, 23); // Se crea para tener la fecha
 	private Partido partido = new Partido(local, visitante, deporte, fecha, "Quilmes");
-	
+	private Usuario usuario = mock(Usuario.class);
 	private Resultado resultado = mock(Resultado.class);
+	private OpcionApuesta mockOpcionApuesta = mock(OpcionApuesta.class);
 
 	@Test
 	public void testPartidoDevuelveLocal() {
@@ -86,4 +93,21 @@ public class PartidoTestCase {
 		assertTrue(!partido.esVisitante(local));
 		assertTrue(partido.esVisitante(visitante));
 	}
+	
+	@Test
+	public void testCuandoUsuarioSolicitaHacerApuestaSeguraConPartidoEnCursoSeLanzaExcepcion() {	
+		partido.setEstado(new EnCurso());
+		usuario.hacerApuestaSegura(mockOpcionApuesta, 20);
+		//TODO:verificar excepcion??
+	}
+	
+	@Test
+	public void testUnPartidoPuedeAñadirSubscriptores() {	
+		partido.addSubscriptor(mockEvento);
+		verify((partido.getSubscriptores()).contains(mockEvento));
+	}
+	
+	
+	
+	
 }

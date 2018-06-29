@@ -85,10 +85,10 @@ public class ProveedorDePartidoTestCase {
 		partidos.addPartido(partido3);
 		listapartidos.add(partido1);
 		listapartidos.add(partido3);
-		
-		when(partido1.getFecha()).thenReturn(fecha1.getDate());
-		when(partido2.getFecha()).thenReturn(fecha1.getDate() - 1);
-		when(partido3.getFecha()).thenReturn(fecha1.getDate());
+		//TODO:hAY QUE USAR MODULO JODA TIME PARA LAS FECHAS
+		when(partido1.getFecha()).thenReturn(fecha1);
+		when(partido2.getFecha()).thenReturn(fecha1 - 1);
+		when(partido3.getFecha()).thenReturn(fecha1);
 		
 		assertEquals(partidos.getPartidosDeFecha(fecha1), listapartidos);
 	}

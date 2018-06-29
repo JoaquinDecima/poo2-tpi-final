@@ -9,9 +9,9 @@ public class ApuestaSegura extends Apuesta {
 	// con esta variable se lleva registro de todas las apuestas, incluso las canceladas
 	private boolean estaActiva;
 	
-	public ApuestaSegura(Usuario u, Evento e, OpcionApuesta op, Double m) {
+	public ApuestaSegura(Usuario u, OpcionApuesta op, Double m) {
 		this.usuario = u;
-		this.evento = e;
+		this.evento = op.getEvento();
 		this.monto = m;
 		this.apuesta = op;
 		this.estaActiva = true;
@@ -20,16 +20,12 @@ public class ApuestaSegura extends Apuesta {
 	@Override
 	public
 	Double ganaciaBruta() {
-		// TODO: retornar excepcion si el partido aun no finalizo
-		// TODO: Mal Implementado
 		return this.gananciaBruta;
 	}
 
 	@Override
 	public
 	Double ganaciaNeta() {
-		// TODO: retornar excepcion si el partido aun no finalizo
-		// TODO: Mal Implementado
 		return this.ganaciaNeta();
 	}
 
@@ -54,10 +50,7 @@ public class ApuestaSegura extends Apuesta {
 	}
 
 
-	public Evento getEvento() {
-		
-		return this.evento;
-	}
+
 
 	@Override
 	public
@@ -72,14 +65,28 @@ public class ApuestaSegura extends Apuesta {
 
 	@Override
 	public void setGananciaBruta(Double monto) {
-		// TODO Auto-generated method stub
+		this.gananciaBruta = monto;
 		
 	}
 
 	@Override
 	public void setGananciaNeta(Double monto) {
-		// TODO Auto-generated method stub
+		this.gananciaNeta = monto;
+	}
+	
+	
+
+	public void cambiarStatus() {
+		this.estaActiva = false;
 		
 	}
+
+	@Override
+	public Evento getEvento() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	
 }

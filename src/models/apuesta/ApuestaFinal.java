@@ -66,4 +66,5 @@ public class ApuestaFinal extends Apuesta {
 		this.gananciaNeta = monto;
 	}
 
+
 }

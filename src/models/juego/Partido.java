@@ -15,6 +15,8 @@ import java.util.ArrayList;
 // Importa utilidades Java
 import java.util.Date;
 
+import apuesta.ApuestaSegura;
+import apuesta.OpcionApuesta;
 import competidor.Competidor;
 import deporte.Deporte;
 import juego.estado.EnCurso;
@@ -22,6 +24,7 @@ import juego.estado.EstadoPartido;
 import juego.estado.Finalizado;
 import juego.estado.Proximo;
 import juego.resultado.Resultado;
+import usuario.Usuario;
 
 public class Partido{
   private Competidor local;
@@ -43,7 +46,22 @@ public class Partido{
     this.estado = new Proximo();
   }
 
-  // Retrona el competidor Local
+  
+  /*
+   * El estado del partido se implementa a través de patron de diseño State. Así surgen tres estados posibles, 
+   * cada uno indica que acciones se ejecutan cuando cambia el estado del partido. 
+   * Determinan las acciones posibles en cada estado.
+   * 
+   *
+   */
+  
+  /*
+   * Metodos que retornan info del partido
+   */
+  
+  
+  
+  // Retorna el competidor Local
   public Competidor getLocal() {
     return (this.local);
   }
@@ -52,86 +70,116 @@ public class Partido{
   public Competidor getVisitante() {
     return (this.visitante);
   }
+  
+//Retorna el lugar de Juego
+ public String getLugarDeJuego() {
+	  return (this.lugar);
+ }
+ 
+ // Retorna True si el competidor participa
+ public Boolean juega(Competidor competidor){
+   return(this.getLocal() == competidor || this.getVisitante() == competidor);
+ }
+
+ // Retorna True si el partido es entre ambos competidores (cLocal y cVisitante en cualquier orden)
+ public Boolean juegan(Competidor cLocal, Competidor cVisitante){
+   return(this.getLocal() == cLocal && this.getVisitante() == cVisitante|| this.getVisitante() == cLocal && this.getLocal() == cVisitante);
+ }
+
+ // Retorna True si gana local status actual
+ public Boolean ganaLocal() {
+	  return (this.resultado.ganaCompetidor() == this.getLocal());
+ }
+ 
+ // Retorna True si gana visitante status actual
+ public Boolean ganaVisitante() {
+	  return (this.resultado.ganaCompetidor() == this.getVisitante());
+ }
+
+ // Retorna la Fecha de Juego
+ public Date getFecha() {
+	return fecha;
+ }
+
+ // Retorna True si el partido conrresponde al deporte dDeporte
+ public boolean esDeporte(Deporte dDeporte) {
+	return (this.deporte.esDeporte(dDeporte));
+ }
+
+ // Retorna True si el cCompetidor es Local
+ public boolean esLocal(Competidor cCompetidor) {
+	return (this.getLocal() == cCompetidor);
+ }
+
+ // Retorna True si cCompetidor es Visitante
+ public boolean esVisitante(Competidor cCompetidor) {
+	return (this.getVisitante() == cCompetidor);
+ }
+
+	public Deporte getDeporte() {
+		return this.deporte;
+	}
+	
+	public boolean huboEmpate() {
+		return this.resultado.empate();
+	}
+
 
   // Retorna estado del partido
   public EstadoPartido getEstado() {
     return (this.estado);
   }
   
+  /*
+   * Metodos setters
+   */
+  
   // Setea el estado del partido y handlea acciones que deben darse cuando cambia al nuevo estado
   public void setEstado(EstadoPartido estadoNew) {
 	  this.estado = estadoNew;
-	  this.estado.accionar();
+	  this.estado.accionar(this);
   }
   
-  // Delega el mensaje a su estado interno
-  public Resultado getResultado() {
-	  return this.estado.resultadoPartido(this);
-  }
-
   public void setResultado(Resultado resultadoPartido) {
 	  this.resultado = resultadoPartido;
   }
   
-  // Retorna el lugar de Juego
-  public String getLugarDeJuego() {
-	  return (this.lugar);
-  }
-  
-  // Retorna True si el competidor participa
-  public Boolean juega(Competidor competidor){
-    return(this.getLocal() == competidor || this.getVisitante() == competidor);
-  }
-
-  // Retorna True si el partido es entre ambos competidores (cLocal y cVisitante en cualquier orden)
-  public Boolean juegan(Competidor cLocal, Competidor cVisitante){
-    return(this.getLocal() == cLocal && this.getVisitante() == cVisitante|| this.getVisitante() == cLocal && this.getLocal() == cVisitante);
-  }
-
-  // Retorna True si gana local 
-  public Boolean ganaLocal() {
-	  return (this.resultado.ganaCompetidor() == this.getLocal());
-  }
-  
-  // Retorna True si gana visitante
-  public Boolean ganaVisitante() {
-	  return (this.resultado.ganaCompetidor() == this.getVisitante());
-  }
-
-  
-  // Retorna la Fecha de Juego
-  public int getFecha() {
-	return fecha.getDate();
-  }
-
-  // Retorna True si el partido conrresponde al deporte dDeporte
-  public boolean esDeporte(Deporte dDeporte) {
-	return (this.deporte.esDeporte(dDeporte));
-  }
  
-  // Retorna True si el cCompetidor es Local
-  public boolean esLocal(Competidor cCompetidor) {
-	return (this.getLocal() == cCompetidor);
-  }
- 
-  // Retorna True si cCompetidor es Visitante
-  public boolean esVisitante(Competidor cCompetidor) {
-	return (this.getVisitante() == cCompetidor);
+  
+  
+  /*
+   * Metodos que dependen del estado del partido, y por ello se delegan en el mismo.
+   */
+  
+  
+  // Delega el mensaje a su estado interno y retorna el resultado actual del partido
+  public Resultado getResultado() {
+	  return this.estado.resultadoPartido(this);
   }
 
-	public boolean enCurso() {
-		return this.getEstado() instanceof EnCurso;
-	} 
-	
-	public boolean esProximo() {
-		return this.getEstado() instanceof Proximo;	
+  // metodo invocado por el usuario
+  public ApuestaSegura addApuestaSegura(Usuario usuario, OpcionApuesta opcionApuesta, double monto) throws Exception {
+	  	ApuestaSegura nuevaApuesta = this.estado.addApuestaSegura(usuario, opcionApuesta, monto);
+		return nuevaApuesta;
+  }
+  
+  //metodo invocado por el usuario
+	public void cancelarApuestaSegura(ApuestaSegura apuestaACancelar) throws Exception {
+		this.estado.cancelarApuestaSegura(apuestaACancelar);
 	}
 	
-	public boolean finalizado() {
-		return this.getEstado() instanceof Finalizado;	
+	// Reactiva una apuesta ya cancelada. Cambia el estado de la apuesta: se activa.
+			// Invariante: se debe tratar de una apuesta cancelada.
+	public void reactivarApuestaSegura(ApuestaSegura apuestaAReactivar) throws Exception {
+		this.estado.reactivarApuestaSegura(apuestaAReactivar);
 	}
+
+ 
+  
 	
-	// Implementa metodos de notificacion a subscriptores (como CasaApuestas)
+  /*
+   * Implementa metodos de notificacion a subscriptores (como CasaApuestas)
+   */
 
 	public void notificarFinalSubscriptores() {
 		this.subscriptores.forEach(subscriptor->subscriptor.updateFinalPartido());
@@ -143,13 +191,23 @@ public class Partido{
 		
 	}
 
-	public Deporte getDeporte() {
-		return this.deporte;
+
+	public boolean enCurso() {
+		
+		return this.estado instanceof EnCurso;
 	}
 
-	public boolean huboEmpate() {
-		return this.resultado.empate();
+
+	public boolean finalizado() {
+		return this.estado instanceof Finalizado;
 	}
+
+
+	public ArrayList<ISubscriptorPartido> getSubscriptores() {
+		return this.subscriptores;
+	}
+
+
 }
 
 
