@@ -2,6 +2,8 @@
 
 package models.apuesta.opcion;
 
+import models.evento.Evento;
+import models.juego.Partido;
 import models.juego.resultado.Resultado;
 
 public class OpcionApuesta {

@@ -31,7 +31,7 @@ public class BalanceManager {
 		double total = 0.0;
 		
 		for (Apuesta apuesta : listaOk) {
-			total += apuesta.ganaciaNeta();
+			total += apuesta.gananciaNeta();
 		}
 		
 		return total;

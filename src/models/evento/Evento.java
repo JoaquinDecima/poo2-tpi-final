@@ -19,9 +19,6 @@ import models.apuesta.Apuesta;
 import models.apuesta.ApuestaSegura;
 import models.apuesta.opcion.OpcionApuesta;
 import models.cuota.AdminCuota;
-import models.evento.estado.EstadoEvento;
-import models.evento.estado.Finalizado;
-import models.evento.estado.PartidoProximo;
 import models.juego.ISubscriptorPartido;
 import models.juego.Partido;
 import models.juego.resultado.Resultado;
@@ -188,7 +185,7 @@ public class Evento implements ISubscriptorPartido {
 		private void pagarGananciasApuestas() {
 
 			for(Apuesta apuesta : this.getApuestasRealizadas()) {
-				apuesta.getUsuario().incrementarMontoWallet(apuesta.ganaciaNeta());
+				apuesta.getUsuario().incrementarMontoWallet(apuesta.gananciaNeta());
 
 				if(apuesta instanceof ApuestaSegura) {
 					this.cobrarDescPorApuestaSegura(apuesta);
@@ -197,7 +194,7 @@ public class Evento implements ISubscriptorPartido {
 		}
 
 		private void cobrarDescPorApuestaSegura(Apuesta apuesta) {
-			apuesta.getUsuario().decrementarMontoWallet((apuesta.ganaciaNeta()*15) / 100);
+			apuesta.getUsuario().decrementarMontoWallet((apuesta.gananciaNeta()*15) / 100);
 		}
 
 
@@ -212,7 +209,7 @@ public class Evento implements ISubscriptorPartido {
 
 		public void cobrarPenalidadApuestaCanceladaConPartidoEnCurso(ApuestaSegura apuestaACancelar) {
 			// si el partido esta en curso y el usuario la cancela, se le descuenta el 15% de lo que apostó.
-		apuestaACancelar.getUsuario().decrementarMontoWallet((apuestaACancelar.ganaciaNeta()*15) / 100);
+		apuestaACancelar.getUsuario().decrementarMontoWallet((apuestaACancelar.gananciaNeta()*15) / 100);
 
 		}
 
