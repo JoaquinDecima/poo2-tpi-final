@@ -12,6 +12,7 @@
 package evento;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
 
@@ -223,5 +224,16 @@ public class Evento implements ISubscriptorPartido {
 		// Retorna la fecha del partido
 		public Date getFecha() {
 			return (this.partido.getFechaDate());
+		}
+
+
+		public ArrayList<Usuario> getUsuarios() {
+			ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+			
+			for (Apuesta apuesta : this.apuestasRealizadas) {
+				usuarios.add(apuesta.getUsuario());
+			}
+
+			return usuarios;
 		}		
 }

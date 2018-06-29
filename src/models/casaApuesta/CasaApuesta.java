@@ -17,12 +17,15 @@ package casaApuesta;
 // Importa utilidades java
 import java.util.ArrayList;
 
+import apuesta.Apuesta;
+import balance.BalanceManager;
 import cuota.AdminCuota;
 import deporte.Deporte;
 import evento.Evento;
 import juego.Partido;
 import probabilidad.AlgoritmoProbabilidad;
 import proveedores.Proveedor;
+import usuario.Usuario;
 
 public class CasaApuesta {
 	
@@ -31,13 +34,14 @@ public class CasaApuesta {
 	ArrayList<Deporte> deportesQueParticipan;
 	AdminCuota administradorCuotasEventos;
 	AlgoritmoProbabilidad algoritmoProbabilidadSeteado;
+	BalanceManager balanceador;
 	
 	// Constructor
 	public CasaApuesta(Proveedor proveedorDataPartidos, AlgoritmoProbabilidad algoritmoProbabilidadASetear ) {
 		this.proveedorDataPartidos = proveedorDataPartidos; 
 		this.algoritmoProbabilidadSeteado = algoritmoProbabilidadASetear;
 		this.administradorCuotasEventos = new AdminCuota(this.proveedorDataPartidos, this.algoritmoProbabilidadSeteado);
-
+		this.balanceador = new BalanceManager();
 	}
 	
 	public AdminCuota getAdminCuota() {
@@ -67,6 +71,37 @@ public class CasaApuesta {
 	public AlgoritmoProbabilidad getAlgoritmoProbabilidad() {
 		return(this.algoritmoProbabilidadSeteado);
 	}
+	
+	// Realiza Todos los balances de la Casa de Apuesta
+	public void balanceMensual() {
+		ArrayList<Apuesta> apuestas = this.getApuestas();
+		
+		for (Usuario user : this.getUsuarios()) {
+			this.balanceador.enviarBalance(user, apuestas);
+		}
+	}
+
+	// Retorna la lista de Apuestas
+	private ArrayList<Apuesta> getApuestas() {
+		ArrayList<Apuesta> apuestas = new ArrayList<Apuesta>();
+		
+		for (Evento event : this.eventos) {
+			apuestas.addAll(event.getApuestasRealizadas());
+		}
+		
+		return apuestas;
+	}
+
+	// Retorna una lista de usuarios
+	private ArrayList<Usuario> getUsuarios() {
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		for (Evento event : this.eventos) {
+			usuarios.addAll(event.getUsuarios());
+		}
+		return usuarios;
+	}
+	
+	
 }
 
 
