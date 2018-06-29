@@ -11,6 +11,9 @@
 
 package apuesta;
 
+import java.util.Date;
+
+import apuesta.opcion.OpcionApuesta;
 import evento.Evento;
 import juego.Partido;
 import usuario.Usuario;
@@ -45,11 +48,36 @@ public abstract class Apuesta{
 	  
 	  return resultado;
   }
-  public abstract Double montoApostado();
-  public abstract OpcionApuesta opcionApostada();
-  public abstract Evento getEvento();
-  public abstract Partido getPartido();
-  public abstract Usuario getUsuario();
+  
+  // Retorna el Monto apostado
+  public Double montoApostado() {
+	  return (this.monto);
+  }
+  
+  // Retorna la opcion Apostada
+  public OpcionApuesta opcionApostada() {
+	  return (this.apuesta);
+  }
+  
+  // Retorna el Evento
+  public Evento getEvento() {
+	  return(this.evento);
+  }
+  
+  // Retorna el Partido
+  public Partido getPartido() {
+	  return (this.evento.getPartidoDelEvento());
+  }
+  
+  // Retorna el Usuario
+  public Usuario getUsuario() {
+	  return (this.usuario);
+  }
+  
+  // Retorna la Fecha del Evento
+  public Date getFecha() {
+	  return(this.evento.getFecha());
+  }
 }
 
 

@@ -150,6 +150,10 @@ public class Partido{
 	public boolean huboEmpate() {
 		return this.resultado.empate();
 	}
+
+	public Date getFechaDate() {
+		return (this.fecha);
+	}
 }
 
 

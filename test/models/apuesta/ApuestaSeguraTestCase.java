@@ -20,7 +20,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import apuesta.ApuestaSegura;
-import apuesta.OpcionApuesta;
+import apuesta.opcion.OpcionApuesta;
 import evento.Evento;
 import usuario.Usuario;
 

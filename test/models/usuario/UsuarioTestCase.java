@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import apuesta.ApuestaSegura;
-import apuesta.OpcionApuesta;
+import apuesta.opcion.OpcionApuesta;
 import casaApuesta.CasaApuesta;
 import evento.Evento;
 import juego.Partido;
@@ -21,7 +21,7 @@ import usuario.Usuario;
 
 public class UsuarioTestCase {
 	
-	private Usuario usuario = new Usuario("diego");
+	private Usuario usuario = new Usuario("diego", "diego@unq.edu.ar");
 	private CasaApuesta mockCasaApuesta = mock(CasaApuesta.class);
 	private Partido mockPartido = mock(Partido.class);
 	private Evento evento = new Evento(mockPartido, mockCasaApuesta.getAdminCuota());
@@ -61,5 +61,10 @@ public class UsuarioTestCase {
 		assertEquals(usuario.getNombre(), "diego");
 	}
 
-
+	@Test
+	public void testEmail() {
+		assertEquals(usuario.getEmail(), "diego@unq.edu.ar");
+		usuario.setEmail("diego@gmail.com");
+		assertEquals(usuario.getEmail(), "diego@gmail.com");
+	}
 }

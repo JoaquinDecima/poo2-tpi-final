@@ -1,6 +1,6 @@
 
 
-package apuesta;
+package apuesta.opcion;
 
 import juego.resultado.Resultado;
 

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import apuesta.Apuesta;
-import apuesta.OpcionApuesta;
+import apuesta.opcion.OpcionApuesta;
 import evento.Evento;
 import evento.estado.ConPartidoEnCurso;
 import usuario.Usuario;

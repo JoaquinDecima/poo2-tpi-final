@@ -6,7 +6,7 @@ import static org.mockito.Mockito.*;
 import org.junit.Test;
 
 import apuesta.ApuestaFinal;
-import apuesta.OpcionApuesta;
+import apuesta.opcion.OpcionApuesta;
 import evento.Evento;
 import usuario.Usuario;
 

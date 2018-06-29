@@ -5,7 +5,7 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
-import apuesta.OpcionApuesta;
+import apuesta.opcion.OpcionApuesta;
 import juego.resultado.Resultado;
 
 public class OpcionApuestaTestCase {

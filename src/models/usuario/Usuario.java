@@ -2,17 +2,19 @@ package usuario;
 
 
 import apuesta.*;
-import apuesta.OpcionApuesta;
+import apuesta.opcion.OpcionApuesta;
 import evento.Evento;
 
 
 public class Usuario {
 
 	private String nombre;
+	private String email;
 	private Double wallet;
 
-	public Usuario(String nombre) {
+	public Usuario(String nombre, String sEmail) {
 		this.nombre = nombre;
+		this.email = sEmail;
 		this.wallet = 0.00;
 		
 	}
@@ -21,6 +23,16 @@ public class Usuario {
 		return this.nombre;
 	}
 
+	// Retorna el email
+	public String getEmail() {
+		return this.email;
+	}
+	
+	// Sete nuevo Email
+	public void setEmail(String sEmail) {
+		this.email = sEmail;
+	}
+	
 	public void incrementarMontoWallet(Double monto) {
 		this.wallet = this.wallet + monto;	
 	}

@@ -12,11 +12,12 @@
 package evento;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.stream.Collectors;
 
 import apuesta.Apuesta;
 import apuesta.ApuestaSegura;
-import apuesta.OpcionApuesta;
+import apuesta.opcion.OpcionApuesta;
 import cuota.AdminCuota;
 import evento.estado.EstadoEvento;
 import evento.estado.Finalizado;
@@ -217,5 +218,10 @@ public class Evento implements ISubscriptorPartido {
 			for(Apuesta apuesta : apuestasRealizadas) {
 				this.pagarGananciasUsuario(apuesta);
 			}
+		}
+
+		// Retorna la fecha del partido
+		public Date getFecha() {
+			return (this.partido.getFechaDate());
 		}		
 }

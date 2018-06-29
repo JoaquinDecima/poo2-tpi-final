@@ -1,5 +1,6 @@
 package apuesta;
 
+import apuesta.opcion.OpcionApuesta;
 import evento.Evento;
 import juego.Partido;
 import usuario.Usuario;
@@ -16,18 +17,6 @@ public class ApuestaSegura extends Apuesta {
 		this.apuesta = op;
 		this.estaActiva = true;
 	}
-
-	@Override
-	public
-	Double montoApostado() {
-		return this.monto;
-	}
-
-	@Override
-	public
-	OpcionApuesta opcionApostada() {
-		return this.apuesta;
-	}
 	
 	public boolean estaActiva() {
 		return this.estaActiva;
@@ -36,22 +25,4 @@ public class ApuestaSegura extends Apuesta {
 	public void updateEstado() {
 		this.estaActiva = !this.estaActiva;
 	}
-
-
-	public Evento getEvento() {
-		
-		return this.evento;
-	}
-
-	@Override
-	public
-	Usuario getUsuario() {
-		return this.usuario;
-	}
-
-	@Override
-	public Partido getPartido() {
-		return this.evento.getPartidoDelEvento();
-	}
-	
 }
