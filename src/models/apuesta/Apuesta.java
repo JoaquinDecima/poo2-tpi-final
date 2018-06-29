@@ -9,35 +9,73 @@
  *        Otarola, Florencia
  */
 
-package apuesta;
+package models.apuesta;
 
-import evento.Evento;
-import juego.Partido;
-import usuario.Usuario;
+import java.util.Date;
+
+import models.apuesta.opcion.OpcionApuesta;
+import models.evento.Evento;
+import models.juego.Partido;
+import models.usuario.Usuario;
 
 public abstract class Apuesta{
   protected Evento evento;
   protected OpcionApuesta apuesta;
   protected Double monto;
   protected Usuario usuario;
-  protected Double gananciaBruta;
-  protected Double gananciaNeta;
-  
 
-  public abstract Double ganaciaBruta();
-  public abstract Double ganaciaNeta();
-  public abstract void setGananciaBruta(Double monto);
-  public abstract void setGananciaNeta(Double monto);
-  public abstract Double montoApostado();
-  public abstract OpcionApuesta opcionApostada();
-  public abstract Evento getEvento();
-  public abstract Partido getPartido();
-  public abstract Usuario getUsuario();
-  public void calcularGanancias() {
-	  this.setGananciaBruta(this.montoApostado() * this.opcionApostada().cuota());
-		this.setGananciaNeta(gananciaBruta - this.montoApostado());
-  };
+  // Retorna la ganancia bruta
+  public Double gananciaBruta() {
+	  Double resultado = 0.0;
+	  if (this.gano()) {
+		  resultado = ((this.montoApostado()) * (this.opcionApostada().cuota()));
+	  }
+
+	  return resultado;
+  }
+
+  // Retorna True si el usuario gano la apuesta
+  public boolean gano() {
+	  return (this.getPartido().getResultado() == this.opcionApostada().resultado());
+  }
+
+  // Retorna la Ganancia Neta
+  public Double ganaciaNeta() {
+	  Double resultado = 0.0;
+	  if (this.gano()) {
+		  resultado = (this.gananciaBruta() - this.montoApostado());
+	  }
+
+	  return resultado;
+  }
+
+  // Retorna el Monto apostado
+  public Double montoApostado() {
+	  return (this.monto);
+  }
+
+  // Retorna la opcion Apostada
+  public OpcionApuesta opcionApostada() {
+	  return (this.apuesta);
+  }
+
+  // Retorna el Evento
+  public Evento getEvento() {
+	  return(this.evento);
+  }
+
+  // Retorna el Partido
+  public Partido getPartido() {
+	  return (this.evento.getPartidoDelEvento());
+  }
+
+  // Retorna el Usuario
+  public Usuario getUsuario() {
+	  return (this.usuario);
+  }
+
+  // Retorna la Fecha del Evento
+  public Date getFecha() {
+	  return(this.evento.getFecha());
+  }
 }
-
-
-

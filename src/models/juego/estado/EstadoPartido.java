@@ -9,22 +9,14 @@
  *        Otarola, Florencia
  */
 
-package juego.estado;
+package models.juego.estado;
 
-import apuesta.ApuestaSegura;
-import apuesta.OpcionApuesta;
-import juego.Partido;
-import juego.resultado.Resultado;
-import usuario.Usuario;
-
-/*
- * Se implementa la interfaz de EstadoPartido que determina el comportamiento 
- * de la clase Partido de acuerdo al estado del mismo.
- */
+import models.juego.Partido;
+import models.juego.resultado.Resultado;
 
 public interface EstadoPartido {
 
-	
+
 	Resultado resultadoPartido(Partido partido);
 
 	// metodo llamado cuando cambia el estado
@@ -36,5 +28,5 @@ public interface EstadoPartido {
 
 	void cancelarApuestaSegura(ApuestaSegura apuestaACancelar) throws Exception;
 
-		
+
 }

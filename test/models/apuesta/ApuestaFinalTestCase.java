@@ -5,10 +5,10 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
-import apuesta.ApuestaFinal;
-import apuesta.OpcionApuesta;
-import evento.Evento;
-import usuario.Usuario;
+import models.apuesta.ApuestaFinal;
+import models.apuesta.opcion.OpcionApuesta;
+import models.evento.Evento;
+import models.usuario.Usuario;
 
 public class ApuestaFinalTestCase {
 	private Usuario usuario = mock(Usuario.class);

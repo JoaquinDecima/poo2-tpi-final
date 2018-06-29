@@ -1,4 +1,4 @@
-package probabilidad;
+package models.probabilidad;
 
 /*
  * Programacion Orientada a Objetos II 2018 s1
@@ -14,8 +14,8 @@ package probabilidad;
 
 
 // Se importa Modelo
-import juego.Partido;
-import proveedores.Proveedor;
+import models.juego.Partido;
+import models.proveedores.Proveedor;
 
 public interface AlgoritmoProbabilidad {
 	

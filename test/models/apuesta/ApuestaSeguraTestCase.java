@@ -17,12 +17,11 @@ import static org.mockito.Mockito.*;
 
 // Importa desde org
 import org.junit.Test;
-import org.mockito.Mockito;
 
-import apuesta.ApuestaSegura;
-import apuesta.OpcionApuesta;
-import evento.Evento;
-import usuario.Usuario;
+import models.apuesta.ApuestaSegura;
+import models.apuesta.opcion.OpcionApuesta;
+import models.evento.Evento;
+import models.usuario.Usuario;
 
 public class ApuestaSeguraTestCase {
 	private Usuario usuario = mock(Usuario.class);

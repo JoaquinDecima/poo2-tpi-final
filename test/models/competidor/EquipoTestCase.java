@@ -14,14 +14,9 @@ package models.competidor;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-//Importa Utilidades Java
 import java.util.ArrayList;
-
-// Importa desde org
 import org.junit.Test;
 
-// Importa del Modelo
-import competidor.*;
 
 public class EquipoTestCase {
   protected ArrayList<Deportista> deportistas = new ArrayList<Deportista>(); //En caso de que no funcione agregar manualmente

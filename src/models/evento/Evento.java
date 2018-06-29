@@ -9,21 +9,25 @@
  *        Otarola, Florencia
  */
 
-package evento;
+package models.evento;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.stream.Collectors;
 
-import apuesta.Apuesta;
-import apuesta.ApuestaSegura;
-import apuesta.OpcionApuesta;
-import cuota.AdminCuota;
-import juego.ISubscriptorPartido;
-import juego.Partido;
-import juego.resultado.Resultado;
-import juego.resultado.ResultadoConEmpate;
-import juego.resultado.ResultadoSinEmpate;
-import usuario.Usuario;
+import models.apuesta.Apuesta;
+import models.apuesta.ApuestaSegura;
+import models.apuesta.opcion.OpcionApuesta;
+import models.cuota.AdminCuota;
+import models.evento.estado.EstadoEvento;
+import models.evento.estado.Finalizado;
+import models.evento.estado.PartidoProximo;
+import models.juego.ISubscriptorPartido;
+import models.juego.Partido;
+import models.juego.resultado.Resultado;
+import models.juego.resultado.ResultadoConEmpate;
+import models.juego.resultado.ResultadoSinEmpate;
+import models.usuario.Usuario;
 
 /*
  * Responsabilidades:
@@ -34,21 +38,21 @@ import usuario.Usuario;
  */
 
 public class Evento implements ISubscriptorPartido {
-	
+
 		Partido partido;
 		AdminCuota adminCuotasApuestasPosibles;
 		public ArrayList<Apuesta> apuestasRealizadas;
 		ArrayList<OpcionApuesta> opcionesApuestasPosibles;
-						
-		
+
+
 		public Evento(Partido partidoDelEvento, AdminCuota cuotasResultadosPosibles) {
-			
+
 			this.adminCuotasApuestasPosibles = cuotasResultadosPosibles;
-			this.partido = partidoDelEvento;	
+			this.partido = partidoDelEvento;
 			this.apuestasRealizadas = new ArrayList<Apuesta>();
 			}
 
-		
+
 		/*
 		 *  Metodos getters
 		 */
@@ -56,34 +60,34 @@ public class Evento implements ISubscriptorPartido {
 		public Partido getPartidoDelEvento() {
 			return this.partido;
 		}
-		
+
 		public ArrayList<OpcionApuesta> getOpcionesResultadosPosibles() {
 			return this.opcionesApuestasPosibles;
 		}
-		
+
 		// retorna una lista de apuestas realizadas por usuario en evento
-		public ArrayList<Apuesta> getApuestasUsuario(Usuario usuario) {	
+		public ArrayList<Apuesta> getApuestasUsuario(Usuario usuario) {
 			return (apuestasRealizadas.stream().filter( a -> a.getUsuario() == usuario)).collect(Collectors.toCollection(ArrayList::new));
 		}
-			
+
 		public Resultado getResultadoPartido() {
-			return this.partido.getResultado();		
+			return this.partido.getResultado();
 		}
-		
+
 		public ArrayList<Apuesta> getApuestasRealizadas() {
 			return this.apuestasRealizadas;
-			
-		}
-		
 
-		
+		}
+
+
+
 		/*
 		 * Metodo invocado cuando la casa de apuestas crea el evento.
 		 * Setea array list con opciones de posibles resultados y sus correspondientes cuotas
 		 */
 
 		public void calcularOpcionesResultadosPosibles() {
-			// se almacenan las opciones de apuestas posibles en un array list como variable interna 
+			// se almacenan las opciones de apuestas posibles en un array list como variable interna
 			// solo almacena la opcion de que el resultado sea un empate, si el deporte admite empates
 			this.opcionesApuestasPosibles = new ArrayList<OpcionApuesta>();
 			this.opcionesApuestasPosibles.add(this.calcularOpcionVictoriaLocal());
@@ -92,53 +96,53 @@ public class Evento implements ISubscriptorPartido {
 					this.opcionesApuestasPosibles.add(this.calcularOpcionEmpate());
 			}
 		}
-		
-		
-		/* 
+
+
+		/*
 		 * metodos auxiliares para calculos de opciones de apuestas posibles
 		 */
-		
+
 		/*
 		 *  metodos getters resultados posibles
 		 */
-				
-		private Resultado getResultadoVictoriaLocal() {
+
+		public Resultado getResultadoVictoriaLocal() {
 			return new ResultadoSinEmpate(this.partido.getLocal(), this.partido.getVisitante());
 		}
-		
-		private Resultado getResultadoVictoriaVisitante() {
+
+		public Resultado getResultadoVictoriaVisitante() {
 			return new ResultadoSinEmpate(this.partido.getVisitante(), this.partido.getLocal());
 		}
 
-		private ResultadoConEmpate getResultadoEmpate() {
+		public ResultadoConEmpate getResultadoEmpate() {
 			return new ResultadoConEmpate(this.partido.getLocal(), this.partido.getVisitante(), true);
 		}
-		
-		
+
+
 		/*
 		 *  metodos getters cuotas por resultados posibles
 		 */
-		
+
 		// Retorna la cuota establecida en caso de victoria de competidor local
 		private double getCuotaPorVictoriaLocal() {
 			return(this.adminCuotasApuestasPosibles.getCuotaPorVictoriaLocal(this.partido));
 		}
-		
+
 		// Retorna la cuota establecida en caso de victoria visitante
 		private double getCuotaPorVictoriaVisitante() {
 			return(this.adminCuotasApuestasPosibles.getCuotaPorVictoriaVisitante(this.partido));
 		}
-		
+
 		// Retorna la cuota establecida en caso de empate
 		private double getCuotaPorEmpate() {
 			return(this.adminCuotasApuestasPosibles.getCuotaPorEmpate(this.partido));
 		}
-		
-		
+
+
 		/*
 		 *  metodos getters que devuelven opciones de apuestas calculadas
 		 */
-			
+
 		private OpcionApuesta calcularOpcionEmpate() {
 			Resultado resultadoEmpate = this.getResultadoEmpate();
 			Double cuotaEmpate = this.getCuotaPorEmpate();
@@ -157,69 +161,85 @@ public class Evento implements ISubscriptorPartido {
 			Resultado resultadoVictoriaLocal = this.getResultadoVictoriaLocal();
 			Double cuotaVictoriaLocal = this.getCuotaPorVictoriaLocal();
 			OpcionApuesta opcionVictoriaLocal = new OpcionApuesta(this.partido, resultadoVictoriaLocal, cuotaVictoriaLocal);
-			return opcionVictoriaLocal;		
+			return opcionVictoriaLocal;
 		}
 
 		/*
 		 * implementa interfaz de subscriptor a partidos
-		 * 
+		 *
 		 */
 
 		@Override
 		// cuando un partido finaliza el Evento paga si corresponde las ganancias a usuarios que hicieron apuestas
 		public void updateFinalPartido() {
 			this.setGananciasApuestas();
-			this.pagarGananciasApuestas();	
-			
+			this.pagarGananciasApuestas();
+
 		}
-		
+
 
 		private void setGananciasApuestas() {
 			// setear las ganancias por cada apuesta realizada en el evento
-			for(Apuesta apuesta : this.getApuestasRealizadas()) {				
+			for(Apuesta apuesta : this.getApuestasRealizadas()) {
 					apuesta.calcularGanancias();
-			}	
+			}
 		}
 
 		private void pagarGananciasApuestas() {
-			
-			for(Apuesta apuesta : this.getApuestasRealizadas()) {				
-				apuesta.getUsuario().incrementarMontoWallet(apuesta.ganaciaNeta());		
-				
+
+			for(Apuesta apuesta : this.getApuestasRealizadas()) {
+				apuesta.getUsuario().incrementarMontoWallet(apuesta.ganaciaNeta());
+
 				if(apuesta instanceof ApuestaSegura) {
-					this.cobrarDescPorApuestaSegura(apuesta);						
+					this.cobrarDescPorApuestaSegura(apuesta);
 				}
-			}				
+			}
 		}
 
-		private void cobrarDescPorApuestaSegura(Apuesta apuesta) {	
+		private void cobrarDescPorApuestaSegura(Apuesta apuesta) {
 			apuesta.getUsuario().decrementarMontoWallet((apuesta.ganaciaNeta()*15) / 100);
 		}
 
 
-		/* 
+		/*
 		 * Metodos invocados por EstadoPartido
 		 */
 
 		public void registrarNuevaApuesta(ApuestaSegura nuevaApuesta) {
-			this.apuestasRealizadas.add(nuevaApuesta);		
+			this.apuestasRealizadas.add(nuevaApuesta);
 		}
 
 
 		public void cobrarPenalidadApuestaCanceladaConPartidoEnCurso(ApuestaSegura apuestaACancelar) {
 			// si el partido esta en curso y el usuario la cancela, se le descuenta el 15% de lo que apostó.
 		apuestaACancelar.getUsuario().decrementarMontoWallet((apuestaACancelar.ganaciaNeta()*15) / 100);
-			
+
 		}
-		
+
 		public void cobrarPenalidadApuestaCanceladaConPartidoProximo(ApuestaSegura apuestaACancelar) {
 			// si el partido esta en curso y el usuario la cancela, se le descuenta el 15% de lo que apostó.
 		apuestaACancelar.getUsuario().decrementarMontoWallet(200.00);
-			
+
+		}
+
+		// Retorna la fecha del partido
+		public Date getFecha() {
+			return (this.partido.getFechaDate());
+		}
+
+
+		public ArrayList<Usuario> getUsuarios() {
+			ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+
+			for (Apuesta apuesta : this.apuestasRealizadas) {
+				usuarios.add(apuesta.getUsuario());
+			}
+
+			return usuarios;
 		}
 
 
 
-		
-		
+
+
 }

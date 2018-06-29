@@ -1,4 +1,4 @@
-package casaApuesta;
+package models.casaApuesta;
 
 
 /*
@@ -17,27 +17,31 @@ package casaApuesta;
 // Importa utilidades java
 import java.util.ArrayList;
 
-import cuota.AdminCuota;
-import deporte.Deporte;
-import evento.Evento;
-import juego.Partido;
-import probabilidad.AlgoritmoProbabilidad;
-import proveedores.Proveedor;
+import models.apuesta.Apuesta;
+import models.balance.BalanceManager;
+import models.cuota.AdminCuota;
+import models.deporte.Deporte;
+import models.evento.Evento;
+import models.juego.Partido;
+import models.probabilidad.AlgoritmoProbabilidad;
+import models.proveedores.Proveedor;
+import models.usuario.Usuario;
 
 public class CasaApuesta {
 	
-	ArrayList<Evento> eventos;
+	ArrayList<Evento> eventos = new ArrayList<Evento>();
 	Proveedor proveedorDataPartidos;
 	ArrayList<Deporte> deportesQueParticipan;
 	AdminCuota administradorCuotasEventos;
 	AlgoritmoProbabilidad algoritmoProbabilidadSeteado;
+	BalanceManager balanceador;
 	
 	// Constructor
 	public CasaApuesta(Proveedor proveedorDataPartidos, AlgoritmoProbabilidad algoritmoProbabilidadASetear ) {
 		this.proveedorDataPartidos = proveedorDataPartidos; 
 		this.algoritmoProbabilidadSeteado = algoritmoProbabilidadASetear;
 		this.administradorCuotasEventos = new AdminCuota(this.proveedorDataPartidos, this.algoritmoProbabilidadSeteado);
-
+		this.balanceador = new BalanceManager();
 	}
 	
 	public AdminCuota getAdminCuota() {
@@ -67,6 +71,35 @@ public class CasaApuesta {
 	public AlgoritmoProbabilidad getAlgoritmoProbabilidad() {
 		return(this.algoritmoProbabilidadSeteado);
 	}
+	
+	// Realiza Todos los balances de la Casa de Apuesta
+	public void balanceMensual() {
+		ArrayList<Apuesta> apuestas = this.getApuestas();
+		
+		for (Usuario user : this.getUsuarios()) {
+			this.balanceador.enviarBalance(user, apuestas);
+		}
+	}
+
+	// Retorna la lista de Apuestas
+	public ArrayList<Apuesta> getApuestas() {
+		ArrayList<Apuesta> apuestas = new ArrayList<Apuesta>();
+		for (Evento event : this.eventos) {
+			apuestas.addAll(event.getApuestasRealizadas());
+		}
+		return apuestas;
+	}
+
+	// Retorna una lista de usuarios
+	public ArrayList<Usuario> getUsuarios() {
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		for (Evento event : this.eventos) {
+			usuarios.addAll(event.getUsuarios());
+		}
+		return usuarios;
+	}
+	
+	
 }
 
 

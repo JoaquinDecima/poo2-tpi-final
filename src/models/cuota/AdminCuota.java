@@ -1,7 +1,4 @@
-package cuota;
-
-
-import apuesta.Apuesta;
+package models.cuota;
 
 /*
  
@@ -17,9 +14,9 @@ import apuesta.Apuesta;
  */
 
 
-import juego.Partido;
-import probabilidad.AlgoritmoProbabilidad;
-import proveedores.Proveedor;
+import models.juego.Partido;
+import models.probabilidad.AlgoritmoProbabilidad;
+import models.proveedores.Proveedor;
 
 public class AdminCuota {
 	protected Proveedor proveedorDataPartidos;

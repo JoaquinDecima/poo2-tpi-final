@@ -9,22 +9,16 @@
  *        Otarola, Florencia
  */
 
-package juego;
+package models.juego;
 
 import java.util.ArrayList;
 // Importa utilidades Java
 import java.util.Date;
 
-import apuesta.ApuestaSegura;
-import apuesta.OpcionApuesta;
-import competidor.Competidor;
-import deporte.Deporte;
-import juego.estado.EnCurso;
-import juego.estado.EstadoPartido;
-import juego.estado.Finalizado;
-import juego.estado.Proximo;
-import juego.resultado.Resultado;
-import usuario.Usuario;
+import models.competidor.Competidor;
+import models.deporte.Deporte;
+import models.juego.estado.*;
+import models.juego.resultado.Resultado;
 
 public class Partido{
   private Competidor local;
@@ -34,7 +28,7 @@ public class Partido{
   private String lugar;
   private EstadoPartido estado;
   private Resultado resultado;
-  private ArrayList<ISubscriptorPartido> subscriptores; 
+  private ArrayList<ISubscriptorPartido> subscriptores = new ArrayList<ISubscriptorPartido>();
 
 
   public Partido(Competidor cLocal, Competidor cVisitante, Deporte dDeporte, Date dFecha, String sLugar) {
@@ -46,36 +40,35 @@ public class Partido{
     this.estado = new Proximo();
   }
 
-  
+
   /*
-   * El estado del partido se implementa a través de patron de diseño State. Así surgen tres estados posibles, 
-   * cada uno indica que acciones se ejecutan cuando cambia el estado del partido. 
+   * El estado del partido se implementa a través de patron de diseño State. Así surgen tres estados posibles,
+   * cada uno indica que acciones se ejecutan cuando cambia el estado del partido.
    * Determinan las acciones posibles en cada estado.
-   * 
+   *
    *
    */
-  
+
   /*
    * Metodos que retornan info del partido
    */
-  
-  
-  
+
+
   // Retorna el competidor Local
   public Competidor getLocal() {
     return (this.local);
   }
-  
+
   // Retorna el competidor Visitante
   public Competidor getVisitante() {
     return (this.visitante);
   }
-  
+
 //Retorna el lugar de Juego
  public String getLugarDeJuego() {
 	  return (this.lugar);
  }
- 
+
  // Retorna True si el competidor participa
  public Boolean juega(Competidor competidor){
    return(this.getLocal() == competidor || this.getVisitante() == competidor);
@@ -90,7 +83,7 @@ public class Partido{
  public Boolean ganaLocal() {
 	  return (this.resultado.ganaCompetidor() == this.getLocal());
  }
- 
+
  // Retorna True si gana visitante status actual
  public Boolean ganaVisitante() {
 	  return (this.resultado.ganaCompetidor() == this.getVisitante());
@@ -119,42 +112,41 @@ public class Partido{
 	public Deporte getDeporte() {
 		return this.deporte;
 	}
-	
+
 	public boolean huboEmpate() {
 		return this.resultado.empate();
 	}
-
 
   // Retorna estado del partido
   public EstadoPartido getEstado() {
     return (this.estado);
   }
-  
+
   /*
    * Metodos setters
    */
-  
+
   // Setea el estado del partido y handlea acciones que deben darse cuando cambia al nuevo estado
   public void setEstado(EstadoPartido estadoNew) {
 	  this.estado = estadoNew;
 	  this.estado.accionar(this);
   }
-  
+
   public void setResultado(Resultado resultadoPartido) {
 	  this.resultado = resultadoPartido;
   }
-  
- 
-  
-  
+
+
+
+
   /*
    * Metodos que dependen del estado del partido, y por ello se delegan en el mismo.
    */
-  
-  
+
+
   // Delega el mensaje a su estado interno y retorna el resultado actual del partido
   public Resultado getResultado() {
-	  return this.estado.resultadoPartido(this);
+	  return this.getEstado().resultadoPartido(this);
   }
 
   // metodo invocado por el usuario
@@ -162,21 +154,21 @@ public class Partido{
 	  	ApuestaSegura nuevaApuesta = this.estado.addApuestaSegura(usuario, opcionApuesta, monto);
 		return nuevaApuesta;
   }
-  
+
   //metodo invocado por el usuario
 	public void cancelarApuestaSegura(ApuestaSegura apuestaACancelar) throws Exception {
 		this.estado.cancelarApuestaSegura(apuestaACancelar);
 	}
-	
+
 	// Reactiva una apuesta ya cancelada. Cambia el estado de la apuesta: se activa.
 			// Invariante: se debe tratar de una apuesta cancelada.
 	public void reactivarApuestaSegura(ApuestaSegura apuestaAReactivar) throws Exception {
 		this.estado.reactivarApuestaSegura(apuestaAReactivar);
 	}
 
- 
-  
-	
+
+
+
   /*
    * Implementa metodos de notificacion a subscriptores (como CasaApuestas)
    */
@@ -184,16 +176,16 @@ public class Partido{
 	public void notificarFinalSubscriptores() {
 		this.subscriptores.forEach(subscriptor->subscriptor.updateFinalPartido());
 	}
-	
+
 
 	public void addSubscriptor(ISubscriptorPartido subscriptor) {
 		this.subscriptores.add(subscriptor);
-		
+
 	}
 
 
 	public boolean enCurso() {
-		
+
 		return this.estado instanceof EnCurso;
 	}
 
@@ -202,14 +194,11 @@ public class Partido{
 		return this.estado instanceof Finalizado;
 	}
 
-
-	public ArrayList<ISubscriptorPartido> getSubscriptores() {
-		return this.subscriptores;
+	public Date getFechaDate() {
+		return (this.fecha);
 	}
 
-
+	public ArrayList<ISubscriptorPartido> getSubscriptores(){
+		return(this.subscriptores);
+	}
 }
-
-
-
-

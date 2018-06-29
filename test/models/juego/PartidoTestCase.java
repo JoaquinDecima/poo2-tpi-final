@@ -23,27 +23,27 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.mockito.asm.tree.analysis.AnalyzerException;
 
-import apuesta.OpcionApuesta;
-import competidor.Competidor;
-import deporte.Deporte;
-import evento.Evento;
-import juego.Partido;
-import juego.estado.EnCurso;
-import juego.estado.Finalizado;
-import juego.resultado.Resultado;
-import usuario.Usuario;
+import models.competidor.Competidor;
+import models.deporte.Deporte;
+import models.juego.ISubscriptorPartido;
+import models.juego.Partido;
+import models.juego.estado.EstadoPartido;
+import models.juego.resultado.Resultado;
 
 public class PartidoTestCase {
 	private Competidor local = mock(Competidor.class) ;
 	private Competidor visitante = mock(Competidor.class);
-	private Evento mockEvento = mock(Evento.class);
-	
+	private Competidor otroEquipo = mock(Competidor.class);
+
 	private Deporte deporte = mock(Deporte.class);
+	@SuppressWarnings("deprecation")
 	private Date fecha = new Date(2018, 06, 23); // Se crea para tener la fecha
 	private Partido partido = new Partido(local, visitante, deporte, fecha, "Quilmes");
 	private Usuario usuario = mock(Usuario.class);
 	private Resultado resultado = mock(Resultado.class);
-	private OpcionApuesta mockOpcionApuesta = mock(OpcionApuesta.class);
+	private EstadoPartido estado = mock(EstadoPartido.class);
+
+	private ISubscriptorPartido subscriptor = mock(ISubscriptorPartido.class);
 
 	@Test
 	public void testPartidoDevuelveLocal() {
@@ -67,47 +67,115 @@ public class PartidoTestCase {
 		assertTrue(partido.juega(local));
 		assertTrue(partido.juega(visitante));
 		assertTrue(partido.juegan(local, visitante));
+
+		assertFalse(partido.juega(otroEquipo));
+		assertFalse(partido.juegan(local, otroEquipo));
+		assertFalse(partido.juegan(otroEquipo, local));
+		assertFalse(partido.juegan(otroEquipo, otroEquipo));
+		assertFalse(partido.juegan(local, local));
+		assertFalse(partido.juegan(visitante, otroEquipo));
+		assertFalse(partido.juegan(otroEquipo, visitante));
+		assertFalse(partido.juegan(visitante, visitante));
+
 	}
-	
+
 	@Test
 	public void testPartidoRetornaLugar() {
 		assertEquals(partido.getLugarDeJuego(), "Quilmes");
 	}
-	
+
 	@Test
 	public void testPartidoPreguntaDeporte() {
 		when(deporte.esDeporte(deporte)).thenReturn(true);
-		
+
 		assertTrue(partido.esDeporte(deporte));
 		assertEquals(partido.getDeporte(), deporte);
 	}
-	
+
 	@Test
-	public void testPartidoPreguntaEsLocal() {		
+	public void testPartidoPreguntaEsLocal() {
 		assertTrue(partido.esLocal(local));
 		assertTrue(!partido.esLocal(visitante));
 	}
-	
+
 	@Test
-	public void testPartidoPreguntaEsVisitante() {		
+	public void testPartidoPreguntaEsVisitante() {
 		assertTrue(!partido.esVisitante(local));
 		assertTrue(partido.esVisitante(visitante));
 	}
-	
+
 	@Test
-	public void testCuandoUsuarioSolicitaHacerApuestaSeguraConPartidoEnCursoSeLanzaExcepcion() {	
+	public void testGetYSetResultado() {
+		partido.setResultado(resultado);
+		partido.setEstado(estado);
+
+		when(estado.resultadoPartido(partido)).thenReturn(resultado);
+
+		assertEquals(partido.getResultado(), resultado);
+	}
+
+	@Test
+	public void testGanaLocal() {
+		partido.setResultado(resultado);
+
+		when(resultado.ganaCompetidor()).thenReturn(local);
+		assertTrue(partido.ganaLocal());
+
+		when(resultado.ganaCompetidor()).thenReturn(visitante);
+		assertFalse(partido.ganaLocal());
+	}
+
+	@Test
+	public void testGanaVisitante() {
+		partido.setResultado(resultado);
+
+		when(resultado.ganaCompetidor()).thenReturn(visitante);
+		assertTrue(partido.ganaVisitante());
+
+		when(resultado.ganaCompetidor()).thenReturn(local);
+		assertFalse(partido.ganaVisitante());
+	}
+
+	@Test
+	public void testHuboEmpate() {
+		partido.setResultado(resultado);
+
+		when(resultado.empate()).thenReturn(true);
+		assertTrue(partido.huboEmpate());
+
+		when(resultado.empate()).thenReturn(false);
+		assertFalse(partido.huboEmpate());
+	}
+
+	@Test
+	public void testEsProximo() {
+		assertTrue(partido.esProximo());
+	}
+
+	@Test
+	public void testGetFechaDate() {
+		assertEquals(partido.getFechaDate(), this.fecha);
+	}
+
+	@Test
+	public void testSuscriptores() {
+		assertEquals(partido.getSubscriptores().size(), 0);
+		partido.addSubscriptor(subscriptor);
+		assertEquals(partido.getSubscriptores().size(), 1);
+
+		partido.notificarFinalSubscriptores();
+	}
+
+	public void testCuandoUsuarioSolicitaHacerApuestaSeguraConPartidoEnCursoSeLanzaExcepcion() {
 		partido.setEstado(new EnCurso());
 		usuario.hacerApuestaSegura(mockOpcionApuesta, 20);
 		//TODO:verificar excepcion??
 	}
-	
+
 	@Test
-	public void testUnPartidoPuedeAñadirSubscriptores() {	
+	public void testUnPartidoPuedeAñadirSubscriptores() {
 		partido.addSubscriptor(mockEvento);
 		verify((partido.getSubscriptores()).contains(mockEvento));
 	}
-	
-	
-	
 	
 }

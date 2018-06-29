@@ -22,11 +22,11 @@ import java.util.Date;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import competidor.Competidor;
-import deporte.Deporte;
-import juego.Partido;
+import models.competidor.Competidor;
+import models.deporte.Deporte;
+import models.juego.Partido;
 // Importa del Modelo
-import proveedores.ProveedorDePartido;
+import models.proveedores.ProveedorDePartido;
 
 public class ProveedorDePartidoTestCase {
 	private ProveedorDePartido partidos = new ProveedorDePartido();
@@ -78,6 +78,7 @@ public class ProveedorDePartidoTestCase {
 		assertEquals(partidos.getPartidosDeDeporte(deporte1), listapartidos);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testPartidosDeFecha(){
 		partidos.addPartido(partido1);

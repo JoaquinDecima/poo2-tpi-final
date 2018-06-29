@@ -13,11 +13,8 @@ package models.deporte;
 
 import static org.junit.Assert.*;
 
-// Importa desde org
 import org.junit.Test;
 
-// Importa del Modelo
-import deporte.*;
 
 public class FutbolTestCase {
 	private Futbol deporte = new Futbol();

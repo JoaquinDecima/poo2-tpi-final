@@ -5,8 +5,8 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
-import competidor.Competidor;
-import juego.resultado.ResultadoSinEmpate;
+import models.competidor.Competidor;
+import models.juego.resultado.ResultadoSinEmpate;
 
 public class ResultadoSinEmpateTestCase {
 	private Competidor local = mock(Competidor.class);
@@ -15,6 +15,16 @@ public class ResultadoSinEmpateTestCase {
 	
 	@Test
 	public void test() {
-		assertTrue(!resultado.empate());
+		assertFalse(resultado.empate());
+	}
+	
+	@Test
+	public void testGanador() {
+		assertEquals(resultado.ganaCompetidor(),local);
+	}
+	
+	@Test
+	public void testPerdedor() {
+		assertEquals(resultado.pierdeCompetidor(),visitante);
 	}
 }

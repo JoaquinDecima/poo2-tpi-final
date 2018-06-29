@@ -9,10 +9,10 @@
  *        Otarola, Florencia
  */
 
-package probabilidad;
+package models.probabilidad;
 
-import juego.Partido;
-import proveedores.Proveedor;
+import models.juego.Partido;
+import models.proveedores.Proveedor;
 
 // Por error de implementaicon cuenta con margen de error inversamente propocional a la cantidad de partidos jugados
 public class AlgoritmoProbabilidadHistoricaDirecta implements AlgoritmoProbabilidad {

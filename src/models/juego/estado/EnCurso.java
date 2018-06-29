@@ -9,22 +9,18 @@
  *        Otarola, Florencia
  */
 
-package juego.estado;
+package models.juego.estado;
 
-import apuesta.ApuestaSegura;
-import apuesta.OpcionApuesta;
-import evento.Evento;
-import juego.Partido;
-import juego.resultado.Resultado;
-import usuario.Usuario;
+import models.juego.Partido;
+import models.juego.resultado.Resultado;
 
 public class EnCurso implements EstadoPartido {
 	@Override
 	public Resultado resultadoPartido(Partido partido) {
-		return partido.getResultado();		
+		return partido.getResultado();
 	}
 
-	
+
 	// Retorna el estado del partido
 	// Importante para Test
 	public String getEstado() {
@@ -34,25 +30,25 @@ public class EnCurso implements EstadoPartido {
 	@Override
 	public void accionar(Partido partido) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public ApuestaSegura addApuestaSegura(Usuario usuario, OpcionApuesta opcionApuesta, double monto) throws Exception {
 		throw new Exception();
-		
+
 	}
 
 	@Override
 	public void reactivarApuestaSegura(ApuestaSegura apuestaAReactivar) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void cancelarApuestaSegura(ApuestaSegura apuestaACancelar) {
 		apuestaACancelar.cambiarStatus();
-		apuestaACancelar.getEvento().cobrarPenalidadApuestaCanceladaConPartidoEnCurso(apuestaACancelar);				
+		apuestaACancelar.getEvento().cobrarPenalidadApuestaCanceladaConPartidoEnCurso(apuestaACancelar);
 	}
 
 }

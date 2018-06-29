@@ -9,13 +9,13 @@
  *        Otarola, Florencia
  */
 
-package proveedores;
+package models.proveedores;
 
 // Importa utilidades Java
 import java.util.ArrayList;
 
-import competidor.Competidor;
-import juego.Partido;
+import models.competidor.Competidor;
+import models.juego.Partido;
 
 
 

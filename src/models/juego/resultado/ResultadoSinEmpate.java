@@ -1,6 +1,6 @@
-package juego.resultado;
+package models.juego.resultado;
 
-import competidor.Competidor;
+import models.competidor.Competidor;
 
 public class ResultadoSinEmpate extends Resultado {
 

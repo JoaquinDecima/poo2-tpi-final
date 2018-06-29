@@ -9,7 +9,7 @@
  *        Otarola, Florencia
  */
 
-package deporte;
+package models.deporte;
 
 public class Futbol extends Deporte{
 
