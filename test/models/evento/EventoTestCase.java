@@ -5,12 +5,15 @@ import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import models.cuota.AdminCuota;
 import models.evento.Evento;
 import models.juego.Partido;
+import models.usuario.Usuario;
 import models.apuesta.Apuesta;
+import models.apuesta.opcion.OpcionApuesta;
 import models.competidor.Competidor;
 
 public class EventoTestCase {

@@ -28,6 +28,7 @@ import models.competidor.Competidor;
 import models.deporte.Deporte;
 import models.juego.ISubscriptorPartido;
 import models.juego.Partido;
+import models.juego.estado.EnCurso;
 import models.juego.estado.EstadoPartido;
 import models.juego.resultado.Resultado;
 import models.usuario.Usuario;

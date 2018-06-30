@@ -7,13 +7,18 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.mock;
 
+import java.sql.Date;
+
 import org.junit.Test;
 
 import models.apuesta.ApuestaSegura;
 import models.apuesta.opcion.OpcionApuesta;
 import models.casaApuesta.CasaApuesta;
+import models.competidor.Competidor;
+import models.deporte.Deporte;
 import models.evento.Evento;
 import models.juego.Partido;
+import models.juego.estado.EnCurso;
 import models.usuario.Usuario;
 
 
