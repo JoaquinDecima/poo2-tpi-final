@@ -2,6 +2,7 @@ package models.juego.estado;
 
 import models.juego.resultado.ResultadoNull;
 import models.usuario.Usuario;
+import models.apuesta.Apuesta;
 import models.apuesta.ApuestaSegura;
 import models.apuesta.opcion.OpcionApuesta;
 import models.juego.Partido;
@@ -48,6 +49,13 @@ public class Proximo implements EstadoPartido {
 		// TODO Auto-generated method stub
 
 	}
+
+
+	@Override
+	public void addApuesta(Usuario usuario, OpcionApuesta opcionApuesta, double monto) throws Exception {
+		ApuestaSegura nuevaApuesta = new ApuestaSegura(usuario, opcionApuesta, monto);
+		opcionApuesta.getEvento().apuestasRealizadas.add(nuevaApuesta);
+		}
 }
 
 //devuelve resultado nll object

@@ -6,6 +6,7 @@ package models.usuario;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 import java.sql.Date;
 
@@ -19,6 +20,8 @@ import models.deporte.Deporte;
 import models.evento.Evento;
 import models.juego.Partido;
 import models.juego.estado.EnCurso;
+import models.juego.resultado.Resultado;
+import models.juego.resultado.ResultadoConEmpate;
 import models.usuario.Usuario;
 
 
@@ -28,12 +31,13 @@ public class UsuarioTestCase {
 	private CasaApuesta mockCasaApuesta = mock(CasaApuesta.class);
 	private Partido mockPartido = mock(Partido.class);
 	private Evento evento = new Evento(mockPartido, mockCasaApuesta.getAdminCuota());
-	private OpcionApuesta mockOpcionApuesta = mock(OpcionApuesta.class);
 	private Competidor local = mock(Competidor.class) ;
 	private Competidor visitante = mock(Competidor.class);
 	private Deporte deporte = mock(Deporte.class);
 	private Date fecha = new Date(2018, 06, 23); // Se crea para tener la fecha
 	private Partido partido = new Partido(local, visitante, deporte, fecha, "Quilmes");
+	private Resultado resultadoPosible = mock(ResultadoConEmpate.class);
+	private OpcionApuesta opcionApuesta = new OpcionApuesta(partido, resultadoPosible, 10.00);
 
 
 	@Test
@@ -47,7 +51,7 @@ public class UsuarioTestCase {
 		// chequeo que el usuario no ha hecho apuestas en evento
 		assertEquals(0, evento.getApuestasUsuario(usuario).size(), 0);
 		// usuario hace apuestaSegura en evento
-		usuario.hacerApuestaSegura(mockOpcionApuesta, 150.00);
+		usuario.hacerApuesta(opcionApuesta, 150.00);
 		// compruebo que se han descontado 150 pesos de wallet de usuario
 		assertEquals(usuario.getMontoWallet(), 50.00, 50.00);
 		// compruebo que ha quedado registrada en el evento la apuesta hecha
@@ -69,4 +73,13 @@ public class UsuarioTestCase {
 		usuario.setEmail("diego@gmail.com");
 		assertEquals(usuario.getEmail(), "diego@gmail.com");
 	}
+	
+	@Test
+	public void testCuandoUnUsuarioHaceUnaApuestaSeRegistraEnSuHistorialDeApuestas() {
+		assertEquals(0, usuario.getApuestasHechas().size(), 0);
+		usuario.hacerApuesta(opcionApuesta, 150.00);
+		assertEquals(1, usuario.getApuestasHechas().size(), 1);		
+	}
+
+	
 }

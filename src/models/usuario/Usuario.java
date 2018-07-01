@@ -1,6 +1,8 @@
 package models.usuario;
 
 
+import java.util.ArrayList;
+
 import models.apuesta.*;
 import models.apuesta.opcion.OpcionApuesta;
 import models.evento.Evento;
@@ -11,11 +13,13 @@ public class Usuario {
 	private String nombre;
 	private String email;
 	private Double wallet;
+	private ArrayList<Apuesta> apuestasRealizadas;
 
 	public Usuario(String nombre, String sEmail) {
 		this.nombre = nombre;
 		this.email = sEmail;
 		this.wallet = 0.00;
+		this.apuestasRealizadas = new ArrayList<Apuesta>();
 
 	}
 
@@ -44,23 +48,28 @@ public class Usuario {
 	public Double getMontoWallet() {
 		return wallet;
 	}
-
-
+	
 	/*
-	 * metodos sobre apuestas seguras
+	 * metodos sobre apuestas
 	 */
-
+	
 	// usuario crea apuesta solo si el partido no ha comenzado. Accion que se delega en el partido, pues
-	// depende del estado del mismo.
-	public void hacerApuestaSegura(OpcionApuesta opcionApuesta, double monto) {
+	public void hacerApuesta(OpcionApuesta opcionApuesta, double monto) {		
 		try {
-			opcionApuesta.getPartido().addApuestaSegura(this, opcionApuesta, monto);
+			// puede arrojar excepcion
+			opcionApuesta.getPartido().addApuesta(this, opcionApuesta, monto);
+			
 			this.decrementarMontoWallet(monto);
 		} catch (Exception e) {
 			System.out.println("El evento ya no permite hacer apuestas.");
 			e.printStackTrace();
 		}
+		
 	}
+
+	/*
+	 * metodos sobre apuestas seguras
+	 */
 
 	public void cancelarApuesta(ApuestaSegura apuestaACancelar) {
 		try {
@@ -79,4 +88,11 @@ public class Usuario {
 			e.printStackTrace();
 		}
 	}
+
+	public ArrayList<Apuesta> getApuestasHechas() {
+		return this.apuestasRealizadas;
+	}
+	
+
+
 }

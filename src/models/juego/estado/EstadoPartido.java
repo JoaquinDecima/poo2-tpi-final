@@ -11,6 +11,7 @@
 
 package models.juego.estado;
 
+import models.apuesta.Apuesta;
 import models.apuesta.ApuestaSegura;
 import models.apuesta.opcion.OpcionApuesta;
 import models.juego.Partido;
@@ -30,6 +31,8 @@ public interface EstadoPartido {
 	void reactivarApuestaSegura(ApuestaSegura apuestaAReactivar) throws Exception;
 
 	void cancelarApuestaSegura(ApuestaSegura apuestaACancelar) throws Exception;
+
+	void addApuesta(Usuario usuario, OpcionApuesta opcionApuesta, double monto) throws Exception;
 
 
 }

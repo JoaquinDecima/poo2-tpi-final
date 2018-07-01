@@ -15,6 +15,7 @@ import java.util.ArrayList;
 // Importa utilidades Java
 import java.util.Date;
 
+import models.apuesta.Apuesta;
 import models.apuesta.ApuestaSegura;
 import models.apuesta.opcion.OpcionApuesta;
 import models.competidor.Competidor;
@@ -203,5 +204,16 @@ public class Partido{
 
 	public ArrayList<ISubscriptorPartido> getSubscriptores(){
 		return(this.subscriptores);
+	}
+
+
+	public void addApuesta(Usuario usuario, OpcionApuesta opcionApuesta, double monto) throws Exception {
+		try {
+		this.estado.addApuesta(usuario, opcionApuesta, monto);
+		} catch (Exception e) {
+			System.out.println("El evento ya no permite hacer apuestas.");
+			e.printStackTrace();
+			throw new Exception();
+		}
 	}
 }

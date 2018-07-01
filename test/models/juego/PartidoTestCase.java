@@ -171,7 +171,7 @@ public class PartidoTestCase {
 
 	public void testCuandoUsuarioSolicitaHacerApuestaSeguraConPartidoEnCursoSeLanzaExcepcion() {
 		partido.setEstado(new EnCurso());
-		usuario.hacerApuestaSegura(mockOpcionApuesta, 20);
+		usuario.hacerApuesta(mockOpcionApuesta, 20);
 		//TODO:verificar excepcion??
 	}
 

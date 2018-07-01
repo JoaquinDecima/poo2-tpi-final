@@ -11,6 +11,7 @@
 
 package models.juego.estado;
 
+import models.apuesta.Apuesta;
 import models.apuesta.ApuestaSegura;
 import models.apuesta.opcion.OpcionApuesta;
 import models.juego.Partido;
@@ -52,6 +53,12 @@ public class EnCurso implements EstadoPartido {
 	public void cancelarApuestaSegura(ApuestaSegura apuestaACancelar) {
 		apuestaACancelar.updateEstado();
 		apuestaACancelar.getEvento().cobrarPenalidadApuestaCanceladaConPartidoEnCurso(apuestaACancelar);
+	}
+
+
+	@Override
+	public Apuesta addApuesta(Usuario usuario, OpcionApuesta opcionApuesta, double monto) throws Exception {
+		throw new Exception();
 	}
 
 }
