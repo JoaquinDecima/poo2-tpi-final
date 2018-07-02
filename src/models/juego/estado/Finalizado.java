@@ -27,12 +27,6 @@ public class Finalizado implements EstadoPartido {
 		return("Finalizado");
 	}
 
-	@Override
-	public ApuestaSegura addApuestaSegura(Usuario usuario, OpcionApuesta opcionApuesta, double monto) throws Exception {
-	// si el partido ha finalizado, entonces se lanza excepcion pues ya no es posible hacer apuesta sobre el mismo.
-		throw new Exception();
-
-	}
 
 	@Override
 	public void reactivarApuestaSegura(ApuestaSegura apuestaAReactivar) throws Exception {
@@ -43,5 +37,11 @@ public class Finalizado implements EstadoPartido {
 	@Override
 	public void cancelarApuestaSegura(ApuestaSegura apuestaACancelar) throws Exception {
 		throw new Exception();
+	}
+
+	@Override
+	public void addApuesta(Usuario usuario, OpcionApuesta opcionApuesta, double monto, boolean esSegura) throws Exception {
+		throw new Exception();
+		
 	}
 }

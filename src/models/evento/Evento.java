@@ -36,9 +36,9 @@ import models.usuario.Usuario;
 
 public class Evento implements ISubscriptorPartido {
 
-		Partido partido;
-		AdminCuota adminCuotasApuestasPosibles;
-		public ArrayList<Apuesta> apuestasRealizadas;
+		private Partido partido;
+		private AdminCuota adminCuotasApuestasPosibles;
+		private ArrayList<Apuesta> apuestasRealizadas;
 		ArrayList<OpcionApuesta> opcionesApuestasPosibles;
 
 
@@ -47,6 +47,7 @@ public class Evento implements ISubscriptorPartido {
 			this.adminCuotasApuestasPosibles = cuotasResultadosPosibles;
 			this.partido = partidoDelEvento;
 			this.apuestasRealizadas = new ArrayList<Apuesta>();
+			this.opcionesApuestasPosibles = new ArrayList<OpcionApuesta>();
 			}
 
 
@@ -55,7 +56,7 @@ public class Evento implements ISubscriptorPartido {
 		 */
 
 		public Partido getPartidoDelEvento() {
-			return this.partido;
+			return (this.partido);
 		}
 
 		public ArrayList<OpcionApuesta> getOpcionesResultadosPosibles() {
@@ -143,21 +144,21 @@ public class Evento implements ISubscriptorPartido {
 		private OpcionApuesta calcularOpcionEmpate() {
 			Resultado resultadoEmpate = this.getResultadoEmpate();
 			Double cuotaEmpate = this.getCuotaPorEmpate();
-			OpcionApuesta opcionEmpate = new OpcionApuesta(this.partido, resultadoEmpate, cuotaEmpate);
+			OpcionApuesta opcionEmpate = new OpcionApuesta(this, resultadoEmpate, cuotaEmpate);
 			return opcionEmpate;
 		}
 
 		private OpcionApuesta calcularOpcionVictoriaVisitante() {
 			Resultado resultadoVictoriaVisitante = this.getResultadoVictoriaVisitante();
 			Double cuotaVictoriaVisitante = this.getCuotaPorVictoriaVisitante();
-			OpcionApuesta opcionVictoriaVisitante = new OpcionApuesta(this.partido, resultadoVictoriaVisitante, cuotaVictoriaVisitante);
+			OpcionApuesta opcionVictoriaVisitante = new OpcionApuesta(this, resultadoVictoriaVisitante, cuotaVictoriaVisitante);
 			return opcionVictoriaVisitante;
 		}
 
 		private OpcionApuesta calcularOpcionVictoriaLocal() {
 			Resultado resultadoVictoriaLocal = this.getResultadoVictoriaLocal();
 			Double cuotaVictoriaLocal = this.getCuotaPorVictoriaLocal();
-			OpcionApuesta opcionVictoriaLocal = new OpcionApuesta(this.partido, resultadoVictoriaLocal, cuotaVictoriaLocal);
+			OpcionApuesta opcionVictoriaLocal = new OpcionApuesta(this, resultadoVictoriaLocal, cuotaVictoriaLocal);
 			return opcionVictoriaLocal;
 		}
 

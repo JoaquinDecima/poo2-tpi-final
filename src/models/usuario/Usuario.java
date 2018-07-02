@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import models.apuesta.*;
 import models.apuesta.opcion.OpcionApuesta;
-import models.evento.Evento;
 
 
 public class Usuario {
@@ -54,10 +53,10 @@ public class Usuario {
 	 */
 	
 	// usuario crea apuesta solo si el partido no ha comenzado. Accion que se delega en el partido, pues
-	public void hacerApuesta(OpcionApuesta opcionApuesta, double monto) {		
+	public void hacerApuesta(OpcionApuesta opcionApuesta, double monto, boolean esSegura) {		
 		try {
 			// puede arrojar excepcion
-			opcionApuesta.getPartido().addApuesta(this, opcionApuesta, monto);
+			opcionApuesta.getPartido().addApuesta(this, opcionApuesta, monto, esSegura);
 			
 			this.decrementarMontoWallet(monto);
 		} catch (Exception e) {

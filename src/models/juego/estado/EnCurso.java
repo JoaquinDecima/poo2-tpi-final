@@ -11,7 +11,6 @@
 
 package models.juego.estado;
 
-import models.apuesta.Apuesta;
 import models.apuesta.ApuestaSegura;
 import models.apuesta.opcion.OpcionApuesta;
 import models.juego.Partido;
@@ -37,11 +36,6 @@ public class EnCurso implements EstadoPartido {
 
 	}
 
-	@Override
-	public ApuestaSegura addApuestaSegura(Usuario usuario, OpcionApuesta opcionApuesta, double monto) throws Exception {
-		throw new Exception();
-
-	}
 
 	@Override
 	public void reactivarApuestaSegura(ApuestaSegura apuestaAReactivar) {
@@ -57,8 +51,14 @@ public class EnCurso implements EstadoPartido {
 
 
 	@Override
-	public Apuesta addApuesta(Usuario usuario, OpcionApuesta opcionApuesta, double monto) throws Exception {
-		throw new Exception();
+	public void addApuesta(Usuario usuario, OpcionApuesta opcionApuesta, double monto, boolean esSegura)
+			throws Exception {
+		throw new Exception();		
 	}
+
+
+
+
+
 
 }

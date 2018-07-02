@@ -21,15 +21,19 @@ import java.util.Date;
 
 // Importa desde org
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
 import org.mockito.asm.tree.analysis.AnalyzerException;
 
+import models.apuesta.opcion.OpcionApuesta;
 import models.competidor.Competidor;
 import models.deporte.Deporte;
+import models.evento.Evento;
 import models.juego.ISubscriptorPartido;
 import models.juego.Partido;
 import models.juego.estado.EnCurso;
 import models.juego.estado.EstadoPartido;
+import models.juego.estado.Proximo;
 import models.juego.resultado.Resultado;
 import models.usuario.Usuario;
 
@@ -45,6 +49,8 @@ public class PartidoTestCase {
 	private Usuario usuario = mock(Usuario.class);
 	private Resultado resultado = mock(Resultado.class);
 	private EstadoPartido estado = mock(EstadoPartido.class);
+	private Evento mockEvento = mock(Evento.class);
+	private OpcionApuesta opcionApuesta = new OpcionApuesta(mockEvento, resultado, 100.00);
 
 	private ISubscriptorPartido subscriptor = mock(ISubscriptorPartido.class);
 
@@ -62,7 +68,7 @@ public class PartidoTestCase {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testPartidoDevuelveFechaDeJuego() {
-		assertEquals(partido.getFecha(), this.fecha.getDate());
+		assertEquals(partido.getFecha().getDate(), this.fecha.getDate());
 	}
 
 	@Test
@@ -150,11 +156,7 @@ public class PartidoTestCase {
 		assertFalse(partido.huboEmpate());
 	}
 
-	@Test
-	public void testEsProximo() {
-		assertTrue(partido.esProximo());
-	}
-
+	
 	@Test
 	public void testGetFechaDate() {
 		assertEquals(partido.getFechaDate(), this.fecha);
@@ -168,17 +170,19 @@ public class PartidoTestCase {
 
 		partido.notificarFinalSubscriptores();
 	}
-
+	
+	ExpectedException Exception;
 	public void testCuandoUsuarioSolicitaHacerApuestaSeguraConPartidoEnCursoSeLanzaExcepcion() {
 		partido.setEstado(new EnCurso());
-		usuario.hacerApuesta(mockOpcionApuesta, 20);
-		//TODO:verificar excepcion??
+		usuario.hacerApuesta(opcionApuesta, 20);
+		
 	}
+	
 
 	@Test
 	public void testUnPartidoPuedeAñadirSubscriptores() {
 		partido.addSubscriptor(mockEvento);
-		verify((partido.getSubscriptores()).contains(mockEvento));
+		assertTrue((partido.getSubscriptores().contains(mockEvento)));
 	}
 	
 }

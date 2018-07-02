@@ -3,6 +3,7 @@ package models.juego.estado;
 import models.juego.resultado.ResultadoNull;
 import models.usuario.Usuario;
 import models.apuesta.Apuesta;
+import models.apuesta.ApuestaFinal;
 import models.apuesta.ApuestaSegura;
 import models.apuesta.opcion.OpcionApuesta;
 import models.juego.Partido;
@@ -29,14 +30,6 @@ public class Proximo implements EstadoPartido {
 
 	}
 
-	@Override
-	public ApuestaSegura addApuestaSegura(Usuario usuario, OpcionApuesta opcionApuesta, double monto) throws Exception {
-		ApuestaSegura nuevaApuesta = new ApuestaSegura(usuario, opcionApuesta, monto);
-		opcionApuesta.getEvento().apuestasRealizadas.add(nuevaApuesta);
-		// las apuestas deberian ser guardadas en partido o evento?
-		return nuevaApuesta;
-
-	}
 
 	@Override
 	public void reactivarApuestaSegura(ApuestaSegura apuestaAReactivar) {
@@ -52,10 +45,13 @@ public class Proximo implements EstadoPartido {
 
 
 	@Override
-	public void addApuesta(Usuario usuario, OpcionApuesta opcionApuesta, double monto) throws Exception {
-		ApuestaSegura nuevaApuesta = new ApuestaSegura(usuario, opcionApuesta, monto);
-		opcionApuesta.getEvento().apuestasRealizadas.add(nuevaApuesta);
+	public void addApuesta(Usuario usuario, OpcionApuesta opcionApuesta, double monto, boolean esSegura) throws Exception {
+		Apuesta nuevaApuesta;
+		if (esSegura) {
+				nuevaApuesta = new ApuestaSegura(usuario, opcionApuesta, monto);
+		} else {
+				nuevaApuesta = new ApuestaFinal(usuario, opcionApuesta, monto);
 		}
+		opcionApuesta.getEvento().getApuestasRealizadas().add(nuevaApuesta);
+	}
 }
-
-//devuelve resultado nll object

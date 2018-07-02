@@ -145,7 +145,19 @@ public class Partido{
 
   /*
    * Metodos que dependen del estado del partido, y por ello se delegan en el mismo.
+   *
    */
+  
+  
+  public void addApuesta(Usuario usuario, OpcionApuesta opcionApuesta, double monto, boolean esSegura) throws Exception {
+		try {
+		this.estado.addApuesta(usuario, opcionApuesta, monto, esSegura);
+		} catch (Exception e) {
+			System.out.println("El evento ya no permite hacer apuestas.");
+			e.printStackTrace();
+			throw new Exception();
+		}
+	}
 
 
   // Delega el mensaje a su estado interno y retorna el resultado actual del partido
@@ -153,11 +165,6 @@ public class Partido{
 	  return this.getEstado().resultadoPartido(this);
   }
 
-  // metodo invocado por el usuario
-  public ApuestaSegura addApuestaSegura(Usuario usuario, OpcionApuesta opcionApuesta, double monto) throws Exception {
-	  	ApuestaSegura nuevaApuesta = this.estado.addApuestaSegura(usuario, opcionApuesta, monto);
-		return nuevaApuesta;
-  }
 
   //metodo invocado por el usuario
 	public void cancelarApuestaSegura(ApuestaSegura apuestaACancelar) throws Exception {
@@ -207,13 +214,5 @@ public class Partido{
 	}
 
 
-	public void addApuesta(Usuario usuario, OpcionApuesta opcionApuesta, double monto) throws Exception {
-		try {
-		this.estado.addApuesta(usuario, opcionApuesta, monto);
-		} catch (Exception e) {
-			System.out.println("El evento ya no permite hacer apuestas.");
-			e.printStackTrace();
-			throw new Exception();
-		}
-	}
+	
 }

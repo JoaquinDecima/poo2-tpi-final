@@ -24,13 +24,15 @@ public class EventoTestCase {
 	private OpcionApuesta opcionApuesta;
 	private Partido mockPartido;
 	private Evento evento;
+	
 
 	@Before
-	void setUp() {
+	public void setUp() {
 		adminCuota = mock(AdminCuota.class);
 		mockPartido = mock(Partido.class);
 		evento = new Evento(mockPartido, adminCuota);
 		opcionApuesta = mock(OpcionApuesta.class);
+
 			
 	}
 
@@ -63,8 +65,8 @@ public class EventoTestCase {
 
 	@Test
 	public void testGetResultados() {
-		when(partido.getLocal()).thenReturn(local);
-		when(partido.getVisitante()).thenReturn(visitante);
+		when(mockPartido.getLocal()).thenReturn(local);
+		when(mockPartido.getVisitante()).thenReturn(visitante);
 
 		assertEquals(evento.getResultadoVictoriaLocal().ganaCompetidor(), local);
 		assertEquals(evento.getResultadoVictoriaVisitante().ganaCompetidor(), visitante);

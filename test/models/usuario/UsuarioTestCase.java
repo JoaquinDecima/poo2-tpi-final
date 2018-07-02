@@ -10,12 +10,15 @@ import static org.mockito.Mockito.verify;
 
 import java.sql.Date;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import models.apuesta.Apuesta;
 import models.apuesta.ApuestaSegura;
 import models.apuesta.opcion.OpcionApuesta;
 import models.casaApuesta.CasaApuesta;
 import models.competidor.Competidor;
+import models.cuota.AdminCuota;
 import models.deporte.Deporte;
 import models.evento.Evento;
 import models.juego.Partido;
@@ -29,16 +32,25 @@ public class UsuarioTestCase {
 
 	private Usuario usuario = new Usuario("diego", "diego@unq.edu.ar");
 	private CasaApuesta mockCasaApuesta = mock(CasaApuesta.class);
-	private Partido mockPartido = mock(Partido.class);
-	private Evento evento = new Evento(mockPartido, mockCasaApuesta.getAdminCuota());
 	private Competidor local = mock(Competidor.class) ;
 	private Competidor visitante = mock(Competidor.class);
 	private Deporte deporte = mock(Deporte.class);
-	private Date fecha = new Date(2018, 06, 23); // Se crea para tener la fecha
-	private Partido partido = new Partido(local, visitante, deporte, fecha, "Quilmes");
+	private Date fecha;
+	private Partido partido;
 	private Resultado resultadoPosible = mock(ResultadoConEmpate.class);
-	private OpcionApuesta opcionApuesta = new OpcionApuesta(partido, resultadoPosible, 10.00);
-
+	private AdminCuota adminCuota = mock(AdminCuota.class);
+	private Evento evento;
+	private OpcionApuesta opcionApuesta;
+	
+	@Before
+	public void setUp() {
+		fecha = new Date(2018, 06, 23);
+		partido = new Partido(local, visitante, deporte, fecha, "Quilmes");
+		evento = new Evento(partido, adminCuota);
+		opcionApuesta  = new OpcionApuesta(evento, resultadoPosible, 10.00);	
+	}
+/*
+ * 
 
 	@Test
 	public void testCuandoUsuarioCancelaApuestaSeguraConPartidoEnCursoSePenalizaCobrando30porcientoApostado() {
@@ -66,7 +78,7 @@ public class UsuarioTestCase {
 
 		assertEquals(usuario.getNombre(), "diego");
 	}
-
+ */
 	@Test
 	public void testEmail() {
 		assertEquals(usuario.getEmail(), "diego@unq.edu.ar");
@@ -76,10 +88,36 @@ public class UsuarioTestCase {
 	
 	@Test
 	public void testCuandoUnUsuarioHaceUnaApuestaSeRegistraEnSuHistorialDeApuestas() {
-		assertEquals(0, usuario.getApuestasHechas().size(), 0);
-		usuario.hacerApuesta(opcionApuesta, 150.00);
-		assertEquals(1, usuario.getApuestasHechas().size(), 1);		
+		assertEquals(0, usuario.getApuestasHechas().size());
+		usuario.hacerApuesta(opcionApuesta, 150.00, true);
+		assertEquals(1, usuario.getApuestasHechas().size());		
 	}
+	
+	@Test
+	public void testUnUsuarioPuedeHacerUnaApuestaSeguraYPuedeCancelarlaSiElPartidoNoComenzo() {
+		//compruebo que el usuario no ha hecho una apuesta antes
+		assertEquals(0, usuario.getApuestasHechas().size());
+		// usuario hace apuesta segura apostando 150 pesos
+		System.out.println(opcionApuesta);
+		//usuario.hacerApuesta(opcionApuesta, 150.00, true);
+		System.out.println(opcionApuesta.getPartido());
+		//compruebo que ya existe una apuesta en su historial
+		//assertEquals(4, usuario.getApuestasHechas().size());	
+		// cancelo la apuesta ya que es de tipo Segura
+		//ApuestaSegura apuestaNueva = (ApuestaSegura) usuario.getApuestasHechas().get(1);
+		//usuario.cancelarApuesta(apuestaNueva);
+	}
+	
+	/*@Test
+	public void testUnUsuarioPuedeHacerUnaApuestaFinalQueNoPermiteCancelacion() {
+		assertEquals(0, usuario.getApuestasHechas().size(), 0);
+		usuario.hacerApuesta(opcionApuesta, 150.00, true);
+		assertEquals(1, usuario.getApuestasHechas().size(), 1);	
+		usuario.getApuestasHechas().get(0);
+		
+	}
+	*/
+	
 
 	
 }

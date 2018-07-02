@@ -12,9 +12,10 @@ public class OpcionApuesta {
 	private Double cuota;
 	private Evento evento;
 
-	public OpcionApuesta(Partido partido, Resultado resultadoPosible, Double cuotaASetear) {
+	public OpcionApuesta(Evento evento, Resultado resultadoPosible, Double cuotaASetear) {
 		this.resultado = resultadoPosible;
 		this.cuota = cuotaASetear;
+		this.evento = evento;
 	}
 
 	public Resultado resultado() {
@@ -25,12 +26,13 @@ public class OpcionApuesta {
 		return this.cuota;
 	}
 
-	public Partido getPartido() {
-		return this.evento.getPartidoDelEvento();
-	}
 
 	public Evento getEvento() {
-		return evento;
+		return this.evento;
+	}
+	
+	public Partido getPartido() {
+		return (this.evento.getPartidoDelEvento());
 	}
 
 
