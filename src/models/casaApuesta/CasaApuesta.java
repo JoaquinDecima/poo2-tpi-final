@@ -16,6 +16,8 @@ package models.casaApuesta;
 
 // Importa utilidades java
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import models.apuesta.Apuesta;
 import models.balance.BalanceManager;
@@ -94,9 +96,14 @@ public class CasaApuesta {
 	public ArrayList<Usuario> getUsuarios() {
 		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 		for (Evento event : this.eventos) {
-			usuarios.addAll(event.getUsuarios());
+			usuarios.addAll(event.getUsuariosDeApuestas());
 		}
 		return usuarios;
+	}
+	
+	public List<Evento> getEventosDisponibles(){
+		return this.eventos.stream()
+	    .filter(e -> e.estaDisponible()).collect(Collectors.toList());
 	}
 	
 	

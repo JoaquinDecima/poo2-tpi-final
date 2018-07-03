@@ -11,20 +11,21 @@
 
 package models.juego.estado;
 
-import models.apuesta.Apuesta;
 import models.apuesta.ApuestaSegura;
 import models.apuesta.opcion.OpcionApuesta;
+import models.evento.Evento;
 import models.juego.Partido;
 import models.juego.resultado.Resultado;
 import models.usuario.Usuario;
 
 public class EnCurso implements EstadoPartido {
+	
 	@Override
 	public Resultado resultadoPartido(Partido partido) {
 		return partido.getResultado();
 	}
 
-
+	
 	// Retorna el estado del partido
 	// Importante para Test
 	public String getEstado() {
@@ -33,19 +34,13 @@ public class EnCurso implements EstadoPartido {
 
 	@Override
 	public void accionar(Partido partido) {
-		// TODO Auto-generated method stub
-
+	
 	}
 
+
 	@Override
-	public ApuestaSegura addApuestaSegura(Usuario usuario, OpcionApuesta opcionApuesta, double monto) throws Exception {
+	public void reactivarApuestaSegura(ApuestaSegura apuestaAReactivar) throws Exception {
 		throw new Exception();
-
-	}
-
-	@Override
-	public void reactivarApuestaSegura(ApuestaSegura apuestaAReactivar) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -57,8 +52,14 @@ public class EnCurso implements EstadoPartido {
 
 
 	@Override
-	public Apuesta addApuesta(Usuario usuario, OpcionApuesta opcionApuesta, double monto) throws Exception {
-		throw new Exception();
+	public void addApuesta(Evento evento, Usuario usuario, OpcionApuesta opcionApuesta, double monto, boolean esSegura)
+			throws Exception {
+		throw new Exception();		
 	}
+
+
+
+
+
 
 }

@@ -53,13 +53,12 @@ public class Usuario {
 	 * metodos sobre apuestas
 	 */
 	
-	// usuario crea apuesta solo si el partido no ha comenzado. Accion que se delega en el partido, pues
-	public void hacerApuesta(OpcionApuesta opcionApuesta, double monto) {		
+	// usuario crea apuesta solo si el partido no ha comenzado. Accion que se delega en el estado del partido
+	//
+	public void hacerApuesta(Evento evento, OpcionApuesta opcionApuesta, double monto, boolean esSegura) {		
 		try {
 			// puede arrojar excepcion
-			opcionApuesta.getPartido().addApuesta(this, opcionApuesta, monto);
-			
-			this.decrementarMontoWallet(monto);
+			evento.getPartidoDelEvento().addApuesta(evento, this, opcionApuesta, monto, esSegura);	
 		} catch (Exception e) {
 			System.out.println("El evento ya no permite hacer apuestas.");
 			e.printStackTrace();
@@ -92,6 +91,16 @@ public class Usuario {
 	public ArrayList<Apuesta> getApuestasHechas() {
 		return this.apuestasRealizadas;
 	}
+
+	public void updateFinalPartido() {
+		System.out.println("El partido en el que realizaste una apuesta, ha finalizado !");
+	}
+
+	public void updateInicioPartido() {
+		System.out.println("El partido en el que realizaste una apuesta, ha comenzado !");
+
+	}
+
 	
 
 

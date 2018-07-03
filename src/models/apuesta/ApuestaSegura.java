@@ -9,12 +9,12 @@ public class ApuestaSegura extends Apuesta {
 	// con esta variable se lleva registro de todas las apuestas, incluso las canceladas
 	private boolean estaActiva;
 
-	public ApuestaSegura(Usuario u, OpcionApuesta op, Double m) {
+	public ApuestaSegura(Evento evento, Usuario u, OpcionApuesta op, Double m) {
 		this.usuario = u;
-		this.evento = op.getEvento();
 		this.monto = m;
 		this.apuesta = op;
 		this.estaActiva = true;
+		this.evento = evento;
 	}
 
 	public boolean estaActiva() {
@@ -24,4 +24,6 @@ public class ApuestaSegura extends Apuesta {
 	public void updateEstado() {
 		this.estaActiva = !this.estaActiva;
 	}
+
+	
 }

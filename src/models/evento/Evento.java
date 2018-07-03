@@ -36,10 +36,11 @@ import models.usuario.Usuario;
 
 public class Evento implements ISubscriptorPartido {
 
-		Partido partido;
-		AdminCuota adminCuotasApuestasPosibles;
-		public ArrayList<Apuesta> apuestasRealizadas;
+		private Partido partido;
+		private AdminCuota adminCuotasApuestasPosibles;
+		private ArrayList<Apuesta> apuestasRealizadas;
 		ArrayList<OpcionApuesta> opcionesApuestasPosibles;
+		private boolean estaDisponible;
 
 
 		public Evento(Partido partidoDelEvento, AdminCuota cuotasResultadosPosibles) {
@@ -55,7 +56,7 @@ public class Evento implements ISubscriptorPartido {
 		 */
 
 		public Partido getPartidoDelEvento() {
-			return this.partido;
+			return (this.partido);
 		}
 
 		public ArrayList<OpcionApuesta> getOpcionesResultadosPosibles() {
@@ -143,21 +144,21 @@ public class Evento implements ISubscriptorPartido {
 		private OpcionApuesta calcularOpcionEmpate() {
 			Resultado resultadoEmpate = this.getResultadoEmpate();
 			Double cuotaEmpate = this.getCuotaPorEmpate();
-			OpcionApuesta opcionEmpate = new OpcionApuesta(this.partido, resultadoEmpate, cuotaEmpate);
+			OpcionApuesta opcionEmpate = new OpcionApuesta(resultadoEmpate, cuotaEmpate);
 			return opcionEmpate;
 		}
 
 		private OpcionApuesta calcularOpcionVictoriaVisitante() {
 			Resultado resultadoVictoriaVisitante = this.getResultadoVictoriaVisitante();
 			Double cuotaVictoriaVisitante = this.getCuotaPorVictoriaVisitante();
-			OpcionApuesta opcionVictoriaVisitante = new OpcionApuesta(this.partido, resultadoVictoriaVisitante, cuotaVictoriaVisitante);
+			OpcionApuesta opcionVictoriaVisitante = new OpcionApuesta(resultadoVictoriaVisitante, cuotaVictoriaVisitante);
 			return opcionVictoriaVisitante;
 		}
 
 		private OpcionApuesta calcularOpcionVictoriaLocal() {
 			Resultado resultadoVictoriaLocal = this.getResultadoVictoriaLocal();
 			Double cuotaVictoriaLocal = this.getCuotaPorVictoriaLocal();
-			OpcionApuesta opcionVictoriaLocal = new OpcionApuesta(this.partido, resultadoVictoriaLocal, cuotaVictoriaLocal);
+			OpcionApuesta opcionVictoriaLocal = new OpcionApuesta(resultadoVictoriaLocal, cuotaVictoriaLocal);
 			return opcionVictoriaLocal;
 		}
 
@@ -171,7 +172,19 @@ public class Evento implements ISubscriptorPartido {
 		public void updateFinalPartido() {
 			this.setGananciasApuestas();
 			this.pagarGananciasApuestas();
+			this.getUsuariosDeApuestas().forEach(usuario->usuario.updateFinalPartido());
+			this.quitarDisponibilidad();
+		}
+		
+		private void quitarDisponibilidad() {
+			this.estaDisponible = false;
+			
+		}
 
+
+		@Override
+		public void updateInicioPartido() {
+			this.getUsuariosDeApuestas().forEach(usuario->usuario.updateInicioPartido());
 		}
 
 
@@ -225,15 +238,27 @@ public class Evento implements ISubscriptorPartido {
 		}
 
 
-		public ArrayList<Usuario> getUsuarios() {
+		public ArrayList<Usuario> getUsuariosDeApuestas() {
+		
 			ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 
 			for (Apuesta apuesta : this.apuestasRealizadas) {
-				usuarios.add(apuesta.getUsuario());
+				
+				if(!usuarios.contains(apuesta.getUsuario())) {
+			
+					usuarios.add(apuesta.getUsuario());
+				}		
 			}
-
 			return usuarios;
 		}
+
+
+		public boolean estaDisponible() {
+			return this.estaDisponible;
+		}
+
+
+
 
 
 
