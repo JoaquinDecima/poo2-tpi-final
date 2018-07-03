@@ -36,7 +36,7 @@ public class OpcionApuestaTestCase {
 		fecha = new Date(2018, 06, 23);
 		partido = new Partido(local, visitante, deporte, fecha, "Quilmes");
 		evento = new Evento(mockPartido, adminCuota);
-		opcionApuesta = new OpcionApuesta(evento, resultado, 80.00);	
+		opcionApuesta = new OpcionApuesta(resultado, 80.00);	
 	}
 	
 

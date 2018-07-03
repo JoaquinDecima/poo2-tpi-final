@@ -15,11 +15,11 @@ import java.util.ArrayList;
 // Importa utilidades Java
 import java.util.Date;
 
-import models.apuesta.Apuesta;
 import models.apuesta.ApuestaSegura;
 import models.apuesta.opcion.OpcionApuesta;
 import models.competidor.Competidor;
 import models.deporte.Deporte;
+import models.evento.Evento;
 import models.juego.estado.*;
 import models.juego.resultado.Resultado;
 import models.usuario.Usuario;
@@ -118,7 +118,7 @@ public class Partido{
 	}
 
 	public boolean huboEmpate() {
-		return this.resultado.empate();
+		return this.estado.resultadoPartido(this).empate();
 	}
 
   // Retorna estado del partido
@@ -149,9 +149,9 @@ public class Partido{
    */
   
   
-  public void addApuesta(Usuario usuario, OpcionApuesta opcionApuesta, double monto, boolean esSegura) throws Exception {
+  public void addApuesta(Evento evento, Usuario usuario, OpcionApuesta opcionApuesta, double monto, boolean esSegura) throws Exception {
 		try {
-		this.estado.addApuesta(usuario, opcionApuesta, monto, esSegura);
+		this.estado.addApuesta(evento, usuario, opcionApuesta, monto, esSegura);
 		} catch (Exception e) {
 			System.out.println("El evento ya no permite hacer apuestas.");
 			e.printStackTrace();
@@ -162,7 +162,7 @@ public class Partido{
 
   // Delega el mensaje a su estado interno y retorna el resultado actual del partido
   public Resultado getResultado() {
-	  return this.getEstado().resultadoPartido(this);
+	  return this.estado.resultadoPartido(this);
   }
 
 
@@ -211,6 +211,11 @@ public class Partido{
 
 	public ArrayList<ISubscriptorPartido> getSubscriptores(){
 		return(this.subscriptores);
+	}
+
+
+	public void notificarInicioSubscriptores() {
+		this.subscriptores.forEach(subscriptor->subscriptor.updateInicioPartido());	
 	}
 
 

@@ -25,16 +25,21 @@ import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
 import org.mockito.asm.tree.analysis.AnalyzerException;
 
+import com.sun.org.apache.xml.internal.serializer.utils.SystemIDResolver;
+
 import models.apuesta.opcion.OpcionApuesta;
 import models.competidor.Competidor;
+import models.cuota.AdminCuota;
 import models.deporte.Deporte;
 import models.evento.Evento;
 import models.juego.ISubscriptorPartido;
 import models.juego.Partido;
 import models.juego.estado.EnCurso;
 import models.juego.estado.EstadoPartido;
+import models.juego.estado.Finalizado;
 import models.juego.estado.Proximo;
 import models.juego.resultado.Resultado;
+import models.juego.resultado.ResultadoConEmpate;
 import models.usuario.Usuario;
 
 public class PartidoTestCase {
@@ -46,17 +51,25 @@ public class PartidoTestCase {
 	@SuppressWarnings("deprecation")
 	private Date fecha = new Date(2018, 06, 23); // Se crea para tener la fecha
 	private Partido partido = new Partido(local, visitante, deporte, fecha, "Quilmes");
-	private Usuario usuario = mock(Usuario.class);
-	private Resultado resultado = mock(Resultado.class);
+	private Usuario usuario = new Usuario("diego", "diego@unq.edu.ar");
+	private Resultado resultado = mock(ResultadoConEmpate.class);
 	private EstadoPartido estado = mock(EstadoPartido.class);
 	private Evento mockEvento = mock(Evento.class);
-	private OpcionApuesta opcionApuesta = new OpcionApuesta(mockEvento, resultado, 100.00);
+	private OpcionApuesta opcionApuesta = new OpcionApuesta(resultado, 100.00);
+	private AdminCuota mockAdminCuota = mock(AdminCuota.class);
+	private Evento evento = new Evento(partido, mockAdminCuota);
 
 	private ISubscriptorPartido subscriptor = mock(ISubscriptorPartido.class);
 
 	@Test
 	public void testPartidoDevuelveLocal() {
 		assertEquals(partido.getLocal(), this.local);
+	}
+	
+	@Test(expected = Exception.class) 
+	public void testCuandoUsuarioSolicitaHacerApuestaSeguraConPartidoEnCursoSeLanzaExcepcion() {
+		partido.setEstado(new EnCurso());
+		usuario.hacerApuesta(evento, opcionApuesta, 20.00, false); 
 	}
 
 	@Test
@@ -145,13 +158,15 @@ public class PartidoTestCase {
 		assertFalse(partido.ganaVisitante());
 	}
 
+	
 	@Test
 	public void testHuboEmpate() {
 		partido.setResultado(resultado);
+		partido.setEstado(new Finalizado());
 
 		when(resultado.empate()).thenReturn(true);
 		assertTrue(partido.huboEmpate());
-
+		
 		when(resultado.empate()).thenReturn(false);
 		assertFalse(partido.huboEmpate());
 	}
@@ -171,12 +186,7 @@ public class PartidoTestCase {
 		partido.notificarFinalSubscriptores();
 	}
 	
-	ExpectedException Exception;
-	public void testCuandoUsuarioSolicitaHacerApuestaSeguraConPartidoEnCursoSeLanzaExcepcion() {
-		partido.setEstado(new EnCurso());
-		usuario.hacerApuesta(opcionApuesta, 20);
-		
-	}
+
 	
 
 	@Test

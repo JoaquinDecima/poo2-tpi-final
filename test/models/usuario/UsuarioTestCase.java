@@ -47,7 +47,7 @@ public class UsuarioTestCase {
 		fecha = new Date(2018, 06, 23);
 		partido = new Partido(local, visitante, deporte, fecha, "Quilmes");
 		evento = new Evento(partido, adminCuota);
-		opcionApuesta  = new OpcionApuesta(evento, resultadoPosible, 10.00);	
+		opcionApuesta  = new OpcionApuesta(resultadoPosible, 10.00);	
 	}
 /*
  * 
@@ -88,9 +88,13 @@ public class UsuarioTestCase {
 	
 	@Test
 	public void testCuandoUnUsuarioHaceUnaApuestaSeRegistraEnSuHistorialDeApuestas() {
+		usuario.incrementarMontoWallet(300.00);
+		// compruebo que el usuario no ha hecho apuestas
 		assertEquals(0, usuario.getApuestasHechas().size());
-		usuario.hacerApuesta(opcionApuesta, 150.00, true);
-		assertEquals(1, usuario.getApuestasHechas().size());		
+		// usuario hace apuesta 
+		usuario.hacerApuesta(evento, opcionApuesta, 150.00, true);
+		// compruebo que se ha realizado una apuesta y se ha registrado
+		assertEquals(1, usuario.getApuestasHechas().size());	
 	}
 	
 	@Test
@@ -98,11 +102,9 @@ public class UsuarioTestCase {
 		//compruebo que el usuario no ha hecho una apuesta antes
 		assertEquals(0, usuario.getApuestasHechas().size());
 		// usuario hace apuesta segura apostando 150 pesos
-		System.out.println(opcionApuesta);
-		//usuario.hacerApuesta(opcionApuesta, 150.00, true);
-		System.out.println(opcionApuesta.getPartido());
+		usuario.hacerApuesta(evento,opcionApuesta, 150.00, true);	
 		//compruebo que ya existe una apuesta en su historial
-		//assertEquals(4, usuario.getApuestasHechas().size());	
+		//assertEquals(1, usuario.getApuestasHechas().size());	
 		// cancelo la apuesta ya que es de tipo Segura
 		//ApuestaSegura apuestaNueva = (ApuestaSegura) usuario.getApuestasHechas().get(1);
 		//usuario.cancelarApuesta(apuestaNueva);

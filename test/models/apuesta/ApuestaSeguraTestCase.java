@@ -27,7 +27,7 @@ public class ApuestaSeguraTestCase {
 	private Usuario usuario = mock(Usuario.class);
 	private Evento evento = mock(Evento.class);
 	private OpcionApuesta opcionApuesta = mock(OpcionApuesta.class);
-	private ApuestaSegura apuesta = new ApuestaSegura(usuario, opcionApuesta, 260.0);
+	private ApuestaSegura apuesta = new ApuestaSegura(evento, usuario, opcionApuesta, 260.0);
 
 	@Test
 	public void testMonto() {

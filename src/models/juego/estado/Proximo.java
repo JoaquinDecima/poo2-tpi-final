@@ -6,6 +6,7 @@ import models.apuesta.Apuesta;
 import models.apuesta.ApuestaFinal;
 import models.apuesta.ApuestaSegura;
 import models.apuesta.opcion.OpcionApuesta;
+import models.evento.Evento;
 import models.juego.Partido;
 import models.juego.resultado.Resultado;
 
@@ -26,32 +27,39 @@ public class Proximo implements EstadoPartido {
 
 	@Override
 	public void accionar(Partido partido) {
-		// TODO Auto-generated method stub
+		partido.notificarInicioSubscriptores();
 
 	}
 
 
 	@Override
 	public void reactivarApuestaSegura(ApuestaSegura apuestaAReactivar) {
-		// TODO Auto-generated method stub
-
+			//se activa la apuesta
+			apuestaAReactivar.updateEstado();
 	}
 
 	@Override
 	public void cancelarApuestaSegura(ApuestaSegura apuestaACancelar) {
-		// TODO Auto-generated method stub
-
+			apuestaACancelar.updateEstado();
+			apuestaACancelar.getEvento().cobrarPenalidadApuestaCanceladaConPartidoProximo(apuestaACancelar);
 	}
 
 
 	@Override
-	public void addApuesta(Usuario usuario, OpcionApuesta opcionApuesta, double monto, boolean esSegura) throws Exception {
+	public void addApuesta(Evento evento, Usuario usuario, OpcionApuesta opcionApuesta, double monto, boolean esSegura) throws Exception {
 		Apuesta nuevaApuesta;
 		if (esSegura) {
-				nuevaApuesta = new ApuestaSegura(usuario, opcionApuesta, monto);
+				nuevaApuesta = new ApuestaSegura(evento, usuario, opcionApuesta, monto);
+				evento.getApuestasRealizadas().add(nuevaApuesta);
+				usuario.getApuestasHechas().add(nuevaApuesta);
+				usuario.decrementarMontoWallet(monto);
+				
 		} else {
-				nuevaApuesta = new ApuestaFinal(usuario, opcionApuesta, monto);
+				nuevaApuesta = new ApuestaFinal(evento, usuario, opcionApuesta, monto);
+				evento.getApuestasRealizadas().add(nuevaApuesta);
+				usuario.getApuestasHechas().add(nuevaApuesta);
+				usuario.decrementarMontoWallet(monto);
 		}
-		opcionApuesta.getEvento().getApuestasRealizadas().add(nuevaApuesta);
+		
 	}
 }

@@ -6,6 +6,8 @@ public interface ISubscriptorPartido {
 
 	void updateFinalPartido();
 
+	void updateInicioPartido();
+
 	
 
 }

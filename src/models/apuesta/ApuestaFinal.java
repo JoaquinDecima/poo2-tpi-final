@@ -6,9 +6,9 @@ import models.usuario.Usuario;
 
 public class ApuestaFinal extends Apuesta {
 
-	public ApuestaFinal(Usuario u, OpcionApuesta op, Double m) {
+	public ApuestaFinal(Evento evento, Usuario u, OpcionApuesta op, Double m) {
 		this.usuario = u;
-		this.evento = op.getEvento();
+		this.evento = evento;
 		this.monto = m;
 		this.apuesta = op;
 	}
