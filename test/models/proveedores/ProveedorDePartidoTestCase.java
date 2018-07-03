@@ -16,6 +16,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 // Importa desde org
@@ -81,6 +82,10 @@ public class ProveedorDePartidoTestCase {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testPartidosDeFecha(){
+		Calendar calendario = Calendar.getInstance();
+		
+		calendario.setTime(fecha1);
+		calendario.add(Calendar.DAY_OF_YEAR, -1);
 		partidos.addPartido(partido1);
 		partidos.addPartido(partido2);
 		partidos.addPartido(partido3);
@@ -88,7 +93,7 @@ public class ProveedorDePartidoTestCase {
 		listapartidos.add(partido3);
 		//TODO:hAY QUE USAR MODULO JODA TIME PARA LAS FECHAS
 		when(partido1.getFecha()).thenReturn(fecha1);
-		when(partido2.getFecha()).thenReturn(fecha1 - 1);
+		when(partido2.getFecha()).thenReturn(calendario.getTime());
 		when(partido3.getFecha()).thenReturn(fecha1);
 		
 		assertEquals(partidos.getPartidosDeFecha(fecha1), listapartidos);

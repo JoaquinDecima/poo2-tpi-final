@@ -3,8 +3,7 @@
  */
 package models.usuario;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -80,10 +79,17 @@ public class UsuarioTestCase {
 	}
  */
 	@Test
-	public void testEmail() {
+	public void testEmailyNombre() {
 		assertEquals(usuario.getEmail(), "diego@unq.edu.ar");
 		usuario.setEmail("diego@gmail.com");
 		assertEquals(usuario.getEmail(), "diego@gmail.com");
+		assertEquals(usuario.getNombre(), "diego");
+	}
+	
+	@Test
+	public void testUpdates() {
+		usuario.updateFinalPartido();
+		usuario.updateInicioPartido();
 	}
 	
 	@Test
@@ -121,5 +127,8 @@ public class UsuarioTestCase {
 	*/
 	
 
-	
+	@Test 
+	public void testPideMontoWallet() {
+		assertEquals(usuario.getMontoWallet(), 0.0, 0.55);
+	}
 }

@@ -33,7 +33,7 @@ public class CasaApuesta {
 	
 	ArrayList<Evento> eventos = new ArrayList<Evento>();
 	Proveedor proveedorDataPartidos;
-	ArrayList<Deporte> deportesQueParticipan;
+	ArrayList<Deporte> deportesQueParticipan= new ArrayList<Deporte>();
 	AdminCuota administradorCuotasEventos;
 	AlgoritmoProbabilidad algoritmoProbabilidadSeteado;
 	BalanceManager balanceador;

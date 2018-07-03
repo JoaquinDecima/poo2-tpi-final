@@ -22,7 +22,7 @@ public class EnCurso implements EstadoPartido {
 	
 	@Override
 	public Resultado resultadoPartido(Partido partido) {
-		return partido.getResultado();
+		return partido.resultado();
 	}
 
 	

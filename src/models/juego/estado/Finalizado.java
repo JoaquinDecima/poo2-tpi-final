@@ -12,7 +12,7 @@ public class Finalizado implements EstadoPartido {
 	// retorna el resultado final del partido
 	@Override
 	public Resultado resultadoPartido(Partido partido) {
-		return partido.getResultado();
+		return partido.resultado();
 	}
 
 	// es invocado cuando se setea el estado

@@ -101,6 +101,10 @@ public class Usuario {
 
 	}
 
+	public void sumApuesta(Apuesta nuevaApuesta) {
+		this.apuestasRealizadas.add(nuevaApuesta);
+	}
+
 	
 
 

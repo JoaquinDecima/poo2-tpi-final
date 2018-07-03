@@ -118,7 +118,7 @@ public class Partido{
 	}
 
 	public boolean huboEmpate() {
-		return this.estado.resultadoPartido(this).empate();
+		return this.getEstado().resultadoPartido(this).empate();
 	}
 
   // Retorna estado del partido
@@ -162,10 +162,14 @@ public class Partido{
 
   // Delega el mensaje a su estado interno y retorna el resultado actual del partido
   public Resultado getResultado() {
-	  return this.estado.resultadoPartido(this);
+	  return this.getEstado().resultadoPartido(this);
   }
 
-
+  // Retorna el resultado
+  public Resultado resultado() {
+	  return (this.resultado);
+  }
+  
   //metodo invocado por el usuario
 	public void cancelarApuestaSegura(ApuestaSegura apuestaACancelar) throws Exception {
 		this.estado.cancelarApuestaSegura(apuestaACancelar);

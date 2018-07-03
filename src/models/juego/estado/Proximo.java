@@ -50,14 +50,14 @@ public class Proximo implements EstadoPartido {
 		Apuesta nuevaApuesta;
 		if (esSegura) {
 				nuevaApuesta = new ApuestaSegura(evento, usuario, opcionApuesta, monto);
-				evento.getApuestasRealizadas().add(nuevaApuesta);
-				usuario.getApuestasHechas().add(nuevaApuesta);
+				evento.sumApuesta(nuevaApuesta);
+				usuario.sumApuesta(nuevaApuesta);
 				usuario.decrementarMontoWallet(monto);
 				
 		} else {
 				nuevaApuesta = new ApuestaFinal(evento, usuario, opcionApuesta, monto);
-				evento.getApuestasRealizadas().add(nuevaApuesta);
-				usuario.getApuestasHechas().add(nuevaApuesta);
+				evento.sumApuesta(nuevaApuesta);
+				usuario.sumApuesta(nuevaApuesta);
 				usuario.decrementarMontoWallet(monto);
 		}
 		

@@ -27,6 +27,7 @@ import org.mockito.asm.tree.analysis.AnalyzerException;
 
 import com.sun.org.apache.xml.internal.serializer.utils.SystemIDResolver;
 
+import models.apuesta.ApuestaSegura;
 import models.apuesta.opcion.OpcionApuesta;
 import models.competidor.Competidor;
 import models.cuota.AdminCuota;
@@ -58,7 +59,9 @@ public class PartidoTestCase {
 	private OpcionApuesta opcionApuesta = new OpcionApuesta(resultado, 100.00);
 	private AdminCuota mockAdminCuota = mock(AdminCuota.class);
 	private Evento evento = new Evento(partido, mockAdminCuota);
-
+	
+	private ApuestaSegura apuesta = mock(ApuestaSegura.class);
+	
 	private ISubscriptorPartido subscriptor = mock(ISubscriptorPartido.class);
 
 	@Test
@@ -67,7 +70,7 @@ public class PartidoTestCase {
 	}
 	
 	@Test(expected = Exception.class) 
-	public void testCuandoUsuarioSolicitaHacerApuestaSeguraConPartidoEnCursoSeLanzaExcepcion() {
+	public void testCuandoUsuarioSolicitaHacerApuestaSeguraConPartidoEnCursoSeLanzaExcepcion(){
 		partido.setEstado(new EnCurso());
 		usuario.hacerApuesta(evento, opcionApuesta, 20.00, false); 
 	}
@@ -89,6 +92,7 @@ public class PartidoTestCase {
 		assertTrue(partido.juega(local));
 		assertTrue(partido.juega(visitante));
 		assertTrue(partido.juegan(local, visitante));
+		assertTrue(partido.juegan(visitante, local));
 
 		assertFalse(partido.juega(otroEquipo));
 		assertFalse(partido.juegan(local, otroEquipo));
@@ -169,6 +173,8 @@ public class PartidoTestCase {
 		
 		when(resultado.empate()).thenReturn(false);
 		assertFalse(partido.huboEmpate());
+		partido.notificarFinalSubscriptores();
+		partido.notificarInicioSubscriptores();
 	}
 
 	
@@ -187,12 +193,18 @@ public class PartidoTestCase {
 	}
 	
 
-	
-
 	@Test
-	public void testUnPartidoPuedeAñadirSubscriptores() {
+	public void testUnPartidoPuedeAndirSubscriptores() {
 		partido.addSubscriptor(mockEvento);
 		assertTrue((partido.getSubscriptores().contains(mockEvento)));
 	}
 	
+	@Test
+	public void testCancelarYReactivarApuestaSegura() throws Exception {
+		when(apuesta.getEvento()).thenReturn(evento);
+		when(apuesta.getUsuario()).thenReturn(usuario);
+		
+		partido.cancelarApuestaSegura(apuesta);
+		partido.reactivarApuestaSegura(apuesta);
+	}
 }

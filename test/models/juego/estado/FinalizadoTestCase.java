@@ -20,6 +20,6 @@ public class FinalizadoTestCase {
 	@Test
 	public void testResultado() {
 		estado.resultadoPartido(partido);
-		verify(partido).getResultado();
+		verify(partido).resultado();
 	}
 }

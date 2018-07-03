@@ -258,6 +258,11 @@ public class Evento implements ISubscriptorPartido {
 		}
 
 
+		public void sumApuesta(Apuesta nuevaApuesta) {
+			this.apuestasRealizadas.add(nuevaApuesta);
+		}
+
+
 
 
 

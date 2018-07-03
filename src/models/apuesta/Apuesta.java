@@ -90,7 +90,7 @@ public abstract class Apuesta{
   }
 
   public void calcularGanancias() {
-	this.ganaciaNeta = this.intGanaciaNeta();
 	this.ganaciaBruta = this.intGananciaBruta();
+	this.ganaciaNeta = this.intGanaciaNeta();
   }
 }
