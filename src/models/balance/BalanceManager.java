@@ -5,10 +5,12 @@ import java.util.Date;
 
 import models.apuesta.Apuesta;
 import models.tools.EmailBalanceNotifier;
+import models.tools.Notifier;
+import models.tools.SMSBalanceNotifier;
 import models.usuario.Usuario;
 
 public class BalanceManager {
-	private EmailBalanceNotifier notiEmail = new EmailBalanceNotifier();
+	private Notifier notificador = new EmailBalanceNotifier();
 	
 	// Envia el balace al usuario
 	@SuppressWarnings("deprecation")
@@ -23,7 +25,15 @@ public class BalanceManager {
 			}
 		}
 		
-		notiEmail.emailBalance(user.getEmail(), fechaBalance.getMonth(), this.sumaNetos(listaOk));
+		notificador.notiBalance(user, fechaBalance.getMonth(), this.sumaNetos(listaOk));
+	}
+	
+	public void enviarSMS() {
+		notificador = new SMSBalanceNotifier();
+	}
+	
+	public void enviarEmail() {
+		notificador = new EmailBalanceNotifier();
 	}
 
 
