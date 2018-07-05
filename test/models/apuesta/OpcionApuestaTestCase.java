@@ -16,7 +16,6 @@ import models.evento.Evento;
 import models.juego.Partido;
 import models.juego.resultado.Resultado;
 import models.juego.resultado.ResultadoConEmpate;
-import models.usuario.Usuario;
 
 public class OpcionApuestaTestCase {
 	
@@ -25,12 +24,14 @@ public class OpcionApuestaTestCase {
 	private Competidor visitante = mock(Competidor.class);
 	private Deporte deporte = mock(Deporte.class);
 	private Date fecha;
+	@SuppressWarnings("unused")
 	private Partido partido;
 	private Resultado resultado = mock(ResultadoConEmpate.class);
 	private AdminCuota adminCuota = mock(AdminCuota.class);
 	private Evento evento;
 	private OpcionApuesta opcionApuesta;
 	
+	@SuppressWarnings("deprecation")
 	@Before
 	public void setUp() {
 		fecha = new Date(2018, 06, 23);
@@ -38,10 +39,6 @@ public class OpcionApuestaTestCase {
 		evento = new Evento(mockPartido, adminCuota);
 		opcionApuesta = new OpcionApuesta(resultado, 80.00);	
 	}
-	
-
-
-
 
 	@Test
 	public void testResultado() {

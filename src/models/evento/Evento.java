@@ -40,7 +40,7 @@ public class Evento implements ISubscriptorPartido {
 		private AdminCuota adminCuotasApuestasPosibles;
 		private ArrayList<Apuesta> apuestasRealizadas;
 		ArrayList<OpcionApuesta> opcionesApuestasPosibles;
-		private boolean estaDisponible;
+		private boolean estaDisponible = true;
 
 
 		public Evento(Partido partidoDelEvento, AdminCuota cuotasResultadosPosibles) {
@@ -176,7 +176,7 @@ public class Evento implements ISubscriptorPartido {
 			this.quitarDisponibilidad();
 		}
 		
-		private void quitarDisponibilidad() {
+		public void quitarDisponibilidad() {
 			this.estaDisponible = false;
 			
 		}

@@ -19,6 +19,6 @@ public class EnCursoTestCase {
 	@Test
 	public void testResultado() {
 		estado.resultadoPartido(partido);
-		verify(partido).getResultado();
+		verify(partido).resultado();
 	}
 }

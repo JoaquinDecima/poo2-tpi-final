@@ -79,7 +79,6 @@ public class ProveedorDePartidoTestCase {
 		assertEquals(partidos.getPartidosDeDeporte(deporte1), listapartidos);
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testPartidosDeFecha(){
 		Calendar calendario = Calendar.getInstance();

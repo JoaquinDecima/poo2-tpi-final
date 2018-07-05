@@ -21,11 +21,6 @@ import java.util.Date;
 
 // Importa desde org
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.mockito.Mockito;
-import org.mockito.asm.tree.analysis.AnalyzerException;
-
-import com.sun.org.apache.xml.internal.serializer.utils.SystemIDResolver;
 
 import models.apuesta.ApuestaSegura;
 import models.apuesta.opcion.OpcionApuesta;
@@ -38,7 +33,6 @@ import models.juego.Partido;
 import models.juego.estado.EnCurso;
 import models.juego.estado.EstadoPartido;
 import models.juego.estado.Finalizado;
-import models.juego.estado.Proximo;
 import models.juego.resultado.Resultado;
 import models.juego.resultado.ResultadoConEmpate;
 import models.usuario.Usuario;
