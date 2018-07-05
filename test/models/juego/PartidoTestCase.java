@@ -44,7 +44,7 @@ import models.juego.resultado.ResultadoConEmpate;
 import models.usuario.Usuario;
 
 public class PartidoTestCase {
-	private Competidor local = mock(Competidor.class) ;
+	private Competidor local = mock(Competidor.class);
 	private Competidor visitante = mock(Competidor.class);
 	private Competidor otroEquipo = mock(Competidor.class);
 
@@ -70,9 +70,9 @@ public class PartidoTestCase {
 	}
 	
 	@Test(expected = Exception.class) 
-	public void testCuandoUsuarioSolicitaHacerApuestaSeguraConPartidoEnCursoSeLanzaExcepcion(){
+	public void testCuandoUsuarioSolicitaHacerApuestaSeguraConPartidoEnCursoSeLanzaExcepcion() throws Exception{
 		partido.setEstado(new EnCurso());
-		usuario.hacerApuesta(evento, opcionApuesta, 20.00, false); 
+		partido.addApuesta(evento, usuario, opcionApuesta, 20.00, false); 
 	}
 
 	@Test

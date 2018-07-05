@@ -6,10 +6,12 @@ import static org.mockito.Mockito.*;
 import org.junit.Test;
 
 import models.juego.Partido;
+import models.juego.resultado.Resultado;
 
 public class EnCursoTestCase {
 	private EnCurso estado = new EnCurso();
 	private Partido partido = mock(Partido.class);
+	private Resultado mockResultado = mock(Resultado.class);
 	
 	@Test
 	public void testGetEstado() {
@@ -17,8 +19,10 @@ public class EnCursoTestCase {
 	}
 
 	@Test
-	public void testResultado() {
-		estado.resultadoPartido(partido);
-		verify(partido).getResultado();
+	public void testElEstadoEnCursoSabeRetornarElResultadoActualDelPartido() {
+			
+		when(partido.resultado()).thenReturn(mockResultado);
+		assertEquals(partido.resultado(), estado.resultadoPartido(partido));
+		
 	}
 }

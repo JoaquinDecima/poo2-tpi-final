@@ -3,16 +3,17 @@
  */
 package models.usuario;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.junit.Assert.*;
 
 import java.sql.Date;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import models.apuesta.Apuesta;
 import models.apuesta.ApuestaSegura;
 import models.apuesta.opcion.OpcionApuesta;
 import models.casaApuesta.CasaApuesta;
@@ -22,9 +23,9 @@ import models.deporte.Deporte;
 import models.evento.Evento;
 import models.juego.Partido;
 import models.juego.estado.EnCurso;
+import models.juego.estado.Proximo;
 import models.juego.resultado.Resultado;
 import models.juego.resultado.ResultadoConEmpate;
-import models.usuario.Usuario;
 
 
 public class UsuarioTestCase {
@@ -48,36 +49,43 @@ public class UsuarioTestCase {
 		evento = new Evento(partido, adminCuota);
 		opcionApuesta  = new OpcionApuesta(resultadoPosible, 10.00);	
 	}
-/*
- * 
+
 
 	@Test
 	public void testCuandoUsuarioCancelaApuestaSeguraConPartidoEnCursoSePenalizaCobrando30porcientoApostado() {
 
-		assertEquals(usuario.getMontoWallet(), 0.00, 0.00);
-		// seteo 200 pesos en wallet de usuario
+		
 		usuario.incrementarMontoWallet(200.00);
-		// compruebo que existen 200 pesos en wallet de usuario
-		assertEquals(usuario.getMontoWallet(), 200.00, 200.00);
-		// chequeo que el usuario no ha hecho apuestas en evento
-		assertEquals(0, evento.getApuestasUsuario(usuario).size(), 0);
-		// usuario hace apuestaSegura en evento
-		usuario.hacerApuesta(opcionApuesta, 150.00);
-		// compruebo que se han descontado 150 pesos de wallet de usuario
-		assertEquals(usuario.getMontoWallet(), 50.00, 50.00);
+	
+		usuario.hacerApuesta(evento, opcionApuesta, 150.00, true);
+
 		// compruebo que ha quedado registrada en el evento la apuesta hecha
 		assertEquals(1, evento.getApuestasUsuario(usuario).size(), 1);
+		
 		// usuario cancela apuesta segura con partido en curso
 		partido.setEstado(new EnCurso());
 		usuario.cancelarApuesta((ApuestaSegura) (evento.getApuestasUsuario(usuario)).get(0));
+		
 		// compruebo que usuario vuelve a poseer el dinero previo a la apuesta, con una quita del 30 porciento
-		assertEquals(usuario.getMontoWallet(), 155, 155);
-		// compruebo que se ha quitado la apuesta del registro en el evento
+		assertTrue(155.00 == usuario.getMontoWallet());
+		
+		// compruebo que se ha desactivado la apuesta
 		assertFalse(((ApuestaSegura) evento.getApuestasUsuario(usuario).get(0)).estaActiva());
 
-		assertEquals(usuario.getNombre(), "diego");
 	}
- */
+	
+	@Test
+	public void testCuandoElPartidoHaComenzadoUsuarioYaNoPuedeHacerApuesta() {
+
+		
+		partido.setEstado(new EnCurso());
+		usuario.incrementarMontoWallet(200.00);
+		
+		usuario.hacerApuesta(evento, opcionApuesta, 150.00, true);
+
+	}
+
+
 	@Test
 	public void testEmailyNombre() {
 		assertEquals(usuario.getEmail(), "diego@unq.edu.ar");
@@ -103,30 +111,36 @@ public class UsuarioTestCase {
 		assertEquals(1, usuario.getApuestasHechas().size());	
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
-	public void testUnUsuarioPuedeHacerUnaApuestaSeguraYPuedeCancelarlaSiElPartidoNoComenzo() {
+	public void testSiUsuarioHaceApuestaSeguraPuedeCancelarlaSiElPartidoNoComenzoySeCobraPenalidadDe200Pesos() {
+		
+		usuario.incrementarMontoWallet(600.00);
 		//compruebo que el usuario no ha hecho una apuesta antes
 		assertEquals(0, usuario.getApuestasHechas().size());
+		
+		partido.setEstado(new Proximo()); 
+		
 		// usuario hace apuesta segura apostando 150 pesos
 		usuario.hacerApuesta(evento,opcionApuesta, 150.00, true);	
-		//compruebo que ya existe una apuesta en su historial
-		//assertEquals(1, usuario.getApuestasHechas().size());	
-		// cancelo la apuesta ya que es de tipo Segura
-		//ApuestaSegura apuestaNueva = (ApuestaSegura) usuario.getApuestasHechas().get(1);
-		//usuario.cancelarApuesta(apuestaNueva);
-	}
 	
-	/*@Test
-	public void testUnUsuarioPuedeHacerUnaApuestaFinalQueNoPermiteCancelacion() {
-		assertEquals(0, usuario.getApuestasHechas().size(), 0);
-		usuario.hacerApuesta(opcionApuesta, 150.00, true);
-		assertEquals(1, usuario.getApuestasHechas().size(), 1);	
-		usuario.getApuestasHechas().get(0);
+		//compruebo que ahora ya existe una apuesta en su historial
+		assertEquals(1, usuario.getApuestasHechas().size());
+		
+		ApuestaSegura apuestaSeguraHecha = (ApuestaSegura) usuario.getApuestasHechas().get(0);
+		
+		// compruebo que la apuesta esta activa
+		assertTrue(apuestaSeguraHecha.estaActiva());
+		
+		// cancelo la apuesta ya que es de tipo Segura
+		usuario.cancelarApuesta(apuestaSeguraHecha);
+		
+		assertTrue(400.00 == usuario.getMontoWallet());
+		assertFalse(apuestaSeguraHecha.estaActiva());
 		
 	}
-	*/
-	
 
+	
 	@Test 
 	public void testPideMontoWallet() {
 		assertEquals(usuario.getMontoWallet(), 0.0, 0.55);
