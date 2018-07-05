@@ -25,5 +25,6 @@ public class ApuestaSegura extends Apuesta {
 		this.estaActiva = !this.estaActiva;
 	}
 
+
 	
 }

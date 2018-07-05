@@ -36,11 +36,14 @@ public class Proximo implements EstadoPartido {
 	public void reactivarApuestaSegura(ApuestaSegura apuestaAReactivar) {
 			//se activa la apuesta
 			apuestaAReactivar.updateEstado();
+			apuestaAReactivar.getUsuario().decrementarMontoWallet(apuestaAReactivar.montoApostado());
+
 	}
 
 	@Override
 	public void cancelarApuestaSegura(ApuestaSegura apuestaACancelar) {
 			apuestaACancelar.updateEstado();
+			apuestaACancelar.getUsuario().incrementarMontoWallet(apuestaACancelar.montoApostado());
 			apuestaACancelar.getEvento().cobrarPenalidadApuestaCanceladaConPartidoProximo(apuestaACancelar);
 	}
 

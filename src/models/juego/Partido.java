@@ -155,7 +155,7 @@ public class Partido{
 		} catch (Exception e) {
 			System.out.println("El evento ya no permite hacer apuestas.");
 			e.printStackTrace();
-			throw new Exception();
+			throw new Exception("Ya no es posible hacer apuestas", e);
 		}
 	}
 
@@ -165,7 +165,7 @@ public class Partido{
 	  return this.getEstado().resultadoPartido(this);
   }
 
-  // Retorna el resultado
+  // Retorna el resultado, es invocado por su estado interno
   public Resultado resultado() {
 	  return (this.resultado);
   }

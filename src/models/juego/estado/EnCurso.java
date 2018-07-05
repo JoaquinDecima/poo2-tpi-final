@@ -47,6 +47,7 @@ public class EnCurso implements EstadoPartido {
 	@Override
 	public void cancelarApuestaSegura(ApuestaSegura apuestaACancelar) {
 		apuestaACancelar.updateEstado();
+		apuestaACancelar.getUsuario().incrementarMontoWallet(apuestaACancelar.montoApostado());
 		apuestaACancelar.getEvento().cobrarPenalidadApuestaCanceladaConPartidoEnCurso(apuestaACancelar);
 	}
 
