@@ -116,6 +116,10 @@ public class Partido{
 	public Deporte getDeporte() {
 		return this.deporte;
 	}
+	
+	public boolean esDeporteConEmpate() {
+		return this.deporte.permiteEmpate();
+	}
 
 	public boolean huboEmpate() {
 		return this.getEstado().resultadoPartido(this).empate();
@@ -125,6 +129,7 @@ public class Partido{
   public EstadoPartido getEstado() {
     return (this.estado);
   }
+  
 
   /*
    * Metodos setters

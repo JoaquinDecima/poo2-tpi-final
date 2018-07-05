@@ -91,7 +91,7 @@ public class Evento implements ISubscriptorPartido {
 			this.opcionesApuestasPosibles = new ArrayList<OpcionApuesta>();
 			this.opcionesApuestasPosibles.add(this.calcularOpcionVictoriaLocal());
 			this.opcionesApuestasPosibles.add(this.calcularOpcionVictoriaVisitante());
-			if (this.partido.getDeporte().permiteEmpate()) {
+			if (this.partido.esDeporteConEmpate()) {
 					this.opcionesApuestasPosibles.add(this.calcularOpcionEmpate());
 			}
 		}
@@ -142,21 +142,21 @@ public class Evento implements ISubscriptorPartido {
 		 *  metodos getters que devuelven opciones de apuestas calculadas
 		 */
 
-		private OpcionApuesta calcularOpcionEmpate() {
+		public OpcionApuesta calcularOpcionEmpate() {
 			Resultado resultadoEmpate = this.getResultadoEmpate();
 			Double cuotaEmpate = this.getCuotaPorEmpate();
 			OpcionApuesta opcionEmpate = new OpcionApuesta(resultadoEmpate, cuotaEmpate);
 			return opcionEmpate;
 		}
 
-		private OpcionApuesta calcularOpcionVictoriaVisitante() {
+		public OpcionApuesta calcularOpcionVictoriaVisitante() {
 			Resultado resultadoVictoriaVisitante = this.getResultadoVictoriaVisitante();
 			Double cuotaVictoriaVisitante = this.getCuotaPorVictoriaVisitante();
 			OpcionApuesta opcionVictoriaVisitante = new OpcionApuesta(resultadoVictoriaVisitante, cuotaVictoriaVisitante);
 			return opcionVictoriaVisitante;
 		}
 
-		private OpcionApuesta calcularOpcionVictoriaLocal() {
+		public OpcionApuesta calcularOpcionVictoriaLocal() {
 			Resultado resultadoVictoriaLocal = this.getResultadoVictoriaLocal();
 			Double cuotaVictoriaLocal = this.getCuotaPorVictoriaLocal();
 			OpcionApuesta opcionVictoriaLocal = new OpcionApuesta(resultadoVictoriaLocal, cuotaVictoriaLocal);
