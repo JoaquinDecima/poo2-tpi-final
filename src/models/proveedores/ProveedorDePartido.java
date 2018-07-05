@@ -50,8 +50,7 @@ public class ProveedorDePartido {
   }
 
   // Retorna todos los partidos que se juegen en dDate
-  @SuppressWarnings("deprecation")
-public ArrayList<Partido> getPartidosDeFecha(Date dDate){
+  public ArrayList<Partido> getPartidosDeFecha(Date dDate){
     ArrayList<Partido> listPartidos = new ArrayList<Partido>();
 
     // Recorro los partidos

@@ -3,11 +3,9 @@
  */
 package models.usuario;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
+
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import java.sql.Date;
 
@@ -16,7 +14,6 @@ import org.junit.Test;
 
 import models.apuesta.ApuestaSegura;
 import models.apuesta.opcion.OpcionApuesta;
-import models.casaApuesta.CasaApuesta;
 import models.competidor.Competidor;
 import models.cuota.AdminCuota;
 import models.deporte.Deporte;
@@ -31,7 +28,6 @@ import models.juego.resultado.ResultadoConEmpate;
 public class UsuarioTestCase {
 
 	private Usuario usuario = new Usuario("diego", "diego@unq.edu.ar");
-	private CasaApuesta mockCasaApuesta = mock(CasaApuesta.class);
 	private Competidor local = mock(Competidor.class) ;
 	private Competidor visitante = mock(Competidor.class);
 	private Deporte deporte = mock(Deporte.class);
@@ -42,6 +38,7 @@ public class UsuarioTestCase {
 	private Evento evento;
 	private OpcionApuesta opcionApuesta;
 	
+	@SuppressWarnings("deprecation")
 	@Before
 	public void setUp() {
 		fecha = new Date(2018, 06, 23);

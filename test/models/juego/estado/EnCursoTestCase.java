@@ -23,6 +23,11 @@ public class EnCursoTestCase {
 			
 		when(partido.resultado()).thenReturn(mockResultado);
 		assertEquals(partido.resultado(), estado.resultadoPartido(partido));
-		
+	}
+	
+	@Test
+	public void testResultado() {
+		estado.resultadoPartido(partido);
+		verify(partido).resultado();
 	}
 }

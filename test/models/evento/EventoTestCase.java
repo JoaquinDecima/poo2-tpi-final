@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,11 +20,14 @@ import models.competidor.Competidor;
 public class EventoTestCase {
 
 
+	@SuppressWarnings("unused")
 	private Usuario usuario;
 	private AdminCuota adminCuota;
+	@SuppressWarnings("unused")
 	private OpcionApuesta opcionApuesta;
 	private Partido mockPartido;
 	private Evento evento;
+	private Date fecha = new Date();
 	
 
 	@Before
@@ -32,7 +36,7 @@ public class EventoTestCase {
 		mockPartido = mock(Partido.class);
 		evento = new Evento(mockPartido, adminCuota);
 		opcionApuesta = mock(OpcionApuesta.class);
-
+		
 			
 	}
 
@@ -71,5 +75,19 @@ public class EventoTestCase {
 		assertEquals(evento.getResultadoVictoriaLocal().ganaCompetidor(), local);
 		assertEquals(evento.getResultadoVictoriaVisitante().ganaCompetidor(), visitante);
 		assertTrue(evento.getResultadoEmpate().empate());
+	}
+	
+	@Test
+	public void testPideFecha() {
+		when(mockPartido.getFechaDate()).thenReturn(fecha);
+		assertEquals(evento.getFecha(), fecha);
+		
+	}
+	
+	@Test
+	public void testDisponibilidad() {
+		assertTrue(evento.estaDisponible());
+		evento.quitarDisponibilidad();
+		assertFalse(evento.estaDisponible());
 	}
 }

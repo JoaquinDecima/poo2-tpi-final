@@ -6,7 +6,6 @@ import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import models.apuesta.opcion.OpcionApuesta;
@@ -32,6 +31,7 @@ public class CasaApuestaTestCase {
 	
 	@SuppressWarnings("deprecation")
 	private Date fecha = new Date(2018, 06, 23);
+	@SuppressWarnings("deprecation")
 	private Date fecha2 = new Date(2018, 06, 23);
 	
 	private Deporte deporte1 = mock(Deporte.class);
