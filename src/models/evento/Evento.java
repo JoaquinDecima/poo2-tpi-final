@@ -48,6 +48,7 @@ public class Evento implements ISubscriptorPartido {
 			this.adminCuotasApuestasPosibles = cuotasResultadosPosibles;
 			this.partido = partidoDelEvento;
 			this.apuestasRealizadas = new ArrayList<Apuesta>();
+			this.estaDisponible = true;
 			}
 
 
@@ -222,7 +223,7 @@ public class Evento implements ISubscriptorPartido {
 
 		public void cobrarPenalidadApuestaCanceladaConPartidoEnCurso(ApuestaSegura apuestaACancelar) {
 			// si el partido esta en curso y el usuario la cancela, se le descuenta el 15% de lo que apostó.
-		apuestaACancelar.getUsuario().decrementarMontoWallet((apuestaACancelar.gananciaNeta()*15) / 100);
+		apuestaACancelar.getUsuario().decrementarMontoWallet((apuestaACancelar.montoApostado()*30) / 100);
 
 		}
 
