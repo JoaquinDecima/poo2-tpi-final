@@ -1,8 +1,7 @@
 package models.casaApuesta;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -66,12 +65,7 @@ public class CasaApuestaTestCase {
 	private Partido partido = new Partido(local, visitante, deporte, fecha, "Quilmes");
 	private Resultado resultadoPosible = mock(ResultadoConEmpate.class);
 	private Evento evento = casa.crearEventoDeportivo(partido);
-	private OpcionApuesta opcionApuesta = new OpcionApuesta(resultadoPosible, 10.00);
-	private Evento mockEvento2;
-	private Evento mockEvento1;
-
-	
-	
+	private OpcionApuesta opcionApuesta = new OpcionApuesta(resultadoPosible, 10.00);	
 	
 	@Test
 	public void testGetAdminCuota() {
@@ -158,7 +152,10 @@ public class CasaApuestaTestCase {
 		casa.balanceMensual();
 	}
 	
-	
+	@Test
+	public void testGetEventosDisponibles() {
+		assertTrue(casa.getEventosDisponibles() instanceof ArrayList);
+	}
 }
 	
 	
