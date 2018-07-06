@@ -200,18 +200,9 @@ public class Evento implements ISubscriptorPartido {
 		private void pagarGananciasApuestas() {
 
 			for(Apuesta apuesta : this.getApuestasRealizadas()) {
-				apuesta.getUsuario().incrementarMontoWallet(apuesta.gananciaBruta());
-
-				if(apuesta instanceof ApuestaSegura) {
-					this.cobrarDescPorApuestaSegura(apuesta);
-				}
+				apuesta.getUsuario().incrementarMontoWallet(apuesta.gananciaBruta());	
 			}
 		}
-
-		public void cobrarDescPorApuestaSegura(Apuesta apuesta) {
-			apuesta.getUsuario().decrementarMontoWallet((apuesta.gananciaNeta())*15 / 100);
-		}
-
 
 		/*
 		 * Metodos invocados por EstadoPartido

@@ -12,4 +12,7 @@ public class ApuestaFinal extends Apuesta {
 		this.monto = m;
 		this.apuesta = op;
 	}
+	
+	
+	
 }

@@ -24,7 +24,11 @@ public class ApuestaSegura extends Apuesta {
 	public void updateEstado() {
 		this.estaActiva = !this.estaActiva;
 	}
-
-
+	@Override
+	public void calcularGanancias() {
+		this.ganaciaBruta = this.intGananciaBruta();
+		this.ganaciaNeta = this.intGanaciaNeta();
+		this.getUsuario().decrementarMontoWallet((this.gananciaNeta())*15 / 100);
+	  }
 	
 }
