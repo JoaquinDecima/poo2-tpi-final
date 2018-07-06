@@ -39,7 +39,7 @@ public class Evento implements ISubscriptorPartido {
 		private Partido partido;
 		private AdminCuota adminCuotasApuestasPosibles;
 		private ArrayList<Apuesta> apuestasRealizadas;
-		ArrayList<OpcionApuesta> opcionesApuestasPosibles;
+		private ArrayList<OpcionApuesta> opcionesApuestasPosibles;
 		private boolean estaDisponible = true;
 
 
@@ -48,7 +48,9 @@ public class Evento implements ISubscriptorPartido {
 			this.adminCuotasApuestasPosibles = cuotasResultadosPosibles;
 			this.partido = partidoDelEvento;
 			this.apuestasRealizadas = new ArrayList<Apuesta>();
+			this.opcionesApuestasPosibles = new ArrayList<OpcionApuesta>();
 			this.estaDisponible = true;
+			
 			}
 
 
@@ -88,7 +90,6 @@ public class Evento implements ISubscriptorPartido {
 		public void calcularOpcionesResultadosPosibles() {
 			// se almacenan las opciones de apuestas posibles en un array list como variable interna
 			// solo almacena la opcion de que el resultado sea un empate, si el deporte admite empates
-			this.opcionesApuestasPosibles = new ArrayList<OpcionApuesta>();
 			this.opcionesApuestasPosibles.add(this.calcularOpcionVictoriaLocal());
 			this.opcionesApuestasPosibles.add(this.calcularOpcionVictoriaVisitante());
 			if (this.partido.esDeporteConEmpate()) {
@@ -199,7 +200,7 @@ public class Evento implements ISubscriptorPartido {
 		private void pagarGananciasApuestas() {
 
 			for(Apuesta apuesta : this.getApuestasRealizadas()) {
-				apuesta.getUsuario().incrementarMontoWallet(apuesta.gananciaNeta());
+				apuesta.getUsuario().incrementarMontoWallet(apuesta.gananciaBruta());
 
 				if(apuesta instanceof ApuestaSegura) {
 					this.cobrarDescPorApuestaSegura(apuesta);
@@ -207,8 +208,8 @@ public class Evento implements ISubscriptorPartido {
 			}
 		}
 
-		private void cobrarDescPorApuestaSegura(Apuesta apuesta) {
-			apuesta.getUsuario().decrementarMontoWallet((apuesta.gananciaNeta()*15) / 100);
+		public void cobrarDescPorApuestaSegura(Apuesta apuesta) {
+			apuesta.getUsuario().decrementarMontoWallet((apuesta.gananciaNeta())*15 / 100);
 		}
 
 
@@ -216,7 +217,7 @@ public class Evento implements ISubscriptorPartido {
 		 * Metodos invocados por EstadoPartido
 		 */
 
-		public void registrarNuevaApuesta(ApuestaSegura nuevaApuesta) {
+		public void registrarNuevaApuesta(Apuesta nuevaApuesta) {
 			this.apuestasRealizadas.add(nuevaApuesta);
 		}
 

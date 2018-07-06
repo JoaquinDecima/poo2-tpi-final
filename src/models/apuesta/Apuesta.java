@@ -22,8 +22,8 @@ public abstract class Apuesta{
   protected Evento evento;
   protected OpcionApuesta apuesta;
   protected Double monto;
-  protected Double ganaciaNeta;
-  protected Double ganaciaBruta;
+  protected Double ganaciaNeta = 0.00;
+  protected Double ganaciaBruta = 0.00;
   protected Usuario usuario;
 
   // Retorna la ganancia bruta
