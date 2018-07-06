@@ -47,10 +47,10 @@ public class ApuestaSeguraTestCase {
 	@Test
 	public void testCambioEstado() {
 		assertTrue(apuesta.estaActiva());
-		
 		apuesta.updateEstado();
-		
-		assertTrue(!apuesta.estaActiva());
+		assertFalse(apuesta.estaActiva());
+		apuesta.updateEstado();
+		assertTrue(apuesta.estaActiva());
 	}
 	
 	@Test

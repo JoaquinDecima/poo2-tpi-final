@@ -1,12 +1,7 @@
 package models.evento;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,10 +24,8 @@ import models.usuario.Usuario;
 public class EventoTestCase {
 
 
-	@SuppressWarnings("unused")
 	private Usuario usuario;
 	private AdminCuota adminCuota;
-	@SuppressWarnings("unused")
 	private OpcionApuesta opcionApuesta;
 	private Partido mockPartido;
 	private Evento evento;
@@ -95,6 +88,7 @@ public class EventoTestCase {
 		
 		OpcionApuesta opcionApuestaVicLocalCalculadoPorEvento = evento.calcularOpcionVictoriaLocal();
 		OpcionApuesta opcionApuestaVicVisitanteCalculadoPorEvento = evento.calcularOpcionVictoriaVisitante();
+		@SuppressWarnings("unused")
 		OpcionApuesta opcionApuestaEmpateCalculadoPorEvento = evento.calcularOpcionEmpate();
 		
 		assertEquals(opcionApuestaVicVisitanteCalculadoPorEvento.cuota(), opcionApuesta1VictoriaVisitante.cuota());
@@ -250,8 +244,9 @@ public class EventoTestCase {
 		
 
 	}
-	
-	
-	
-	
+		
+	@Test
+	public void testGetOpcionesResultadosPosibles() {
+		assertTrue(evento.getOpcionesResultadosPosibles() instanceof ArrayList);
+	}
 }

@@ -28,16 +28,23 @@ public class BalanceManager {
 		notificador.notiBalance(user, fechaBalance.getMonth(), this.sumaNetos(listaOk));
 	}
 	
+	// Modifica enviador a SMS
 	public void enviarSMS() {
 		notificador = new SMSBalanceNotifier();
 	}
 	
+	// Modifica a enviarEmial
 	public void enviarEmail() {
 		notificador = new EmailBalanceNotifier();
 	}
+	
+	//Retorna el Notificador
+	public Notifier getMetodoEnvio() {
+		return(this.notificador);
+	}
 
-
-	private Double sumaNetos(ArrayList<Apuesta> listaOk) {
+	// Suma los netos de la ListaOK
+	public Double sumaNetos(ArrayList<Apuesta> listaOk) {
 		double total = 0.0;
 		
 		for (Apuesta apuesta : listaOk) {
@@ -48,8 +55,9 @@ public class BalanceManager {
 	}
 
 
+	// Retorna True si la fecha es de Este Mes
 	@SuppressWarnings("deprecation")
-	private boolean esDeEsteMes(Apuesta apuesta) {
+	public boolean esDeEsteMes(Apuesta apuesta) {
 		Date fechaBalance = new Date();
 		return (apuesta.getFecha().getMonth() == fechaBalance.getMonth());
 	}

@@ -153,6 +153,7 @@ public class CasaApuestaTestCase {
 		
 		assertEquals(casa.getUsuarios().size(), 8);
 		assertEquals(casa.getApuestas().size(), 8);
+		casa.balanceMensual();
 	}
 
 	

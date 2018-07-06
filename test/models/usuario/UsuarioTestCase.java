@@ -108,7 +108,6 @@ public class UsuarioTestCase {
 		assertEquals(1, usuario.getApuestasHechas().size());	
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testSiUsuarioHaceApuestaSeguraPuedeCancelarlaSiElPartidoNoComenzoySeCobraPenalidadDe200Pesos() {
 		

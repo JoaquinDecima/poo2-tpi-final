@@ -5,6 +5,7 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
+import models.apuesta.ApuestaSegura;
 import models.juego.Partido;
 import models.juego.resultado.Resultado;
 
@@ -12,6 +13,7 @@ public class EnCursoTestCase {
 	private EnCurso estado = new EnCurso();
 	private Partido partido = mock(Partido.class);
 	private Resultado mockResultado = mock(Resultado.class);
+	private ApuestaSegura apuesta = mock(ApuestaSegura.class);
 	
 	@Test
 	public void testGetEstado() {
@@ -29,5 +31,10 @@ public class EnCursoTestCase {
 	public void testResultado() {
 		estado.resultadoPartido(partido);
 		verify(partido).resultado();
+	}
+	
+	@Test(expected=Exception.class)
+	public void testMovimientoApuesta() throws Exception {
+		estado.reactivarApuestaSegura(apuesta);
 	}
 }
