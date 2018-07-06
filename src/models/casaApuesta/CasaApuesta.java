@@ -57,13 +57,18 @@ public class CasaApuesta {
 		Evento nuevoEvento = new Evento(partido, this.getAdminCuota());
 		nuevoEvento.calcularOpcionesResultadosPosibles();
 		// se agrega el evento al registro de eventos de la casa de apuestas
-		this.eventos.add(nuevoEvento);
+		this.agregarEvento(nuevoEvento);
 		// sistema de notificaciones: la casa de apuestas se subscribe a los eventos de partido;
 		partido.addSubscriptor(nuevoEvento);
 		// se retorna el evento creado
 		return nuevoEvento;
 	}
 	
+	public void agregarEvento(Evento nuevoEvento) {
+		this.eventos.add(nuevoEvento);
+		
+	}
+
 	// Setea Nuevo Algoritmo
 	public void setAlgoritmoProbabilidad(AlgoritmoProbabilidad algoritmoNuevo) {
 		this.algoritmoProbabilidadSeteado = algoritmoNuevo;

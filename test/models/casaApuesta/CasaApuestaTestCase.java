@@ -1,7 +1,8 @@
 package models.casaApuesta;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,7 +10,6 @@ import java.util.Date;
 import org.junit.Test;
 
 import models.apuesta.opcion.OpcionApuesta;
-import models.casaApuesta.CasaApuesta;
 import models.competidor.Competidor;
 import models.cuota.AdminCuota;
 import models.deporte.Deporte;
@@ -67,6 +67,8 @@ public class CasaApuestaTestCase {
 	private Resultado resultadoPosible = mock(ResultadoConEmpate.class);
 	private Evento evento = casa.crearEventoDeportivo(partido);
 	private OpcionApuesta opcionApuesta = new OpcionApuesta(resultadoPosible, 10.00);
+	private Evento mockEvento2;
+	private Evento mockEvento1;
 
 	
 	
@@ -155,7 +157,7 @@ public class CasaApuestaTestCase {
 		assertEquals(casa.getApuestas().size(), 8);
 		casa.balanceMensual();
 	}
-
+	
 	
 }
 	

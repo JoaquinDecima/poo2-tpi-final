@@ -20,6 +20,7 @@ import models.deporte.Deporte;
 import models.evento.Evento;
 import models.juego.Partido;
 import models.juego.estado.EnCurso;
+import models.juego.estado.Finalizado;
 import models.juego.estado.Proximo;
 import models.juego.resultado.Resultado;
 import models.juego.resultado.ResultadoConEmpate;
@@ -141,4 +142,94 @@ public class UsuarioTestCase {
 	public void testPideMontoWallet() {
 		assertEquals(usuario.getMontoWallet(), 0.0, 0.55);
 	}
+	
+	@Test
+	public void testSiUsuarioCanceloApuestaMientrasPartidoNoComenzoEntoncesPuedeReactivarlaSiSeArrepiente() {
+		
+		usuario.incrementarMontoWallet(600.00);
+		//compruebo que el usuario no ha hecho una apuesta antes
+		assertEquals(0, usuario.getApuestasHechas().size());
+		
+		partido.setEstado(new Proximo()); 
+		
+		// usuario hace apuesta segura apostando 150 pesos
+		usuario.hacerApuesta(evento,opcionApuesta, 150.00, true);	
+	
+		//compruebo que ahora ya existe una apuesta en su historial
+		assertEquals(1, usuario.getApuestasHechas().size());
+		
+		ApuestaSegura apuestaSeguraHecha = (ApuestaSegura) usuario.getApuestasHechas().get(0);
+		
+		// compruebo que la apuesta esta activa
+		assertTrue(apuestaSeguraHecha.estaActiva());
+		
+		// cancelo la apuesta ya que es de tipo Segura
+		usuario.cancelarApuesta(apuestaSeguraHecha);
+		
+		assertTrue(400.00 == usuario.getMontoWallet());
+		assertFalse(apuestaSeguraHecha.estaActiva());
+		
+		usuario.reactivarApuesta(apuestaSeguraHecha);
+		assertTrue(apuestaSeguraHecha.estaActiva());
+	}	
+	
+	@Test
+	public void testSiUsuarioCanceloApuestaConPartidoEnCursoEntoncesNoPuedeReactivarla() {
+		
+		usuario.incrementarMontoWallet(600.00);
+		//compruebo que el usuario no ha hecho una apuesta antes
+		assertEquals(0, usuario.getApuestasHechas().size());
+		
+		
+		// usuario hace apuesta segura apostando 150 pesos
+		usuario.hacerApuesta(evento,opcionApuesta, 150.00, true);	
+		
+	
+		//compruebo que ahora ya existe una apuesta en su historial
+		assertEquals(1, usuario.getApuestasHechas().size());
+		
+		ApuestaSegura apuestaSeguraHecha = (ApuestaSegura) usuario.getApuestasHechas().get(0);
+		
+		// compruebo que la apuesta esta activa
+		assertTrue(apuestaSeguraHecha.estaActiva());
+		
+		partido.setEstado(new EnCurso()); 
+
+		// cancelo la apuesta ya que es de tipo Segura
+		usuario.cancelarApuesta(apuestaSeguraHecha);
+		assertFalse(apuestaSeguraHecha.estaActiva());
+		
+		usuario.reactivarApuesta(apuestaSeguraHecha);
+		assertFalse(apuestaSeguraHecha.estaActiva());
+	}	
+
+	@Test
+	public void testUnUsuarioNoPuedeCancelarUnaApuestaSeguraSiElPartidoFinalizo() {
+		
+		usuario.incrementarMontoWallet(600.00);
+		//compruebo que el usuario no ha hecho una apuesta antes
+		assertEquals(0, usuario.getApuestasHechas().size());
+		
+		
+		// usuario hace apuesta segura apostando 150 pesos
+		usuario.hacerApuesta(evento,opcionApuesta, 150.00, true);	
+		
+	
+		//compruebo que ahora ya existe una apuesta en su historial
+		assertEquals(1, usuario.getApuestasHechas().size());
+		
+		ApuestaSegura apuestaSeguraHecha = (ApuestaSegura) usuario.getApuestasHechas().get(0);
+		
+		// compruebo que la apuesta esta activa
+		assertTrue(apuestaSeguraHecha.estaActiva());
+		
+		partido.setEstado(new Finalizado()); 
+
+		// cancelo la apuesta ya que es de tipo Segura
+		usuario.cancelarApuesta(apuestaSeguraHecha);
+		assertTrue(apuestaSeguraHecha.estaActiva());
+		
+	}	
+	
+	
 }
